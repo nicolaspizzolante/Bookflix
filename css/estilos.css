@@ -275,7 +275,7 @@ a {
 	background: #5da93c;
 }
 
-.formulario_inicio {
+.formulario_inicio, .formulario_alta_autor {
 	display: flex;
 	flex-direction: column;
 	text-align:center;
