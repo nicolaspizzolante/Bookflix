@@ -10,7 +10,7 @@
 ?>
 	
 <div class="container">
-	<h1>Editar Perfil</h1>
+	<h1>Editar el Perfil</h1>
 	<form action="validarEdicion.php" method="post" onsubmit="return validarEditar(this);" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="<?php echo $_SESSION['usuario']['id']; ?>">
 		<div class="input">
