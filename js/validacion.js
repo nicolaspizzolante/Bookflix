@@ -1,26 +1,9 @@
-function tieneMinuscula(str) {
-  return (/[a-z]/.test(str));
-}
-
-function tieneMayuscula(str) {
-  return (/[A-Z]/.test(str));
-}
-
 function tieneNumero(str) {
   return (/[0-9]/.test(str));
 }
 
-function tieneSimbolo (str){
-	return str.includes('@') || 
-	str.includes('#') || 
-	str.includes('%') || 
-	str.includes('$') || 
-	str.includes('&') || 
-	str.includes('!');
-}
-
 function validarPassword(pass){
-	return (pass.length >= 6) && tieneMinuscula(pass) && tieneMayuscula(pass) && (tieneNumero(pass) || tieneSimbolo(pass));
+	return pass.length >= 8 && tieneNumero(pass);
 }
 
 function validarLogin (form){
@@ -44,11 +27,11 @@ function validarPublicacion(form){
 	return true;
 }
 
-function validarCambio(form){
+function validarCambioPass(form){
 	var errores = '';
 	
 	if(!validarPassword(form.nueva_pass.value)){
-		errores+= '<li>La contraseña debe tener al menos 6 caracteres, una mayuscula y un numero o un simbolo.</li>';
+		errores += '<li>La contraseña debe tener al menos 8 caracteres alfanumericos.</li>';
 	}
 
 	if(form.nueva_pass.value != form.repetir_pass.value){
@@ -87,16 +70,8 @@ function validarRegistro(form){
 		errores += '<li>Ingrese un apellido valido.</li>';
 	}
 
-	if(form.nombreusuario.value.length < 6){
-		errores += '<li>El nombre de usuario debe tener al menos 6 caracteres.</li>';
-	}
-	
-	if(!esAlfaNumerico(form.nombreusuario.value)){
-		errores+= '<li>El nombre de usuario solo acepta alfanumericos.</li>';
-	}
-
 	if(!validarPassword(form.contrasenia.value)){
-		errores += '<li>La contraseña debe tener al menos 6 caracteres, una mayuscula y un numero o un simbolo.</li>';
+		errores += '<li>La contraseña debe tener al menos 8 caracteres alfanumericos.</li>';
 	}
 
 	if (form.contrasenia.value != form.confirmar_pass.value) {
