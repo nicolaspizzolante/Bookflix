@@ -28,7 +28,7 @@ if (($apellido == '') or (!preg_match('/^[A-Za-z\s]+$/',$apellido))) {
 	$_SESSION['errores'] .= '<li>Ingrese un apellido valido.</li>';
 }
 
-if (strlen($numero_tarjeta) != 16){
+if ((strlen($numero_tarjeta) != 16) or (!preg_match('/^[0-9]+$/'))){
 	$_SESSION['errores'] .= '<li>Ingrese un numero de tarjeta valido.</li>';
 }
 
