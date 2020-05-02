@@ -38,16 +38,6 @@ if (($apellido == '') or (!preg_match('/^[A-Za-z\s]+$/',$apellido))) {
 	$_SESSION['usuario']['apellido'] = $apellido;
 }
 
-if($_FILES['foto_de_perfil']['name'] != ''){
-	$arreglo = explode('/', $_FILES['foto_de_perfil']['type']);
-
-	$foto_contenido = file_get_contents($_FILES['foto_de_perfil']['tmp_name']);
-	$foto_contenido = addslashes($foto_contenido); 
-
-	$sql = "UPDATE usuarios SET foto_contenido = '$foto_contenido', foto_tipo = '$arreglo[1]' WHERE id = '$id'";
-	$resultado = $conexion->query($sql);
-}
-
 if(!isset($_SESSION['errores'])){
 	header('Location: muro.php');
 } else {
