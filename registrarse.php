@@ -12,7 +12,7 @@
 
 <div class="formulario_inicio">
 
-	<h1>Registrarse en el sitio:</h1>
+	<h1>Registrarse:</h1>
 	<form action="validarRegistro.php" onsubmit="return validarRegistro(this);" method="post">
 		
 		<div class="input">
@@ -36,7 +36,7 @@
 		</div>
 
 		<div class="input">
-			<input type="number" name="numero_tarjeta" placeholder="Numero de tarjeta">
+			<input type="text" name="numero_tarjeta" placeholder="Numero de tarjeta">
 		</div>
 
 		<div class="input">
