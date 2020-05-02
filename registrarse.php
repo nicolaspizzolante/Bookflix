@@ -12,7 +12,7 @@
 
 <div class="formulario_inicio">
 
-	<h1>Registrarse:</h1>
+	<h1>Registrarse en el sitio:</h1>
 	<form action="validarRegistro.php" onsubmit="return validarRegistro(this);" method="post">
 		
 		<div class="input">
