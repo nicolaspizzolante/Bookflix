@@ -8,7 +8,7 @@ $id = $_POST['id'];
 $nuevaEditorial = isset($_POST['nuevaEditorial']) ? $_POST['nuevaEditorial'] : '';
 
 if (($nuevaEditorial == '') or (!preg_match('/^[A-Za-z0-9\s]+$/',$nuevaEditorial))) {
-	$_SESSION['errores'] .= '<li>El nombre no debe contener simbolos.</li>';
+	$_SESSION['errores'] .= '<li>El nombre no puede ser vacio o contener caracteres especiales.</li>';
 }
 
 if ($_SESSION['errores']){
