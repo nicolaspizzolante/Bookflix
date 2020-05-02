@@ -8,11 +8,6 @@ $id = $_POST['id'];
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
 $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
-$numero_tarjeta = isset($_POST["numero_tarjeta"]) ? $_POST['numero_tarjeta'] : '' ;
-$codigo_tarjeta = isset($_POST["codigo_tarjeta"]) ? $_POST['codigo_tarjeta'] : '';
-$mes_vencimiento = isset($_POST["mes_vencimiento"]) ? $_POST['mes_vencimiento'] : '';
-$anio_vencimiento = isset($_POST["anio_vencimiento"]) ? $_POST['anio_vencimiento'] : '';
-$nombre_tarjeta = isset($_POST["nombre_tarjeta"]) ? $_POST['nombre_tarjeta'] : '';
 
 if (($email == '') or (!preg_match('[@]',$email))) {
 	$_SESSION['errores'] .= '<li>Ingrese una direccion de email valida.</li>';
