@@ -29,16 +29,6 @@
 		</div>
 
 		<div class="input">
-			<label for="apellido">Cambiar numero:</label>
-			<input type="text" name="numero_tarjeta" placeholder="Codigo de tarjeta" value="<?php echo $_SESSION['usuario']['codigo_tarjeta']; ?>">
-		</div>
-		
-		<div class="input">
-			<label for="apellido">Cambiar codigo:</label>
-			<input type="text" name="codigo_tarjeta" placeholder="Codigo de tarjeta" value="<?php echo $_SESSION['usuario']['codigo_tarjeta']; ?>">
-		</div>
-
-		<div class="input">
 			<input type="submit">
 		</div>
 	</form>
