@@ -11,7 +11,7 @@
 ?>
 
 <div class="container">
-	<h1>Cambiar contraseña:</h1>
+	<h1>Cambiar Contraseña</h1>
 
 	<form action="validarCambioPass.php" method="post" onsubmit="return validarCambioPass(this);">
 		<input type="hidden" name="id" value="<?php echo $_SESSION['usuario']['id']; ?>">

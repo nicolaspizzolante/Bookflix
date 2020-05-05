@@ -11,7 +11,6 @@
 ?>
 
 <div class="container">
-<h1>hola mundooo!!!!!!</h1>
 	<!-- Datos del usuario loggeado -->
 	<div class="datos">
 		<div class="nombre"><?php echo $_SESSION['usuario']['nombre']; ?></div>

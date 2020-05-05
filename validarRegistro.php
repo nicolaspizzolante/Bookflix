@@ -11,9 +11,9 @@ $apellido = trim($_POST["apellido"]);
 $contrasenia = $_POST["contrasenia"];
 $confirmar = $_POST["confirmar_pass"];
 $numero_tarjeta = trim($_POST["numero_tarjeta"]);
-$codigo_tarjeta = $_POST["codigo_tarjeta"];
-$mes_vencimiento = $_POST["mes_vencimiento"];
-$anio_vencimiento = $_POST["anio_vencimiento"];
+$codigo_tarjeta = trim($_POST["codigo_tarjeta"]);
+$mes_vencimiento = trim($_POST["mes_vencimiento"]);
+$anio_vencimiento = trim($_POST["anio_vencimiento"]);
 $nombre_tarjeta = $_POST["nombre_tarjeta"];
 
 if (($email == '') or (!preg_match('[@]',$email))) {
@@ -28,8 +28,8 @@ if (($apellido == '') or (!preg_match('/^[A-Za-z\s]+$/',$apellido))) {
 	$_SESSION['errores'] .= '<li>Ingrese un apellido valido.</li>';
 }
 
-if ((strlen($numero_tarjeta) != 16) or (!preg_match('/^[0-9]+$/'))){
-	$_SESSION['errores'] .= '<li>Ingrese un numero de tarjeta valido.</li>';
+if ((strlen($numero_tarjeta) != 16) or (!preg_match('/^[0-9\s]+$/', $numero_tarjeta))){
+	$_SESSION['errores'] .= '<li>Ingrese un numero de tarjeta valido desde</li> ';
 }
 
 if (strlen($codigo_tarjeta) != 3){

@@ -2,6 +2,10 @@ function tieneNumero(str) {
   return (/[0-9]/.test(str));
 }
 
+function soloNumeros(str){
+	return (/^[0-9\s]+$/.test(str));
+}
+
 function validarPassword(pass){
 	return pass.length >= 8 && tieneNumero(pass);
 }
@@ -75,9 +79,33 @@ function validarRegistro(form){
 	}
 
 	if (form.contrasenia.value != form.confirmar_pass.value) {
-		errores += '<li>Las contraseñas deben coincidir.</li>'
+		errores += '<li>Las contraseñas deben coincidir.</li>';
 	}
 
+	if (!soloNumeros(form.numero_tarjeta.value) || form.numero_tarjeta.value.length != 16){
+		errores += '<li>Ingrese un numero de tarjeta válido</li>';
+	}
+
+	if (!soloNumeros(form.codigo_tarjeta.value) || form.codigo_tarjeta.value.length != 3) {
+		errores += '<li>Ingrese un codigo de tarjeta válido</li>';
+	}
+
+	if (!soloNumeros(form.mes_vencimiento.value)
+		|| form.mes_vencimiento.value < 1 
+		|| form.mes_vencimiento.value > 12) {
+		errores += '<li>Ingrese un mes de vencimiento válido</li>';
+	}
+
+	if (!soloNumeros(form.anio_vencimiento.value)
+		|| form.anio_vencimiento.value.length > 2
+		|| form.anio_vencimiento.value < 20) {
+		errores += '<li>Ingrese un año de vencimiento válido</li>';
+	}
+
+	if ((form.nombre_tarjeta.value == '') || (!soloAlfabeticos(form.nombre_tarjeta.value))) {
+		errores += '<li>Ingrese un nombre de tarjeta válido</li>';
+	}
+	
 	if(errores){
 		document.getElementById('errores').innerHTML = errores;
 		document.getElementById('errores').style.display = 'block';

@@ -11,8 +11,10 @@
 ?>
 
 	<div class="formulario_inicio">
-		<h1>Iniciar Sesion</h1>
+
 		<form action="validarLogin.php" method="post" onsubmit="return validarLogin(this);">
+			<img src="./img/logo.png" id="login-logo">
+			
 			<div class="input">
 				<input type="text" name="email" placeholder="Email">
 			</div>
@@ -22,7 +24,7 @@
 			</div>
 			
 			<div class="input">
-				<input type="submit">
+				<input type="submit" value="Ingresar">
 			</div>
 		</form>
 		

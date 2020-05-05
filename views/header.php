@@ -12,7 +12,7 @@
 		<div class="container">
 			<ul class="nav">
 				<li>
-					<a href="index.php" class="logo">Bookflix</a>
+					<a href="index.php" id="nav-logo"><img src="./img/logo.png" alt=""></a>
 				</li>
 				<li>
 					<form action="buscar.php" onsubmit="return validarBusqueda(this);">

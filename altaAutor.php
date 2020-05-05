@@ -9,7 +9,7 @@
 
 	include 'views/header.php'; 
 ?>
-<div class="formulario_alta_autor">
+<div class="container">
     <h1>Alta autor</h1>
     <form action="validarAutor.php" onsubmit= "return validarAutor(this);" method= "post">
         <div class="input">
