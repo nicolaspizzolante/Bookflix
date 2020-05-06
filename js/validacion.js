@@ -151,6 +151,18 @@ function validarBusqueda(form){
 function validarMetadatos(form){
 	var errores = '';
 
+	if(form.titulo == ''){
+		errores += "<li>El título del libro no puede estar vacio.</li>"
+	}
+
+	if((!soloNumeros(form.isbn)) || (form.isbn == '')){
+		errores += "<li>Ingrese un ISBN valido.</li>"
+	}
+
+	if((form.autor == '') || (form.genero == '') || (form.editorial == ''){
+		errores += "<li>Los campos genero, autor y editorial no pueden estar vacios.</li>"
+	}
+
 	if (form.titulo.value == '') {
 		errores += '<li></li>'
 	}
