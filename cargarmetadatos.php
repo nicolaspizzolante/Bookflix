@@ -17,7 +17,7 @@
 ?>
     <div class="container">
         <h1>Cargar Libro</h1>
-        <form action="" onsubmit="return validarMetadatos(this);" method="post" enctype="multipart/form-data">
+        <form action="validarMetadatos.php" onsubmit="return validarMetadatos(this);" method="post" enctype="multipart/form-data">
         
             <div class="input">
                 <input type="text" name="titulo" placeholder="Titulo">
@@ -70,6 +70,15 @@
 			<?php 
 				echo $_SESSION['errores']; 
 				unset($_SESSION['errores']);
+			?>
+		</ul>
+	<?php endif ?>
+
+    <?php if (isset($_SESSION['exito'])): ?>
+		<ul id="exito" style="display:block;">
+			<?php 
+				echo $_SESSION['exito']; 
+				unset($_SESSION['exito']);
 			?>
 		</ul>
 	<?php endif ?>

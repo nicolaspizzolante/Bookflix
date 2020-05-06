@@ -34,4 +34,4 @@
 			</ul>
 		</div>
 	</div>
-<?php } ?>
+<?php } var_dump($_SESSION); ?>

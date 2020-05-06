@@ -151,27 +151,23 @@ function validarBusqueda(form){
 function validarMetadatos(form){
 	var errores = '';
 
-	if(form.titulo == ''){
+	if(form.titulo.value == ''){
 		errores += "<li>El título del libro no puede estar vacio.</li>"
 	}
 
-	if((!soloNumeros(form.isbn)) || (form.isbn == '')){
+	if ((!soloNumeros(form.isbn.value)) || (form.isbn.value == '') || (form.isbn.value.length > 13)){
 		errores += "<li>Ingrese un ISBN valido.</li>"
 	}
 
-	if((form.autor == '') || (form.genero == '') || (form.editorial == ''){
+	if((form.autor.value == '') || (form.genero.value == '') || (form.editorial.value == '')){
 		errores += "<li>Los campos genero, autor y editorial no pueden estar vacios.</li>"
 	}
 
-	if (form.titulo.value == '') {
-		errores += '<li></li>'
+	if (errores) {
+		document.getElementById('errores').innerHTML = errores;
+		document.getElementById('errores').style.display = 'block';
+		return false;
 	}
-	console.log(form.isbn.value);
-	console.log(form.autor.value);
-	console.log(form.genero.value);
-	console.log(form.editorial.value);
-	console.log(form.pdf.value);
-	console.log(form.foto.value);
 
-	return false;
+	return true;
 }

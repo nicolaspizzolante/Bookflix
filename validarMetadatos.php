@@ -25,9 +25,15 @@ if($libro != null) {
 	$_SESSION['errores'] .= '<li>El libro ya está cargado.</li>';
 	header('Location: cargarmetadatos.php'); 
 } else {
-	$sql = "INSERT INTO libros (titulo, isbn, autor_id, editorial_id, genero_id) VALUES('$titulo', '$isbn', '$autor_id', '$editorial_id', '$genero_id')";
+    $fecha = date("Y-m-d H:i:s");
+	$sql = "
+        INSERT 
+        INTO libros (titulo, isbn, autor_id, editorial_id, genero_id, fecha_de_subida) 
+        VALUES('$titulo', '$isbn', '$autor_id', '$editorial_id', '$genero_id', '$fecha')
+    ";
 	try {
-		// guardamos usuario
+        // guardamos usuario
+        $resultado = $conexion->query($sql);
         $_SESSION['exito'] = '<li>Cargaste un libro.</li>';
         
 		header('Location: cargarmetadatos.php');
