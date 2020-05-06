@@ -146,3 +146,20 @@ function validarBusqueda(form){
 	}
 	return true;
 }
+
+
+function validarMetadatos(form){
+	var errores = '';
+
+	if (form.titulo.value == '') {
+		errores += '<li></li>'
+	}
+	console.log(form.isbn.value);
+	console.log(form.autor.value);
+	console.log(form.genero.value);
+	console.log(form.editorial.value);
+	console.log(form.pdf.value);
+	console.log(form.foto.value);
+
+	return false;
+}
