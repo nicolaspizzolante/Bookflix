@@ -27,26 +27,35 @@
                 <input type="text" name="isbn" placeholder="ISBN">
             </div>
 
-            <select name="autor" id="">
-                <option disabled="disabled" selected value=""> Seleccione un Autor </option>
-                <?php foreach($autores as $autor) { ?>
-                    <option value="<?php echo $autor[0]?>"> <?php echo $autor[1] ?> </option>
-                <?php }?>
-            </select>
-
-            <select name="genero" id="">
-                <option disabled="disabled" selected value=""> Seleccione un Genero </option>
-                <?php foreach($generos as $genero) { ?>
-                    <option value="<?php echo $genero[0]?>"> <?php echo $genero[1] ?> </option>
-                <?php }?>
-            </select>
-
-            <select name="editorial" id="">
-                <option disabled="disabled" selected value=""> Seleccione una Editorial </option>
-                <?php foreach($editoriales as $editorial) { ?>
-                    <option value="<?php echo $editorial[0]?>"> <?php echo $editorial[1] ?> </option>
-                <?php }?>
-            </select>
+            <div class="select-y-boton">
+                <select name="autor" id="">
+                    <option disabled="disabled" selected value=""> Seleccione un Autor </option>
+                    <?php foreach($autores as $autor) { ?>
+                        <option value="<?php echo $autor[0]?>"> <?php echo $autor[1] ?> </option>
+                    <?php }?>
+                </select>
+                <a class="boton-alta" href="altaautor.php"><i class="fas fa-plus"></i></a>
+            </div>
+            
+            <div class="select-y-boton">
+                <select name="genero" id="">
+                    <option disabled="disabled" selected value=""> Seleccione un Genero </option>
+                    <?php foreach($generos as $genero) { ?>
+                        <option value="<?php echo $genero[0]?>"> <?php echo $genero[1] ?> </option>
+                    <?php }?>
+                </select>
+                <a class="boton-alta" href="altagenero.php"><i class="fas fa-plus"></i></a>
+            </div>
+            
+            <div class="select-y-boton">
+                <select name="editorial" id="">
+                    <option disabled="disabled" selected value=""> Seleccione una Editorial </option>
+                    <?php foreach($editoriales as $editorial) { ?>
+                        <option value="<?php echo $editorial[0]?>"> <?php echo $editorial[1] ?> </option>
+                    <?php }?>
+                </select>
+                <a class="boton-alta" href="altaeditorial.php"><i class="fas fa-plus"></i></a>
+            </div>
 
             <div class="input">
                 Ingrese PDF: <input type="file" name="pdf" placeholder="PDF">
