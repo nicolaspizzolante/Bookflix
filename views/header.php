@@ -23,9 +23,6 @@
 					<a href="muro.php">Perfil</a>
 				</li>
 				<li>
-					<a href="cambiarcontrasenia.php">Cambiar Pass</a>
-				</li>
-				<li>
 					<a href="editar.php">Editar Perfil</a>
 				</li>
 				<li>

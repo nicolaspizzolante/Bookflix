@@ -139,6 +139,43 @@ function validarEditar(form){
 	return true;
 }
 
+function validarEditarTarjeta(form){
+	var errores = '';
+
+	if (!soloNumeros(form.numeroTarjeta.value) || form.numeroTarjeta.value.length != 16){
+		errores += '<li>Ingrese un numero de tarjeta válido</li>';
+	}
+
+	if (!soloNumeros(form.codigoTarjeta.value) || form.codigoTarjeta.value.length != 3) {
+		errores += '<li>Ingrese un codigo de tarjeta válido</li>';
+	}
+
+	if (!soloNumeros(form.mes_vencimiento.value)
+		|| form.mes_vencimiento.value < 1 
+		|| form.mes_vencimiento.value > 12) {
+		errores += '<li>Ingrese un mes de vencimiento válido</li>';
+	}
+
+	if (!soloNumeros(form.anio_vencimiento.value)
+		|| form.anio_vencimiento.value.length > 2
+		|| form.anio_vencimiento.value < 20) {
+		errores += '<li>Ingrese un año de vencimiento válido</li>';
+	}
+
+	if ((form.nombreTarjeta.value == '') || (!soloAlfabeticos(form.nombreTarjeta.value))) {
+		errores += '<li>Ingrese un nombre de tarjeta válido</li>';
+	}
+	
+	if(errores){
+		document.getElementById('errores').innerHTML = errores;
+		document.getElementById('errores').style.display = 'block';
+		return false;
+	}
+
+	return true;
+
+}
+
 function validarBusqueda(form){
 	if (form.busqueda.value == ''){
 		alert("Inserte al menos un caracter.");
