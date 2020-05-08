@@ -82,6 +82,15 @@
 			?>
 		</ul>
 	<?php endif ?>
+
+	<?php if (isset($_SESSION['exito'])){ ?>
+			<ul id="exito" style="display:block;">
+				<?php 
+					echo $_SESSION['exito']; 
+					unset($_SESSION['exito']);
+				?>
+			</ul>
+		<?php } ?>
 </div>
 	
 <?php include 'views/footer.php'; ?>
