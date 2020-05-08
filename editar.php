@@ -84,7 +84,7 @@
 	<?php endif ?>
 
 	<?php if (isset($_SESSION['exito'])){ ?>
-			<ul id="exito" style="display:block;">
+			<ul id="exito" class= "asd" style="display:block;">
 				<?php 
 					echo $_SESSION['exito']; 
 					unset($_SESSION['exito']);

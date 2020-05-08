@@ -59,7 +59,7 @@ if($usuario != null) {
 	$_SESSION['errores'] .= '<li>El email ya existe.</li>';
 	header('Location: registrarse.php'); 
 } else {
-	$sql = "INSERT INTO usuarios (apellido, nombre, email, contrasenia) VALUES('$apellido', '$nombre', '$email', '$contrasenia')";
+	$sql = "INSERT INTO usuarios (apellido, nombre, email, contrasenia,esAdministrador) VALUES('$apellido', '$nombre', '$email', '$contrasenia','0')";
 	
 	try {
 		// guardamos usuario
