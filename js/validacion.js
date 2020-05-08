@@ -192,7 +192,7 @@ function validarMetadatos(form){
 		errores += "<li>El título del libro no puede estar vacio.</li>"
 	}
 
-	if ((!soloNumeros(form.isbn.value)) || (form.isbn.value == '') || (form.isbn.value.length > 13)){
+	if ((!soloNumeros(form.isbn.value)) || (form.isbn.value == '') || (form.isbn.value.length < 13)){
 		errores += "<li>Ingrese un ISBN valido.</li>"
 	}
 
