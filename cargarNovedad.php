@@ -13,7 +13,7 @@
 ?>
     <div class="container">
         <h1>Cargar Novedad</h1>
-        <form action="validarNovedad.php" onsubmit="return validarMetadatos(this);" method="post" enctype="multipart/form-data">
+        <form action="validarNovedad.php" onsubmit="return validarNovedad(this);" method="post" enctype="multipart/form-data">
         
             <div class="input">
                 <input type="text" name="titulo" placeholder="Titulo">
