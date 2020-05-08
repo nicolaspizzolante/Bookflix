@@ -29,10 +29,10 @@ if(!preg_match('/^[0-9\s]+$/', $anioNuevo)){
 
 }
 
-if ($_SESSION['errores']){
+/*if ($_SESSION['errores']){
 	header('Location: editar.php');
 	exit;
-}
+}*/
 
 if(!isset($_SESSION['errores'])){
 	try{
@@ -53,9 +53,10 @@ if(!isset($_SESSION['errores'])){
 		$_SESSION['exito'] = '<li>Los datos de la tarjeta fueron actualizados.</li>';
 	}catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-		header('Location: muro.php');
+		header('Location: editar.php');
 	}
 } else {
-	header('Location: editar.php');
+	
 }
+header('Location: editar.php');
 
