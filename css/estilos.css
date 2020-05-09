@@ -439,11 +439,11 @@ select:focus {
 
 .paginacion ul li:hover {
 	cursor: pointer;
-	background: #5da93c;
+	background: #E51F1F;
 }
 
 .paginacion ul li.actual {
-	background: #5da93c;
+	background: #E51F1F;
 }
 
 .resultados {
