@@ -9,6 +9,10 @@ class Autenticador {
 		return isset($_SESSION['usuario']);
 	}
 
+	function esAdmin(){
+		return $_SESSION['usuario']['es_admin'];
+	}
+
 	function cerrarSesion(){
 		unset($_SESSION['usuario']);
 	}
@@ -16,7 +20,7 @@ class Autenticador {
 	function loginUser ($email, $contrasenia){
 		$conexion = conectar();
 
-		$sql = "SELECT id, email, apellido, nombre
+		$sql = "SELECT id, email, apellido, nombre, es_admin
 						FROM usuarios
 						WHERE email = '$email' AND contrasenia = '$contrasenia'";
 		
