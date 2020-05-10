@@ -54,30 +54,31 @@
 		<?php while ($libro = $libros->fetch_assoc()){ ?>
 			
 				
-				<div class="publicaciones" style="width:100%;">
-					
-				<a href=""><?php echo $libro['titulo']; ?></a>
-				<p><?php echo $libro['isbn']; ?></p>
-				<?php 
-					$autor = $libro['autor_id'];
-					$consulta = "SELECT nombre FROM autores WHERE id = $autor";
-					$aux =  ($conexion->query($consulta));
-					echo($aux->fetch_row())[0];
-					?>	
-				<p><?php 
-					$editorial = $libro['editorial_id'];
-					$consulta = "SELECT nombre FROM editoriales WHERE id = $editorial";
-					$aux =  ($conexion->query($consulta));
-					echo($aux->fetch_row())[0];
-					?></p>
-				<p><?php 
-					$genero = $libro['genero_id'];
-					$consulta = "SELECT nombre FROM generos WHERE id = $genero";
-					$aux =  ($conexion->query($consulta));
-					echo($aux->fetch_row())[0];
+			<div class="publicacion" style="width:100%;">
+				<?php $id_libro = $libro['id'];?>
+				<a href="perfilLibro.php?ident=<?php echo $id_libro;?>"><?php echo $libro['titulo']; ?></a>
+				<img src="mostrarImagen.php?libro_id=<?php echo $id_libro?>" width="100px" height="100px">
+				<!--			<p><?php /*echo $libro['isbn']; ?></p>
+					<?php 
+						$autor = $libro['autor_id'];
+						$consulta = "SELECT nombre FROM autores WHERE id = $autor";
+						$aux =  ($conexion->query($consulta));
+						echo($aux->fetch_row())[0];
+						?>	
+					<p><?php 
+						$editorial = $libro['editorial_id'];
+						$consulta = "SELECT nombre FROM editoriales WHERE id = $editorial";
+						$aux =  ($conexion->query($consulta));
+						echo($aux->fetch_row())[0];
+						?></p>
+					<p><?php 
+						$genero = $libro['genero_id'];
+						$consulta = "SELECT nombre FROM generos WHERE id = $genero";
+						$aux =  ($conexion->query($consulta));
+						echo($aux->fetch_row())[0];
+					*/
+					?><p> -->
 				
-				?><p>
-				<hr>
 
 			</div>
 		<?php } ?>
