@@ -502,6 +502,30 @@ select:focus {
   height: 25.36px;
 }
 
+.libro {
+    background:#0e0e0eb0;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex
+}
+.titulo, .calificacion{
+	margin-top:10px;
+	margin-bottom: 3px;
+}
+
+.titulo-movie{
+    font-weight: 700;
+    color: #b31217;
+
+}    
+.titulo-movie:hover {
+    color: #919191;
+}
+
+.isbn{
+    color: #919191;
+}
 .custom-file-input:focus {
 	outline:none;
 }
