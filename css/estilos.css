@@ -185,8 +185,19 @@ a {
 	flex-direction:column;
 	background: rgb(40, 40, 40);
 	padding: 10px;
-	border-bottom: 1px solid #2f2f2f;
+	border-bottom: 3px solid #252525;
 }
+
+.publicacion a{
+	color: #db202c;
+	font-size: 18px;
+}
+
+.publicacion img{
+	margin-top: 15px;
+	margin-left: 115px;
+}
+
 
 .imagen_publicacion {
 	display: block;

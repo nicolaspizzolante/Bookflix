@@ -25,4 +25,4 @@ if ($nueva_pass != $repetir) {
 	$_SESSION['exito'] = "<li>Cambio de contraseña con exito.</li>";
 }
 
-header('Location: cambiarcontrasenia.php');
+header('Location: editar.php');
