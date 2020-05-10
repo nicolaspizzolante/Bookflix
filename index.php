@@ -21,6 +21,21 @@
 		</ul>
 	<?php endif ?>
 
+	<!-- VER NOVEDADES -->
+	<h2>Ultimas novedades</h2>
+	<?php 
+		$conexion = conectar();
+
+		$sql = "SELECT id, titulo FROM novedades";
+		$novedades = $conexion->query($sql);
+		$novedades = $novedades->fetch_all(MYSQLI_ASSOC);
+		foreach ($novedades as $novedad){
+			echo '<a href=novedad.php?id=' . $novedad['id'] .'>' . $novedad['titulo']. '</p>';
+		}
+	?>
+
+
+	
 </div>
 
 <?php include 'views/footer.php'; ?>

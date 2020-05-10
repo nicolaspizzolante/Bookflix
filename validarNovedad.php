@@ -12,13 +12,12 @@ if ($_SESSION['errores']){
 	exit;
 }
 
-
 $file = file_get_contents($_FILES['file']['tmp_name']);
 $file = addslashes($file); 
 
 
 $fecha = date("Y-m-d H:i:s");
-$sql = "INSERT  INTO novedades (titulo, descripcion, fecha, foto_video) VALUES('$titulo','$descripcion','$fecha','$file')";
+$sql = "INSERT INTO novedades (titulo, descripcion, fecha, foto_video) VALUES('$titulo','$descripcion','$fecha','$file')";
 try {
     $resultado = $conexion->query($sql);
     $_SESSION['exito'] = '<li>Cargaste una novedad.</li>';

@@ -16,7 +16,7 @@
 
 ?>
     <div class="container">
-        <h1>Cargar Libro</h1>
+        <h1>Cargar Metadatos</h1>
         <form action="validarMetadatos.php" onsubmit="return validarMetadatos(this);" method="post" enctype="multipart/form-data">
         
             <div class="input">
