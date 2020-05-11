@@ -33,7 +33,7 @@ if($usuario != null) {
 		$_SESSION['exito'] = '<li>Se cargo con exito el nuevo genero.</li>';
 
 		
-		header('Location: altaGenero.php');
+		header('Location: cargarMetadatos.php');
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 		header('Location: altaGenero.php');
@@ -42,7 +42,7 @@ if($usuario != null) {
 }
 
 if(!isset($_SESSION['errores'])){
-	header('Location: altaGenero.php');
+	header('Location: cargarMetadatos.php');
 } else {
 	header('Location: altaGenero.php');
 }

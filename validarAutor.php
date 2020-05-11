@@ -28,10 +28,10 @@ if($usuario != null) {
 	try {
 		// guardamos autor
 		$resultado = $conexion->query($sql);
-		$_SESSION['exito'] = '<li>Se cargo con exito El nuevo autor.</li>';
+		$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
 
 		
-		header('Location: altaAutor.php');
+		header('Location: cargarMetadatos.php');
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 		header('Location: altaAutor.php');
@@ -40,7 +40,7 @@ if($usuario != null) {
 }
 
 if(!isset($_SESSION['errores'])){
-	header('Location: altaAutor.php');
+	header('Location: cargarMetadatos.php');
 } else {
 	header('Location: altaAutor.php');
 }

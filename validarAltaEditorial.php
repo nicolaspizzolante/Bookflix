@@ -33,7 +33,7 @@ if($usuario != null) {
 		$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
 
 		
-		header('Location: altaEditorial.php');
+		header('Location: cargarMetadatos.php');
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 		header('Location: altaEditorial.php');
@@ -42,7 +42,7 @@ if($usuario != null) {
 }
 
 if(!isset($_SESSION['errores'])){
-	header('Location: altaEditorial.php');
+	header('Location: cargarMetadatos.php');
 } else {
 	header('Location: altaEditorial.php');
 }
