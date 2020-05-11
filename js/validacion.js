@@ -75,7 +75,7 @@ function validarRegistro(form){
 	}
 
 	if(!validarPassword(form.contrasenia.value)){
-		errores += '<li>La contraseña debe tener al menos 8 caracteres alfanumericos.</li>';
+		errores += '<li>La contraseña debe tener al menos 8 caracteres alfanumericos y un numero.</li>';
 	}
 
 	if (form.contrasenia.value != form.confirmar_pass.value) {
@@ -192,7 +192,7 @@ function validarMetadatos(form){
 		errores += "<li>El título del libro no puede estar vacio.</li>"
 	}
 
-	if ((!soloNumeros(form.isbn.value)) || (form.isbn.value == '') || (form.isbn.value.length < 13)){
+	if ((!soloNumeros(form.isbn.value)) || (form.isbn.value == '') || !((form.isbn.value.length <= 13) && form.isbn.value.length >=10)){
 		errores += "<li>Ingrese un ISBN valido.</li>"
 	}
 
