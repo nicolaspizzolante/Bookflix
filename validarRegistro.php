@@ -50,14 +50,26 @@ if ($_SESSION['errores']){
 	exit;
 }
 
-// consulta para saber si el nombre de usuario ya existe en la db
+// consulta para saber si el email de usuario ya existe en la db
 $sql = "SELECT id, email FROM usuarios WHERE email = '$email'";
 $resultado = $conexion->query($sql);
 $usuario = $resultado->fetch_assoc();
 
-if($usuario != null) {
-	$_SESSION['errores'] .= '<li>El email ya existe.</li>';
-	header('Location: registrarse.php'); 
+//consulta para saber si el numero de tarjeta ya existe en la bd
+$sql = "SELECT id, numero FROM tarjetas WHERE numero = '$numero_tarjeta'";
+$resultado = $conexion->query($sql);
+$tarjeta = $resultado->fetch_assoc();
+
+
+if(($usuario != null) or ($tarjeta != null)) {
+	if($usuario != null){
+		$_SESSION['errores'] .= '<li>El email ya existe.</li>';
+		header('Location: registrarse.php'); 
+	}
+	if($tarjeta != null){
+		$_SESSION['errores'] .= '<li>La tarjeta ya existe.</li>';
+		header('Location: registrarse.php'); 
+	}
 } else {
 	$sql = "INSERT INTO usuarios (apellido, nombre, email, contrasenia,esAdministrador) VALUES('$apellido', '$nombre', '$email', '$contrasenia','0')";
 	

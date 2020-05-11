@@ -34,7 +34,12 @@ if(!preg_match('/^[0-9\s]+$/', $anioNuevo)){
 	exit;
 }*/
 
-if(!isset($_SESSION['errores'])){
+//consulta para saber si el numero de tarjeta ya existe en la bd
+$sql = "SELECT id FROM tarjetas WHERE numero = '$numeroNuevo' AND usuario_id <> '$id'";
+$resultado = $conexion->query($sql);
+$tarjeta = $resultado->fetch_assoc();
+
+if(!isset($_SESSION['errores']) and ($tarjeta == null)){
 	try{
 		$sql = "UPDATE tarjetas SET numero = '$numeroNuevo' WHERE usuario_id = '$id'";
 		$resultado = $conexion->query($sql);
@@ -51,12 +56,15 @@ if(!isset($_SESSION['errores'])){
 		$sql = "UPDATE tarjetas SET anio_vencimiento = '$anioNuevo' WHERE usuario_id = '$id'";
 		$resultado = $conexion->query($sql);
 		$_SESSION['exito'] = '<li>Los datos de la tarjeta fueron actualizados.</li>';
+
+		header('Location: editar.php');
 	}catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 		header('Location: editar.php');
 	}
 } else {
-	
+	$_SESSION['errores'] = '<li>La tarjeta ya existe.</li>';
+	header('Location: editar.php');
 }
-header('Location: editar.php');
+
 

@@ -7,6 +7,14 @@
 		exit;
 	} 
 	include 'views/header.php'; 
+
+	//obtener tarjeta para plasmar el numero en el campo, asi el usuario sabe que tarjeta tiene cargada
+	$db = conectar();
+	$id = $_SESSION['usuario']['id'];
+	$sql = "SELECT * FROM tarjetas WHERE usuario_id = '$id'"; 
+
+	$result = mysqli_query($db, $sql); 
+	$tarjeta = mysqli_fetch_array($result); 
 ?>
 	
 <div class="container">
@@ -48,7 +56,7 @@
 		<input type="hidden" name="ident" value="<?php echo $_SESSION['usuario']['id']; ?>">
 		<div class="input">
 			<label for="numeroTarjeta">Cambiar numero:</label>
-			<input type="text" name="numeroTarjeta" placeholder="Numero tarjeta">
+			<input type="text" name="numeroTarjeta" placeholder="Numero tarjeta" value="<?php echo $tarjeta['numero'] ?>">
 		</div>
 		
 		<div class="input">
