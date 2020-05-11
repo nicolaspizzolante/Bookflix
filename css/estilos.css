@@ -525,16 +525,35 @@ select:focus {
 	margin-bottom: 3px;
 }
 
-.titulo-movie{
+.titulo-libro{
     font-weight: 700;
     color: #b31217;
 
 }    
-.titulo-movie:hover {
+.titulo-libro:hover {
     color: #919191;
 }
+.info{
+	padding-left: 15px;
+	margin-top: -5px ;
+}
 
-.isbn{
+.foto img {
+    width: 140px;
+    height: 190px;
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.foto-link img {
+    border: 2px solid #6c6f6c;
+}
+.foto-link img:hover {
+    border: 2px solid #b31217;
+}
+
+.info span{
     color: #919191;
 }
 .custom-file-input:focus {

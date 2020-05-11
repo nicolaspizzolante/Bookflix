@@ -25,7 +25,7 @@
 	
 	$numero_paginas = ceil($total_libros / $librosPorPagina);
 ?>	
-
+  <div class="container">
 	<!-- Libros publicados -->
 	<div class="publicaciones">
 		<?php
@@ -52,35 +52,60 @@
 		</h3>
 
 		<?php while ($libro = $libros->fetch_assoc()){ ?>
+
+
+			
 			
 				
-			<div class="publicacion" style="width:100%;">
+			<article class="libro">
 				<?php $id_libro = $libro['id'];?>
-				<a href="perfilLibro.php?ident=<?php echo $id_libro;?>"><?php echo $libro['titulo']; ?></a>
-				<img src="mostrarImagen.php?libro_id=<?php echo $id_libro?>" width="100px" height="100px">
-				<!--			<p><?php /*echo $libro['isbn']; ?></p>
+				<div class="foto">
+					<a href="perfilLibro.php?id=<?php echo $libro['id']; ?>" class="foto-link">
+						<img src="mostrarImagen.php?libro_id=<?php echo $id_libro?>">
+					</a>	
+				</div>
+				<div class="info">
+					<div class="titulo">
+						<h2>
+							<a href="perfilLibro.php?ident=<?php echo $id_libro;?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+						</h2>
+					</div>
+
+					<div><span>ISBN:</span><span><?php echo $libro['isbn']; ?></span>
+				    </div>
+
 					<?php 
-						$autor = $libro['autor_id'];
-						$consulta = "SELECT nombre FROM autores WHERE id = $autor";
-						$aux =  ($conexion->query($consulta));
-						echo($aux->fetch_row())[0];
-						?>	
-					<p><?php 
-						$editorial = $libro['editorial_id'];
-						$consulta = "SELECT nombre FROM editoriales WHERE id = $editorial";
-						$aux =  ($conexion->query($consulta));
-						echo($aux->fetch_row())[0];
-						?></p>
-					<p><?php 
-						$genero = $libro['genero_id'];
-						$consulta = "SELECT nombre FROM generos WHERE id = $genero";
-						$aux =  ($conexion->query($consulta));
-						echo($aux->fetch_row())[0];
-					*/
-					?><p> -->
+						$autor_id = $libro['autor_id'];
+						$consulta = "SELECT nombre FROM autores WHERE id = $autor_id";
+						$aux =  $conexion->query($consulta);
+					?>
+					<div>
+						<span><?php echo $aux->fetch_assoc()['nombre'];?></span>
+					</div>
+
+					<?php 
+						$editorial_id = $libro['editorial_id'];
+						$consulta = "SELECT nombre FROM editoriales WHERE id = $editorial_id";
+						$aux =  $conexion->query($consulta)
+					?>
+					<div>
+						<span><?php echo $aux->fetch_assoc()['nombre'];?></span>
+					</div>	
+					
+					<?php 
+						$genero_id = $libro['genero_id'];
+						$consulta = "SELECT nombre FROM generos WHERE id = $genero_id";
+						$aux =  $conexion->query($consulta);
+					?>
+					<div>
+						<span><?php echo $aux->fetch_assoc()['nombre'];?></span>
+					</div>	
+
+
+				</div>
 				
 
-			</div>
+		</article>
 		<?php } ?>
 	</div>
 
@@ -108,5 +133,6 @@
 			<?php } ?>
 		</ul>
 	</div>
+  </div>
 
 <?php include 'views/footer.php'; ?>
