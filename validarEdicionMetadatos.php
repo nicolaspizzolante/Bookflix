@@ -54,6 +54,16 @@ if($libro != null) {
 	$sql = " UPDATE libros SET fecha_de_subida = '$fecha' WHERE id = '$id'";
 	$resultado = $conexion->query($sql);
 
+	if($imagen != null){
+		$sql = " UPDATE libros SET imagen = '$imagen' WHERE id = '$id'";
+		$resultado = $conexion->query($sql);
+	}
+
+	if($imagen != null){
+		$sql = " UPDATE libros SET pdf = '$pdf' WHERE id = '$id'";
+		$resultado = $conexion->query($sql);
+	}
+
 	try {
         // guardamos usuario
         $resultado = $conexion->query($sql);

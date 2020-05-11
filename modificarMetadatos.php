@@ -10,9 +10,9 @@
 
 	$db = conectar();
 	
-	//$idlibro = $_GET['ident'];
+	//$idlibro = $_GET['id']; //quitar este comentario y reemplazar la linea de abajo
 
-	$sql = "SELECT * FROM libros WHERE id = 4";  //cambiar por $idLibro
+	$sql = "SELECT * FROM libros WHERE id = 5";  //cambiar por $sql = "SELECT * FROM libros WHERE id = '$idlibro'";
 
 	$result = mysqli_query($db, $sql); 
 	$libro = mysqli_fetch_array($result); 
@@ -20,7 +20,27 @@
     $autores = $db->query("SELECT * FROM autores")->fetch_all();
     $generos = $db->query("SELECT * FROM generos")->fetch_all();
     $editoriales = $db->query("SELECT * FROM editoriales")->fetch_all();
+//Obtiene nombre de autor
+    foreach($autores as $autor) {
+        if($autor[0] == $libro['autor_id']){
+            $author_name = $autor[1];
+        }
+    }
+//Obtiene nombre de editorial
+    foreach($generos as $genero) {
+        if($genero[0] == $libro['genero_id']){
+            $gender_name = $genero[1];
+        }
+    }
+//Obtiene nombre de editorial
+    foreach($editoriales as $editorial) {
+        if($editorial[0] == $libro['editorial_id']){
+            $editorial_name = $editorial[1];
+        }
+    }
 
+
+    
 ?>
     <div class="container">
 		<h1>Modificar libro</h1>
@@ -39,10 +59,10 @@
 			
 			
 			<div class="input">
-			<label for="email">Cambiar autor:</label>
             <div class="select-y-boton">
+			    <label for="email">Cambiar autor: </label>
                 <select name="autor" id="">
-                    <option disabled="disabled" selected value=""> Seleccione un Autor </option>
+                    <option disabled="disabled" selected value="<?php echo $autor['id']?>"><?php echo $author_name?></option>
                     <?php foreach($autores as $autor) { ?>
                         <option value="<?php echo $autor[0]?>"> <?php echo $autor[1] ?> </option>
                     <?php }?>
@@ -51,10 +71,11 @@
 			</div>
 			</div>
 			
-			<label for="email">Cambiar genero:</label>
+			
             <div class="select-y-boton">
+            <label for="email">Cambiar genero: </label>
                 <select name="genero" id="">
-                    <option disabled="disabled" selected value="<?php echo $libro['genero'] ?>"> Seleccione un Genero </option>
+                    <option disabled="disabled" selected value="<?php echo $genero['id']?>"><?php echo $gender_name?></option>
                     <?php foreach($generos as $genero) { ?>
                         <option value="<?php echo $genero[0]?>"> <?php echo $genero[1] ?> </option>
                     <?php }?>
@@ -62,10 +83,10 @@
                 <a class="boton-alta" href="altagenero.php"><i class="fas fa-plus"></i></a>
             </div>
 			
-			<label for="email">Cambiar editorial:</label>
             <div class="select-y-boton">
+			    <label for="email">Cambiar editorial: </label>
                 <select name="editorial" id="">
-                    <option disabled="disabled" selected value="<?php echo $libro['editorial'] ?>"> Seleccione una Editorial </option>
+                    <option disabled="disabled" selected value="<?php echo $editorial['id']?>"><?php echo $editorial_name?> </option>
                     <?php foreach($editoriales as $editorial) { ?>
                         <option value="<?php echo $editorial[0]?>"> <?php echo $editorial[1] ?> </option>
                     <?php }?>
@@ -74,7 +95,7 @@
             </div>
 
             <div class="input">
-                Actualizar PDF: <input type="file" name="pdf" placeholder="PDF">
+                Actualizar PDF: <input type="file" name="pdf" placeholder="PDF" value="">
             </div>
             
             <div class="input">
