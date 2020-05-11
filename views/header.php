@@ -14,7 +14,7 @@
 				<li>
 					<a href="index.php" id="nav-logo"><img src="./img/logo.png" alt=""></a>
 				</li>
-				<li>
+				<li id="form-buscar">
 					<form action="buscar.php" onsubmit="return validarBusqueda(this);">
 						<input placeholder="Buscar... " type="text" class="buscar" name="busqueda">
 					</form>
@@ -25,6 +25,18 @@
 				<li>
 					<a href="editar.php">Editar Perfil</a>
 				</li>
+				<?php if($autenticador->esAdmin()){ ?>
+					<li><a href="">Opciones Adm</a>
+						<ul class="dropdown-1">
+							<li><a href="cargarmetadatos.php">Cargar Metadatos</a></li>
+							<li><a href="cargarnovedad.php">Cargar Novedad</a></li>
+							<li><a href="altaautor.php">Cargar Autor</a></li>
+							<li><a href="altaeditorial.php">Cargar Editorial</a></li>
+							<li><a href="altagenero.php">Cargar Genero</a></li>
+							<li><a href="verlistadolibros.php">Ver Listado de Libros</a></li>
+						</ul>
+					</li>
+				<?php } ?>
 				<li>
 					<a href="cerrarsesion.php">Cerrar Sesion</a>
 				</li>

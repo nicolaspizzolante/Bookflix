@@ -36,23 +36,63 @@ body {
 
 .container {
 	width: 90%;
-	max-width: 825px;
+	max-width: 1024px;
 	margin: auto;
+}
+
+.nav a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	background: black;
+	text-decoration: none;
+	height: 50px;
+}
+
+.nav a:hover{
+	font-weight: 600;
+}
+
+.nav {
+	list-style: none;
+	display: flex;
 }
 
 ul {
 	list-style: none;
 }
 
-.nav {
+.nav li {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+.dropdown-1 li {
+	display: none;
+	position: relative;
+}
+
+.nav li:hover .dropdown-1 > li {
+	top: 0;
+	display: block;
+}
+
+.dropdown-1 {
+	position: absolute;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	flex-direction: column;
+	width: 100%;
 }
 
 #nav-logo img {
 	width: 5.5em;
 	padding-top: 5px;
+}
+
+#nav-logo a:hover {
+	background: black;
 }
 
 #login-logo {
@@ -63,6 +103,11 @@ ul {
 	text-align:left;
 	margin-bottom: 5px;
 	font-weight: 200;
+}
+
+#form-buscar {
+	display: flex;
+	align-items: center;
 }
 
 .buscar {
@@ -76,17 +121,6 @@ ul {
   -moz-border-radius: 20px;
   padding: 4px 30px;
   background: #1d1d1d;
-}
-
-.nav li a {
-	text-decoration: none;
-	color:white;
-}
-
-.nav li {
-	color: white;
-	padding: 15px;
-	display: block;
 }
 
 .datos {
