@@ -13,10 +13,18 @@
 <div class="container">
 	<!-- Datos del usuario loggeado -->
 	
-	<div class="datos"><?php echo $_SESSION['usuario']['nombre']; echo " ";echo $_SESSION['usuario']['apellido']; ?></div>
+	<div class="datos"><?php echo "Datos personales"; ?></div>
 
 	<table class="table table-striped table-dark">
 	<tbody>
+	<tr>
+      <td>Nombre</td>
+      <td><p><?php echo $_SESSION['usuario']['nombre'];?></p></td>
+	</tr>
+	<tr>
+      <td>Apellido</td>
+      <td><p><?php echo $_SESSION['usuario']['apellido'];?></p></td>
+    </tr>
     <tr>
       <td>Email</td>
       <td><p><?php echo $_SESSION['usuario']['email'];?></p></td>
