@@ -22,9 +22,6 @@
 				<li>
 					<a href="muro.php">Perfil</a>
 				</li>
-				<li>
-					<a href="editar.php">Editar Perfil</a>
-				</li>
 				<?php if($autenticador->esAdmin()){ ?>
 					<li><a href="">Opciones Adm</a>
 						<ul class="dropdown-1">
@@ -43,4 +40,4 @@
 			</ul>
 		</div>
 	</div>
-<?php } var_dump($_SESSION); ?>
+<?php } //var_dump($_SESSION); ?>

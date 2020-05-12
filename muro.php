@@ -12,10 +12,28 @@
 
 <div class="container">
 	<!-- Datos del usuario loggeado -->
-	<div class="datos">
-		<div class="nombre"><?php echo $_SESSION['usuario']['nombre']; ?></div>
-		<div class="apellido"><?php echo $_SESSION['usuario']['apellido']; ?></div>
-	</div>
+	
+	<div class="datos"><?php echo $_SESSION['usuario']['nombre']; echo " ";echo $_SESSION['usuario']['apellido']; ?></div>
+
+	<table class="table table-striped table-dark">
+	<tbody>
+    <tr>
+      <td>Email</td>
+      <td><p><?php echo $_SESSION['usuario']['email'];?></p></td>
+    </tr>
+    <tr>
+      <td>Contraseña</td>
+      <td><p>**********</p></td>
+    </tr>
+  </tbody>
+</table>
+
+<form action="editar.php">
+<div class="input2">
+	<input type="submit" value="Editar perfil">
+</div>
+</form>
+
 
 	<?php if (isset($_SESSION['errores'])): ?>
 		<ul id="errores" class="errores_mensaje" style="display:block;">

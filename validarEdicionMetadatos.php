@@ -23,7 +23,7 @@ $resultado = $conexion->query($sql);
 $libro = $resultado->fetch_assoc();
 
 if($libro != null) {
-	$_SESSION['errores'] .= '<li>El libro ya está cargado.</li>';
+	$_SESSION['errores'] .= '<li>El ISBN ya está cargado.</li>';
 	header('Location: modificarMetadatos.php'); 
 } else {
 
