@@ -7,11 +7,13 @@
 		exit;
 	} 
 	include 'views/header.php'; 
+
+	$val = $_GET['validar']; 
 ?>
 	
 <div class="container">
 	<h1>Alta de editorial</h1>
-	<form action="validarAltaEditorial.php" method="post" onsubmit="return validarAltaEditorial(this);" enctype="multipart/form-data">
+	<form action="validarAltaEditorial.php?validar=<?php echo $val?>" method="post" onsubmit="return validarAltaEditorial(this);" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="<?php echo $_SESSION['usuario']['id']; ?>">
 		<div class="input">
 			<label for="nuevaEditorial">Nombre nueva editorial:</label>

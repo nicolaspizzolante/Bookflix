@@ -67,7 +67,7 @@
                         <option value="<?php echo $autor[0]?>"> <?php echo $autor[1] ?> </option>
                     <?php }?>
                 </select>
-                <a class="boton-alta" href="altaautor.php"><i class="fas fa-plus"></i></a>
+                <a class="boton-alta" href="altaautor.php?validar=<?php echo 3?>"><i class="fas fa-plus"></i></a>
 			</div>
 			</div>
 			
@@ -80,7 +80,7 @@
                         <option value="<?php echo $genero[0]?>"> <?php echo $genero[1] ?> </option>
                     <?php }?>
                 </select>
-                <a class="boton-alta" href="altagenero.php"><i class="fas fa-plus"></i></a>
+                <a class="boton-alta" href="altagenero.php?validar=<?php echo 3?>"><i class="fas fa-plus"></i></a>
             </div>
 			
             <div class="select-y-boton">
@@ -91,7 +91,7 @@
                         <option value="<?php echo $editorial[0]?>"> <?php echo $editorial[1] ?> </option>
                     <?php }?>
                 </select>
-                <a class="boton-alta" href="altaeditorial.php"><i class="fas fa-plus"></i></a>
+                <a class="boton-alta" href="altaeditorial.php?validar=<?php echo 3?>"><i class="fas fa-plus"></i></a>
             </div>
 
             <div class="input">

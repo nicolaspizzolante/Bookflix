@@ -4,6 +4,8 @@ session_start();
 
 $conexion = conectar();
 
+$aux =$_GET['validar'];
+
 $id = $_POST['id'];
 $nuevaEditorial = isset($_POST['nuevaEditorial']) ? $_POST['nuevaEditorial'] : '';
 
@@ -12,7 +14,15 @@ if (($nuevaEditorial == '') or (!preg_match('/^[A-Za-z0-9\s]+$/',$nuevaEditorial
 }
 
 if ($_SESSION['errores']){
-	header('Location: altaEditorial.php');
+	if($aux == 1){
+		header('Location: altaeditorial.php?validar= 1');
+	}else{
+		if($aux == 2){
+			header('Location: altaeditorial.php?validar=2');
+		}else{
+			header('Location: altaeditorial.php?validar=3');
+		}
+	}
 	exit;
 }
 
@@ -30,19 +40,44 @@ if($usuario != null) {
 	try {
 		// guardamos editorial
 		$resultado = $conexion->query($sql);
-		$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
-
-		
-		header('Location: cargarMetadatos.php');
+		if($aux == 1){
+			$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
+			header('Location: altaeditorial.php?validar=1');
+		}else{
+			if($aux == 2){
+				$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
+				header('Location: cargarMetadatos.php?validar=2');
+			}else{
+				$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
+				header('Location: modificarMetadatos.php?validar=3');
+			}
+			
+		}
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-		header('Location: altaEditorial.php');
+		header('Location: altaEditorial.php?validar=1');
 	}
 	
 }
 
 if(!isset($_SESSION['errores'])){
-	header('Location: cargarMetadatos.php');
+	if($aux == 1){
+		header('Location: altaeditorial.php?validar= 1');
+	}else{
+		if($aux == 2){
+			header('Location: cargarMetadatos.php?validar=2');
+		}else{
+			header('Location: modificarMetadatos.php?validar=3');
+		}
+	}
 } else {
-	header('Location: altaEditorial.php');
+	if($aux == 1){
+		header('Location: altaeditorial.php?validar= 1');
+	}else{
+		if($aux == 2){
+			header('Location: cargarMetadatos.php?validar=2');
+		}else{
+			header('Location: modificarMetadatos.php?validar=3');
+		}
+	}
 }

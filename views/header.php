@@ -30,9 +30,9 @@
 						<ul class="dropdown-1">
 							<li><a href="cargarmetadatos.php">Cargar Metadatos</a></li>
 							<li><a href="cargarnovedad.php">Cargar Novedad</a></li>
-							<li><a href="altaautor.php">Cargar Autor</a></li>
-							<li><a href="altaeditorial.php">Cargar Editorial</a></li>
-							<li><a href="altagenero.php">Cargar Genero</a></li>
+							<li><a href="altaautor.php?validar=<?php echo 1?>">Cargar Autor</a></li>
+							<li><a href="altaeditorial.php?validar=<?php echo 1?>">Cargar Editorial</a></li>
+							<li><a href="altagenero.php?validar=<?php echo 1?>">Cargar Genero</a></li>
 							<li><a href="verlistadolibros.php">Ver Listado de Libros</a></li>
 						</ul>
 					</li>
