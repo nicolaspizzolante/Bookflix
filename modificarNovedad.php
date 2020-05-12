@@ -3,7 +3,7 @@
 include 'autenticador.php';
 $autenticador = new autenticador();
 
-if (!$autenticador->estaLogeado()) {
+if (!$autenticador->estaLogeado() || !$autenticador->esAdmin()) {
     header('Location: login.php');
     exit;
 }
