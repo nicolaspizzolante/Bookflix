@@ -63,7 +63,7 @@ if(!isset($_SESSION['errores']) and ($tarjeta == null)){
 		header('Location: editar.php');
 	}
 } else {
-	$_SESSION['errores'] = '<li>La tarjeta ya existe.</li>';
+	$_SESSION['errores'] .= '<li>La tarjeta ya existe.</li>';
 	header('Location: editar.php');
 }
 
