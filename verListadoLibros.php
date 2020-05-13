@@ -116,11 +116,11 @@
 					<div class="opciones">
 					
 						<div class="input">
-								<a href=""><input type="submit" value="Ver"></a>
+								<a href="perfilLibro.php?id=<?php echo $id_libro;?>"><input type="submit" value="Ver"></a>
 							</div>
 
 						<div class="input">
-							<a href=""><input type="submit" value="Editar"></a>
+							<a href="modificarMetadatos.php?id=<?php echo $id_libro;?>"><input type="submit" value="Editar"></a>
 						</div>
 
 						<div class="input">
