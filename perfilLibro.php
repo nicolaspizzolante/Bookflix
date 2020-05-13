@@ -12,7 +12,7 @@
 
 <?php
 		$conexion = conectar();
-		$idlibro = $_GET['ident'];
+		$idlibro = $_GET['id'];
 		var_dump($idlibro);
 		?>
 

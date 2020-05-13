@@ -67,7 +67,7 @@
 				<div class="info">
 					<div class="titulo">
 						<h2>
-							<a href="perfilLibro.php?ident=<?php echo $id_libro;?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+							<a href="perfilLibro.php?id=<?php echo $id_libro;?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 						</h2>
 					</div>
 
