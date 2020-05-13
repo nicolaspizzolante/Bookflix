@@ -106,12 +106,13 @@
 					<div>
 						<span><?php echo $aux->fetch_assoc()['nombre'];?></span>
 					</div>	
+					
 
+				<?php if($autenticador->esAdmin()){ ?>
 
 					<div><span>Fecha de subida: </span><span><?php echo $libro['fecha_de_subida']; ?></span>
 				    </div>
 
-				<?php if($autenticador->esAdmin()){ ?>
 					<div class="opciones">
 					
 						<div class="input">
