@@ -718,3 +718,6 @@ select:focus {
 .opciones div input{
 	margin-left: 8px;
 }  
+.opciones div input[type="submit"]{
+	width: 70px;
+}
