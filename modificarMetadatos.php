@@ -12,7 +12,7 @@
 	
 	//$idlibro = $_GET['id']; //quitar este comentario y reemplazar la linea de abajo
 
-	$sql = "SELECT * FROM libros WHERE id = 5";  //cambiar por $sql = "SELECT * FROM libros WHERE id = '$idlibro'";
+	$sql = "SELECT * FROM libros WHERE id = 24";  //cambiar por $sql = "SELECT * FROM libros WHERE id = '$idlibro'";
 
 	$result = mysqli_query($db, $sql); 
 	$libro = mysqli_fetch_array($result); 
@@ -94,9 +94,9 @@
                 <a class="boton-alta" href="altaeditorial.php?validar=<?php echo 3?>"><i class="fas fa-plus"></i></a>
             </div>
 
-            <div class="input">
+         <!--   <div class="input">
                 Actualizar PDF: <input type="file" name="pdf" placeholder="PDF" value="">
-            </div>
+            </div>-->
             
             <div class="input">
                 Actualizar Imagen: <input type="file" name="foto" placeholder="foto">
