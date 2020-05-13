@@ -22,6 +22,9 @@
 				<li>
 					<a href="muro.php">Perfil</a>
 				</li>
+				<?php if(!$autenticador->esAdmin()){ ?>
+				<li><a href="verListadoLibros.php">Ver listado de libros</a></li>
+				<?php } ?>
 				<?php if($autenticador->esAdmin()){ ?>
 					<li><a href="">Opciones Adm</a>
 						<ul class="dropdown-1">
