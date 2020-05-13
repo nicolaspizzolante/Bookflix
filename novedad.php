@@ -25,6 +25,42 @@
 
 	<?php if($autenticador->esAdmin()) {?>
     	<button><a href="modificarnovedad.php?id=<?php echo $novedad['id'] ?>">Editar</a></button>
-    	<button><a href="eliminarnovedad.php?id=<?php echo $novedad['id'] ?>">Eliminar</a></button>
+    	<button id="btn-borrar">Eliminar</button>
 	<?php } ?>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+var idNovedad = <?php echo $id ?>;
+
+$("#btn-borrar").on("click", function(){
+	Swal.fire({
+		title: 'Are you sure?',
+		text: "You won't be able to revert this!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, delete it!'
+	}).then((result) => {
+	if (result.value) {
+			$.ajax({
+				url: "eliminarnovedad.php?id=" + idNovedad,
+				context: document.body
+			}).done(function() {
+				Swal.fire(
+					'Deleted!',
+					'Your file has been deleted.',
+					'success'
+				).then(()=>{
+					window.location.href = "verlistadonovedades.php";
+				});
+			});
+		}
+	})
+});
+
+</script>
