@@ -53,12 +53,10 @@
 				</h2>
 			<?php } ?>
 		</h3>
-
-	
+		<h2>Ultimas novedades</h2>
 </div>
 
 				<!-- VER NOVEDADES -->
-	<h2>Ultimas novedades</h2>
 	<?php while ($novedad = $novedades->fetch_assoc()){ ?>
 			<article class="libro">
 				<?php $id_novedad = $novedad['id'];?>
@@ -96,16 +94,16 @@
 
 			<?php for($i = 1; $i<=$numero_paginas; $i++){ ?>
 				<?php if ($i == $pagina){ ?>
-					<a href="verListadoLibros.php?p=<?php echo $i; ?>"><li class="actual"><?php echo $i; ?></li></a>
+					<a href="index.php?p=<?php echo $i; ?>"><li class="actual"><?php echo $i; ?></li></a>
 				<?php } else { ?>
-					<a href="verListadoLibros.php?p=<?php echo $i; ?>"><li><?php echo $i; ?></li></a>
+					<a href="index.php?p=<?php echo $i; ?>"><li><?php echo $i; ?></li></a>
 				<?php } ?>
 			<?php } ?>
 			
 			<?php if($pagina == $numero_paginas){ ?>
 				<li class="disabled">&raquo;</li>
 			<?php } else { ?>
-				<a href="verListadoLibros.php?p=<?php echo $pagina + 1; ?>"><li>&raquo;</li></a>
+				<a href="index.php?p=<?php echo $pagina + 1; ?>"><li>&raquo;</li></a>
 			<?php } ?>
 		</ul>
 	</div>
