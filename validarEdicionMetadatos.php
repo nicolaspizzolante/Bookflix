@@ -31,8 +31,8 @@ if($libro != null) {
 	$imagen = file_get_contents($_FILES['foto']['tmp_name']);
 	$imagen = addslashes($imagen); 
 
-	$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
-	$pdf = addslashes($pdf); 
+	//$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
+	//$pdf = addslashes($pdf); 
 
 	$fecha = date("Y-m-d H:i:s");
 	
@@ -67,7 +67,7 @@ if($libro != null) {
 	try {
         // guardamos usuario
         $resultado = $conexion->query($sql);
-        $_SESSION['exito'] = '<li>Modificaste un libro.</li>';
+        $_SESSION['exito'] = '<li>Actualizacion correcta.</li>';
         
 		header('Location: modificarMetadatos.php');
 	} catch(Exception $e) {

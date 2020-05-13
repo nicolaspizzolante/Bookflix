@@ -22,15 +22,15 @@ $resultado = $conexion->query($sql);
 $libro = $resultado->fetch_assoc();
 
 if($libro != null) {
-	$_SESSION['errores'] .= '<li>El libro ya está cargado.</li>';
+	$_SESSION['errores'] .= '<li>El ISBN ya está cargado.</li>';
 	header('Location: cargarmetadatos.php'); 
 } else {
 	//Obtiene la foto 
 	$imagen = file_get_contents($_FILES['foto']['tmp_name']);
 	$imagen = addslashes($imagen); 
 
-	$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
-	$pdf = addslashes($pdf); 
+	//$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
+	//$pdf = addslashes($pdf); 
 
     $fecha = date("Y-m-d H:i:s");
 	$sql = "
@@ -41,7 +41,7 @@ if($libro != null) {
 	try {
         // guardamos usuario
         $resultado = $conexion->query($sql);
-        $_SESSION['exito'] = '<li>Cargaste un libro.</li>';
+        $_SESSION['exito'] = '<li>Carga de metadatos correcta.</li>';
         
 		header('Location: cargarmetadatos.php');
 	} catch(Exception $e) {
