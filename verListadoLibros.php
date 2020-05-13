@@ -52,16 +52,22 @@
 		</h3>
 
 		<?php while ($libro = $libros->fetch_assoc()){ ?>
-
-
-			
-			
-				
 			<article class="libro">
 				<?php $id_libro = $libro['id'];?>
 				<div class="foto">
+					<!-- Consulta para saber si tiene imagen -->
+					<?php 
+						$sql = "SELECT id FROM libros WHERE id = $id_libro and imagen is not null and trim(imagen) <> ''";
+						$imagen = $conexion->query($sql);
+						$tieneImagen = $imagen->num_rows;
+					?>
+					
 					<a href="perfilLibro.php?id=<?php echo $libro['id']; ?>" class="foto-link">
-						<img src="mostrarImagen.php?libro_id=<?php echo $id_libro?>">
+						<?php if($tieneImagen){ ?>
+							<img src="mostrarImagen.php?libro_id=<?php echo $id_libro?>">
+						<?php } else {?>
+							<img src="img/image.jpg">
+						<?php } ?>
 					</a>	
 				</div>
 				<div class="info">
