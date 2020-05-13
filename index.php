@@ -89,7 +89,7 @@
 			<?php if($pagina == 1){ ?>
 				<li class="disabled">&laquo;</li>
 			<?php } else { ?>
-				<a href="verListadoLibros.php?p=<?php echo $pagina - 1; ?>"><li>&laquo;</li></a>
+				<a href="index.php?p=<?php echo $pagina - 1; ?>"><li>&laquo;</li></a>
 			<?php } ?>
 
 			<?php for($i = 1; $i<=$numero_paginas; $i++){ ?>
