@@ -708,3 +708,13 @@ select:focus {
 	width: 25px;
 	height: 25px;
 }
+
+
+.opciones {
+	display: flex;
+	margin-top: 50px;
+	margin-left: -10px;
+}
+.opciones div input{
+	margin-left: 8px;
+} 

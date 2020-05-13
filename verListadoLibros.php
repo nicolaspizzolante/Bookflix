@@ -108,6 +108,30 @@
 					</div>	
 
 
+					<div><span>Fecha de subida: </span><span><?php echo $libro['fecha_de_subida']; ?></span>
+				    </div>
+
+				<?php if($autenticador->esAdmin()){ ?>
+					<div class="opciones">
+					
+						<div class="input">
+								<a href=""><input type="submit" value="Ver"></a>
+							</div>
+
+						<div class="input">
+							<a href=""><input type="submit" value="Editar"></a>
+						</div>
+
+						<div class="input">
+							<a href=""><input type="submit" value="Eliminar"></a>
+						</div>
+
+						<div class="input">
+							<a href=""><input type="submit" value="Subir"></a>
+						</div>
+				<?php } ?>
+
+
 				</div>
 				
 
