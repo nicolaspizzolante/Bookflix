@@ -124,7 +124,7 @@
 
 						<div class="input">
 							<a href=""><input type="submit" value="Eliminar"></a>
-						</div>
+						</div> 
 
 						<div class="input">
 							<a href=""><input type="submit" value="Subir"></a>
