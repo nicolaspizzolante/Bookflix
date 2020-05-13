@@ -712,7 +712,7 @@ select:focus {
 
 .opciones {
 	display: flex;
-	margin-top: 50px;
+	margin-top: 28px;
 	margin-left: -10px;
 }
 .opciones div input{
