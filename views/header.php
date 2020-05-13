@@ -31,6 +31,7 @@
 							<li><a href="altaeditorial.php?validar=<?php echo 1?>">Cargar Editorial</a></li>
 							<li><a href="altagenero.php?validar=<?php echo 1?>">Cargar Genero</a></li>
 							<li><a href="verlistadolibros.php">Ver Listado de Libros</a></li>
+							<li><a href="verlistadonovedades.php">Ver Listado de Novedades</a></li>
 						</ul>
 					</li>
 				<?php } ?>

@@ -33,8 +33,8 @@
       <td>Contraseña</td>
       <td><p>**********</p></td>
     </tr>
-  </tbody>
-</table>
+ 	</tbody>
+	</table>
 
 <form action="editar.php">
 <div class="input2">

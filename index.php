@@ -11,7 +11,6 @@
 ?>
 	
 <div class="container">
-
 	<?php if (isset($_SESSION['errores'])): ?>
 		<ul id="errores" class="errores_mensaje">
 			<?php 
@@ -30,12 +29,9 @@
 		$novedades = $conexion->query($sql);
 		$novedades = $novedades->fetch_all(MYSQLI_ASSOC);
 		foreach ($novedades as $novedad){
-			echo '<a href=novedad.php?id=' . $novedad['id'] .'>' . $novedad['titulo']. '</p>';
+			echo '<p><a href=novedad.php?id=' . $novedad['id'] .'>' . $novedad['titulo']. '</a></p>';
 		}
 	?>
-
-
-	
 </div>
 
 <?php include 'views/footer.php'; ?>
