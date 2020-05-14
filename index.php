@@ -63,9 +63,15 @@
 					<a href="novedad.php?id=<?php echo $novedad['id']; ?>"></a>	
 				<div class="info">
 					<div class="titulo">
+						<?php if($autenticador->esAdmin()){ ?>
 						<h2>
 							<a href="novedad.php?id=<?php echo $novedad['id']; ?>" class="titulo-libro"><?php echo $novedad['titulo']; ?></a>
 						</h2>
+						<?php } else {?>
+							<h2>
+							<p class="titulo-libro"><?php echo $novedad['titulo']; ?></p>
+						</h2>
+						<?php } ?>
 					</div>
 
 					<div><span></span><span><?php echo $novedad['descripcion']; ?></span>
