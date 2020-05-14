@@ -38,24 +38,25 @@ var idNovedad = <?php echo $id ?>;
 
 $("#btn-borrar").on("click", function(){
 	Swal.fire({
-		title: 'Are you sure?',
-		text: "You won't be able to revert this!",
+		title: '¿Seguro?',
+		text: "¡Esta acción no se puede revertir!",
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
-		confirmButtonText: 'Yes, delete it!'
+		confirmButtonText: '¡Sí, borrar!',
+		cancelButtonText: 'Cancelar'
 	}).then((result) => {
-	if (result.value) {
+		if (result.value) {
 			$.ajax({
 				url: "eliminarnovedad.php?id=" + idNovedad,
 				context: document.body
-			}).done(function() {
+			}).done(() => {
 				Swal.fire(
-					'Deleted!',
-					'Your file has been deleted.',
+					'¡Borrado!',
+					'La novedad fue borrada con exito',
 					'success'
-				).then(()=>{
+				).then(() =>{
 					window.location.href = "verlistadonovedades.php";
 				});
 			});

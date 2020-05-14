@@ -22,7 +22,8 @@ $novedad = $resultado->fetch_assoc();
 <div class="container">
         <h1>Editar Novedad</h1>
         <form action="validarEdicionNovedad.php" onsubmit="return validarNovedad(this);" method="post" enctype="multipart/form-data">
-        
+			<input type="hidden" name="id" value="<?php echo $id; ?>">
+
             <div class="input">
                 <input type="text" name="titulo" placeholder="Titulo" value="<?php echo $novedad['titulo'] ?>">
             </div>

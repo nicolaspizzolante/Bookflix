@@ -17,6 +17,7 @@ $file = addslashes($file);
 
 $fecha = date("Y-m-d H:i:s");
 $sql = "INSERT INTO novedades (titulo, descripcion, fecha, foto_video) VALUES('$titulo','$descripcion','$fecha','$file')";
+
 try {
     $resultado = $conexion->query($sql);
     $_SESSION['exito'] = '<li>Cargaste una novedad.</li>';
