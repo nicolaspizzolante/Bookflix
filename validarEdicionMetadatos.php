@@ -34,7 +34,7 @@ if($libro != null) {
 	//$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
 	//$pdf = addslashes($pdf); 
 
-	$fecha = date("Y-m-d H:i:s");
+	//$fecha = date("Y-m-d H:i:s");
 	
 	$sql = " UPDATE libros SET titulo = '$titulo' WHERE id = '$id'";
 	$resultado = $conexion->query($sql);
@@ -51,8 +51,8 @@ if($libro != null) {
 	$sql = " UPDATE libros SET editorial_id = '$editorial_id' WHERE id = '$id'";
 	$resultado = $conexion->query($sql);
 
-	$sql = " UPDATE libros SET fecha_de_subida = '$fecha' WHERE id = '$id'";
-	$resultado = $conexion->query($sql);
+	/*$sql = " UPDATE libros SET fecha_de_subida = '$fecha' WHERE id = '$id'";
+	$resultado = $conexion->query($sql);*/
 
 	if($imagen != null){
 		$sql = " UPDATE libros SET imagen = '$imagen' WHERE id = '$id'";
