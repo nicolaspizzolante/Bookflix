@@ -41,18 +41,16 @@
 			}
 		?>
 
-        <table id="tabla-novedades">
-        <thead style="text-align:center;">
+        <table class = "table table-striped table-dark">
             <tr>
-                <td>Titulo</td>
-                <td>Fecha</td>
+                <td style="text-align: center">Titulo</td>
+                <td style="text-align: center">Fecha</td>
             </tr>
-        </thead>
         <tbody>
             <?php while ($novedad = $novedades->fetch_assoc()){ ?>
             <tr>
-                <td><a href="novedad.php?id=<?php echo $novedad['id']; ?>"><?php echo $novedad['titulo']; ?></a></td>
-                <td><?php echo date("d/m/Y", strtotime($novedad['fecha'])); ?></td>
+                <td ><a href="novedad.php?id=<?php echo $novedad['id']; ?>"><?php echo $novedad['titulo']; ?></a></td>
+                <td style="text-align: center"><?php echo date("d/m/Y", strtotime($novedad['fecha'])); ?></td>
             </tr>
             <?php } ?>
         </tbody>
