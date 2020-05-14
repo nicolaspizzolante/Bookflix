@@ -24,7 +24,7 @@ $libro = $resultado->fetch_assoc();
 
 if($libro != null) {
 	$_SESSION['errores'] .= '<li>El ISBN ya está cargado.</li>';
-	header('Location: modificarMetadatos.php'); 
+	header("Location: modificarMetadatos.php?id=$id"); 
 } else {
 
 	//Obtiene la foto 
@@ -69,7 +69,7 @@ if($libro != null) {
         $resultado = $conexion->query($sql);
         $_SESSION['exito'] = '<li>Actualizacion correcta.</li>';
         
-		header('Location: modificarMetadatos.php');
+		header("Location: modificarMetadatos.php?id=$id");
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 		header('Location: registrarse.php');
