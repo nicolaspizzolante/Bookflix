@@ -31,7 +31,7 @@
 
     <h2 id="titulo-novedad"><?php echo $novedad['titulo'] ?></h2>
 
-	<p id="fecha-novedad"><?php echo $novedad['fecha']; ?></p>
+	<p id="fecha-novedad"><?php echo  date("d/m/Y H:i", strtotime($novedad['fecha'])) . "hs"; ?></p>
 	
 	<?php if($novedad['foto_video'] != ''){ ?>
 		<img id="imagen-novedad" src="mostrarImagenNovedad.php?id=<?php echo $id ?>">
