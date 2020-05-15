@@ -122,7 +122,7 @@
 						-->
 						<div class="input">
 							<a href="modificarMetadatos.php?id=<?php echo $id_libro;?>"><input type="submit" value="Editar"></a>
-						</div>
+						</div> 
 					<!--
 						<div class="input">
 							<a href=""><input type="submit" value="Eliminar"></a>
