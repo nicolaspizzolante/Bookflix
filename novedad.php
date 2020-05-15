@@ -32,8 +32,10 @@
     <h2 id="titulo-novedad"><?php echo $novedad['titulo'] ?></h2>
 
 	<p id="fecha-novedad"><?php echo $novedad['fecha']; ?></p>
-
-	<img id="imagen-novedad" src="mostrarImagenNovedad.php?id=<?php echo $id ?>">
+	
+	<?php if($novedad['foto_video'] != ''){ ?>
+		<img id="imagen-novedad" src="mostrarImagenNovedad.php?id=<?php echo $id ?>">
+	<?php } ?>
 
 	<p id="descripcion-novedad"><?php echo $novedad['descripcion']?></p>
 	
