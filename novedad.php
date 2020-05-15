@@ -19,15 +19,30 @@
 ?>
 
 <div class="container">
-    <h2><?php echo $novedad['titulo'] ?></h2>
+	
+	<?php if(isset($_SESSION['exito'])){ ?>
+		<ul id="exito" class="asd">
+				<?php 
+					echo $_SESSION['exito']; 
+					unset($_SESSION['exito']);
+				?>
+		</ul>
+	<?php } ?>
 
-    <p><?php echo $novedad['descripcion']?></p>
+    <h2 id="titulo-novedad"><?php echo $novedad['titulo'] ?></h2>
 
+	<p id="fecha-novedad"><?php echo $novedad['fecha']; ?></p>
+
+	<img id="imagen-novedad" src="mostrarImagenNovedad.php?id=<?php echo $id ?>">
+
+	<p id="descripcion-novedad"><?php echo $novedad['descripcion']?></p>
+	
 	<?php if($autenticador->esAdmin()) {?>
-    	<button><a href="modificarnovedad.php?id=<?php echo $novedad['id'] ?>">Editar</a></button>
+    	<a href="modificarnovedad.php?id=<?php echo $novedad['id'] ?>"><button id="btn-editar">Editar</button></a>
     	<button id="btn-borrar">Eliminar</button>
 	<?php } ?>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

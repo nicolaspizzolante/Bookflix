@@ -5,7 +5,10 @@
 }
 
 :root {
-	--main-red:#db202c;
+	--main-red: #E51F1F;
+	--secondary-red: #db202c;
+	--main-blue: #0275d8;
+	--secondary-blue: #0f7fdf;
 }
 
 * {
@@ -230,7 +233,9 @@ a {
 .input2 input:focus,
 .boton_me_gusta:focus,
 .eliminar button:focus,
-.boton_seguir_perfil:focus{
+.boton_seguir_perfil:focus,
+#btn-borrar:focus,
+#btn-editar:focus{
 	outline:none;
 }
 
@@ -261,10 +266,10 @@ a {
 }
 
 
-.imagen_publicacion {
+.imagen_publicacion, #imagen-novedad {
 	display: block;
 	margin: 10px auto;
-	width: 80%;
+	width: 70%;
 	border-radius: 5px;
 }
 
@@ -393,7 +398,7 @@ a {
 	background: #282828;
 	margin-bottom: 10px;
 }
-.input2 input, select{
+.input2 input, select {
 	border:0;
 	color:#a2a2a2;
 	border-radius: 3px;
@@ -430,6 +435,33 @@ select:focus {
 	color:white;
 }
 
+#btn-borrar, #btn-editar {
+	color: white;
+	border: none;
+	padding: 10px 15px;
+	background-color: black;
+	border-radius: 3px;
+}
+
+#btn-borrar:hover {
+	background: var(--secondary-red);
+}
+
+#btn-editar:hover {
+	background: var(--secondary-blue);
+}
+
+#btn-borrar:hover, #btn-editar:hover {
+	cursor: pointer;
+}
+
+#btn-editar {
+	background: var(--main-blue); 
+}
+
+#btn-borrar {
+	background: var(--main-red);
+}
 
 .input input[type="submit"]:hover {
 	cursor: pointer;
@@ -569,11 +601,16 @@ select:focus {
 	color:#5da93c;
 }
 
-.resultado h2 {
+#titulo-novedad {
 	font-size: 2em;
 	font-weight: 700;
-  color: #fff;
-  text-shadow: 0 2px 2px rgba(0,0,0,.4);
+	margin: 10px 0;
+	color: var(--secondary-red);
+	text-shadow: 0 2px 2px rgba(0,0,0,.4);
+}
+
+#descripcion-novedad {
+	margin-bottom: 10px;
 }
 
 .foto_resultado img{

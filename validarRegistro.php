@@ -71,8 +71,7 @@ if(($usuario != null) or ($tarjeta != null)) {
 		header('Location: registrarse.php'); 
 	}
 } else {
-	$sql = "INSERT INTO usuarios (apellido, nombre, email, contrasenia,esAdministrador) VALUES('$apellido', '$nombre', '$email', '$contrasenia','0')";
-	
+	$sql = "INSERT INTO usuarios (apellido, nombre, email, contrasenia, es_admin) VALUES('$apellido', '$nombre', '$email', '$contrasenia','0')";
 	try {
 		// guardamos usuario
 		$resultado = $conexion->query($sql);
