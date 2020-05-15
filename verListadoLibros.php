@@ -61,8 +61,8 @@
 						$imagen = $conexion->query($sql);
 						$tieneImagen = $imagen->num_rows;
 					?>
-					
-					<a href="perfilLibro.php?id=<?php echo $libro['id']; ?>" class="foto-link">
+		<!--perfilLibro.php?id=<?php //echo $libro['id']; ?>-->			
+					<a href="#" class="foto-link">
 						<?php if($tieneImagen){ ?>
 							<img src="mostrarImagen.php?libro_id=<?php echo $id_libro?>">
 						<?php } else {?>
@@ -73,7 +73,8 @@
 				<div class="info">
 					<div class="titulo">
 						<h2>
-							<a href="perfilLibro.php?id=<?php echo $id_libro;?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+						<!--perfilLibro.php?id=<?php// echo $id_libro;?>-->
+							<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 						</h2>
 					</div>
 
@@ -114,15 +115,15 @@
 				    </div>
 
 					<div class="opciones">
-					
+						<!--
 						<div class="input">
-								<a href="perfilLibro.php?id=<?php echo $id_libro;?>"><input type="submit" value="Ver"></a>
+								<a href="perfilLibro.php?id=<?//php echo $id_libro;?>"><input type="submit" value="Ver"></a>
 							</div>
-
+						-->
 						<div class="input">
 							<a href="modificarMetadatos.php?id=<?php echo $id_libro;?>"><input type="submit" value="Editar"></a>
 						</div>
-
+					<!--
 						<div class="input">
 							<a href=""><input type="submit" value="Eliminar"></a>
 						</div> 
@@ -130,6 +131,7 @@
 						<div class="input">
 							<a href=""><input type="submit" value="Subir"></a>
 						</div>
+					-->	
 				<?php } ?>
 
 
