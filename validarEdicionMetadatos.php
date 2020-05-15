@@ -59,10 +59,10 @@ if($libro != null) {
 		$resultado = $conexion->query($sql);
 	}
 
-	if($imagen != null){
+	/*if($pdf != null){
 		$sql = " UPDATE libros SET pdf = '$pdf' WHERE id = '$id'";
 		$resultado = $conexion->query($sql);
-	}
+	}*/
 
 	try {
         // guardamos usuario
