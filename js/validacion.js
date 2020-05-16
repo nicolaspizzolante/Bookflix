@@ -200,6 +200,10 @@ function validarMetadatos(form){
 		errores += "<li>Los campos genero, autor y editorial no pueden estar vacios.</li>"
 	}
 
+	if(form.sinopsis.value == ''){
+		errores += "<li>La sinopsis del libro no puede ser vacia.</li>"
+	}
+
 	if (errores) {
 		document.getElementById('errores').innerHTML = errores;
 		document.getElementById('errores').style.display = 'block';

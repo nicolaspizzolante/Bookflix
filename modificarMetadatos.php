@@ -102,6 +102,8 @@
                 Actualizar Imagen: <input type="file" name="foto" placeholder="foto">
             </div>
 
+            <textarea class="input_sinopsis" name="sinopsis" placeholder="Escriba una sinopsis"><?php echo $libro['sinopsis'] ?></textarea>
+
             <div class="input">
 			    <input type="submit" value="Ok">
 		    </div>
