@@ -12,7 +12,11 @@
 		<div class="container">
 			<ul class="nav">
 				<li>
-					<a href="index.php" id="nav-logo"><img src="./img/logo.png" alt=""></a>
+					<?php if($autenticador->esAdmin()){ ?>
+						<a href="index.php" id="nav-logo"><img src="./img/logoADM.png" alt=""></a>
+					<?php }else{?>
+						<a href="index.php" id="nav-logo"><img src="./img/logo.png" alt=""></a>
+					<?php }?>
 				</li>
 				<li id="form-buscar">
 					<form action="buscar.php" onsubmit="return validarBusqueda(this);">
