@@ -104,9 +104,12 @@
 
             <textarea class="input_sinopsis" name="sinopsis" placeholder="Escriba una sinopsis"><?php echo $libro['sinopsis'] ?></textarea>
 
-            <div class="input">
-			    <input type="submit" value="Ok">
-		    </div>
+            <div class="botones">
+                <div class="input">
+                    <input type="submit" value="Ok">
+                </div>
+                <a href="verlistadolibros.php" id="btn-cancelar">Cancelar</a>
+            </div>
         </form>
     </div>
 	

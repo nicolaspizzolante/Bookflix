@@ -34,9 +34,12 @@ $novedad = $resultado->fetch_assoc();
                 Adjuntar imagen o video: <input type="file" name="file" placeholder="Archivo adjunto">
             </div>
 
-            <div class="input">
-			    <input type="submit" value="Ok">
-		    </div>
+           	<div class="botones">
+                <div class="input">
+                    <input type="submit" value="Ok">
+                </div>
+                <a href="novedad.php?id=<?php echo $id; ?>" id="btn-cancelar">Cancelar</a>
+            </div>
         </form>
     </div>
 	

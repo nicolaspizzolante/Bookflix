@@ -233,15 +233,18 @@ a {
 
 .botones {
 	display: flex;
+	align-items:center;
 	flex-direction: row;
 }
 
 #btn-cancelar{
 	text-decoration: none;
-	padding: 5px 15px;
-	color: white;
-	border-radius: 3px;
-	background-color: var(--main-blue);
+    padding: 8.2px 15px;
+    color: white;
+    border-radius: 3px;
+    background-color: var(--main-blue);
+    margin-bottom: 10px;
+    margin-left: 3px;
 }
 
 .cant_caracteres {

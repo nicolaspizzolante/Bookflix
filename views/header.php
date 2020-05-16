@@ -30,7 +30,7 @@
 				<li><a href="verListadoLibros.php">Ver listado de libros</a></li>
 				<?php } ?>
 				<?php if($autenticador->esAdmin()){ ?>
-					<li><a href="">Opciones Adm</a>
+					<li><a href="">Opciones de Admin</a>
 						<ul class="dropdown-1">
 							<li><a href="cargarmetadatos.php">Cargar Metadatos</a></li>
 							<li><a href="cargarnovedad.php">Cargar Novedad</a></li>
