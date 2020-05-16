@@ -29,16 +29,24 @@
 		</ul>
 	<?php } ?>
 
-    <h2 id="titulo-novedad"><?php echo $novedad['titulo'] ?></h2>
-
-	<p id="fecha-novedad"><?php echo  date("d/m/Y H:i", strtotime($novedad['fecha'])) . "hs"; ?></p>
 	
+    <h2 id="titulo-novedad"><?php echo $novedad['titulo'] ?></h2>
+	
+	<div style="margin-bottom: 10px">
+	<p id="fecha-novedad"><?php echo  date("d/m/Y H:i", strtotime($novedad['fecha'])) . "hs"; ?></p>
+	</div>
 	<?php if($novedad['foto_video'] != ''){ ?>
 		<img id="imagen-novedad" src="mostrarImagenNovedad.php?id=<?php echo $id ?>">
 	<?php } ?>
 
+	<article class="libro">
+	<div class="info">
+	<div class="titulo">
 	<p id="descripcion-novedad"><?php echo $novedad['descripcion']?></p>
-	
+	</div>
+	</div>
+	</article>
+
 	<?php if($autenticador->esAdmin()) {?>
     	<a href="modificarnovedad.php?id=<?php echo $novedad['id'] ?>"><button id="btn-editar">Editar</button></a>
     	<button id="btn-borrar">Eliminar</button>
