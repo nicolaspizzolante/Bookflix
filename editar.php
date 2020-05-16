@@ -47,6 +47,7 @@
 			<input type="submit">
 		</div>
 	</form>
+	<?php if(!$autenticador->esAdmin()) {?>
 	<hr>
 	<div class = "h3Editar">
 		<h3>Datos de la tarjeta</h3>
@@ -82,6 +83,7 @@
 			<input type="submit">
 		</div>
 	</form>
+	<?php } ?>
 	<?php if (isset($_SESSION['errores'])): ?>
 		<ul id="errores" class="asd" style="display:block;">
 			<?php 
