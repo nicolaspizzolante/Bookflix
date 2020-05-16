@@ -12,7 +12,7 @@ $mesNuevo = isset($_POST['mes_vencimiento']) ? $_POST['mes_vencimiento'] : '';
 $anioNuevo = isset($_POST['anio_vencimiento']) ? $_POST['anio_vencimiento'] : '';
 
 if ((strlen($numeroNuevo) != 16) or (!preg_match('/^[0-9\s]+$/', $numeroNuevo))){
-	$_SESSION['errores'] .= '<li>Ingrese un numero de tarjeta valido</li> ';
+	$_SESSION['errores'] = '<li>Ingrese un numero de tarjeta valido</li> ';
 }
 
 if (strlen($claveNueva) != 3){
@@ -63,7 +63,10 @@ if(!isset($_SESSION['errores']) and ($tarjeta == null)){
 		header('Location: editar.php');
 	}
 } else {
-	$_SESSION['errores'] .= '<li>La tarjeta ya existe.</li>';
+	if($tarjeta != null){
+
+		$_SESSION['errores'] .= '<li>La tarjeta ya existe.</li>';
+	}
 	header('Location: editar.php');
 }
 
