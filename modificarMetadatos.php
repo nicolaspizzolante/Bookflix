@@ -11,7 +11,7 @@
 	$db = conectar();
 	
 	$idlibro = $_GET['id']; //quitar este comentario y reemplazar la linea de abajo
-    echo $idlibro;
+
 	$sql = "SELECT * FROM libros WHERE id = '$idlibro'";  //cambiar por $sql = "SELECT * FROM libros WHERE id = '$idlibro'";
 
 	$result = mysqli_query($db, $sql); 
