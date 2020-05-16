@@ -13,7 +13,7 @@
 			<ul class="nav">
 				<li>
 					<?php if($autenticador->esAdmin()){ ?>
-						<a href="index.php" id="nav-logo"><img src="./img/logoADM.png" alt=""></a>
+						<a href="index.php" id="nav-logo"><img src="./img/logoadmin.png" alt=""></a>
 					<?php }else{?>
 						<a href="index.php" id="nav-logo"><img src="./img/logo.png" alt=""></a>
 					<?php }?>

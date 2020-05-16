@@ -231,6 +231,19 @@ a {
 	align-items: center;
 }
 
+.botones {
+	display: flex;
+	flex-direction: row;
+}
+
+#btn-cancelar{
+	text-decoration: none;
+	padding: 5px 15px;
+	color: white;
+	border-radius: 3px;
+	background-color: var(--main-blue);
+}
+
 .cant_caracteres {
 	font-size: 20px;
 	color: white;
