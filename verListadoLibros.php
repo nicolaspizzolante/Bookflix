@@ -37,7 +37,7 @@
 			$msg = $libros->num_rows;
 
 			if($msg == 0){
-				$_SESSION['usuario']['errores'] = 'No hay publicaciones';
+				$_SESSION['usuario']['errores'] = 'No hay libros para mostrar';
 			}
 		?>
 		<h3>

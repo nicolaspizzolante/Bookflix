@@ -37,9 +37,9 @@
 			$msg = $novedades->num_rows;
 
 			if($msg == 0){
-				$_SESSION['usuario']['errores'] = 'No hay publicaciones';
-			}
-		?>
+				$_SESSION['usuario']['errores'] = 'No hay novedades para mostrar';
+			?>	
+			<?php } else {?>			
 
         <table class = "table table-striped table-dark">
             <tr>
@@ -55,7 +55,20 @@
             <?php } ?>
         </tbody>
 	    </table>
+		<?php }?>
 	</div>
+			
+	<h3>
+			<?php if(isset($_SESSION['usuario']['errores'])){ ?>
+				<h2 style="text-align:center; color:white;">
+					<?php
+						echo $_SESSION['usuario']['errores']; 
+						$_SESSION['usuario']['errores'] = '';
+					?>
+				</h2>
+			<?php } ?>
+		</h3>
+		
 
 	<!-- paginacion -->
 	<div class="paginacion">

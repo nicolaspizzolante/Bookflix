@@ -40,7 +40,7 @@
 			$msg = $novedades->num_rows;
 
 			if($msg == 0){
-				$_SESSION['usuario']['errores'] = 'No hay publicaciones';
+				$_SESSION['usuario']['errores'] = 'No hay novedades para mostrar';
 			}
 		?>
 		<h3>
