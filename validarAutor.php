@@ -32,7 +32,7 @@ $usuario = $resultado->fetch_assoc();
 
 if($usuario != null) {
 	$_SESSION['errores'] .= '<li>El autor ya se encuentra cargado.</li>';
-	header('Location: altaautor.php'); 
+	header('Location: altaAutor.php?validar=1&idlibro=' . $idlibro);
 } else {
 	$sql = "INSERT INTO autores (nombre) VALUES('$autor')";
 	
@@ -46,7 +46,7 @@ if($usuario != null) {
 		}else{
 			if($aux == 2){
 				$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
-				header('Location: cargarMetadatos.php?id' . $idlibro);
+				header('Location: cargarMetadatos.php?id=' . $idlibro);
 			}else{
 				$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
 				header('Location: modificarMetadatos.php?id=' . $idlibro);
@@ -72,7 +72,7 @@ if(!isset($_SESSION['errores'])){
 	}
 } else {
 	if($aux == 1){
-		header('Location: altaautor.php?validar= 1&id=' . $idlibro);
+		header('Location: altaautor.php?validar= 1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
 			header('Location: cargarMetadatos.php?id=' . $idlibro);
