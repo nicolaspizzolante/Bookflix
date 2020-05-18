@@ -16,7 +16,7 @@ if (($nuevaEditorial == '') or (!preg_match('/^[A-Za-z0-9\s]+$/',$nuevaEditorial
 
 if ($_SESSION['errores']){
 	if($aux == 1){
-		header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
+		header('Location: altaeditorial.php?validar=1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
 			header('Location: altaeditorial.php?validar=2&id=' . $idlibro);
@@ -34,7 +34,7 @@ $usuario = $resultado->fetch_assoc();
 
 if($usuario != null) {
 	$_SESSION['errores'] .= '<li>La editorial ya se encuentra cargada.</li>';
-	header('Location: altaeditorial.php?validar=1&id=' . $idlibro); 
+	header('Location: altaeditorial.php?validar=1&idlibro=' . $idlibro); 
 } else {
 	$sql = "INSERT INTO editoriales (nombre) VALUES('$nuevaEditorial')";
 	
@@ -43,7 +43,7 @@ if($usuario != null) {
 		$resultado = $conexion->query($sql);
 		if($aux == 1){
 			$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
-			header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
+			header('Location: altaeditorial.php?validar=1&idlibro=' . $idlibro);
 		}else{
 			if($aux == 2){
 				$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
@@ -56,14 +56,14 @@ if($usuario != null) {
 		}
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-		header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
+		header('Location: altaeditorial.php?validar=1&idlibro=' . $idlibro);
 	}
 	
 }
 
 if(!isset($_SESSION['errores'])){
 	if($aux == 1){
-		header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
+		header('Location: altaeditorial.php?validar=1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
 			header('Location: cargarMetadatos.php?id=' . $idlibro);
@@ -73,7 +73,7 @@ if(!isset($_SESSION['errores'])){
 	}
 } else {
 	if($aux == 1){
-		header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
+		header('Location: altaeditorial.php?validar=1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
 			header('Location: cargarMetadatos.php?id=' . $idlibro);

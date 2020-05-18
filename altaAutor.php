@@ -17,6 +17,7 @@
     <h1>Alta autor</h1>
     <form action="validarAutor.php?validar=<?php echo $val?>&idlibro=<?php echo $idlibro?>" onsubmit= "return validarAutor(this);" method= "post">
         <div class="input">
+		<label for="nuevoAutor">Nombre nuevo autor:</label>
             <input type="text" name="autor" placeholder="Nuevo Autor">
         </div>
         <div class="input">

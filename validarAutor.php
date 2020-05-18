@@ -14,12 +14,12 @@ if (($autor == '') or (!preg_match('/^[A-Za-z\s]+$/',$autor))) {
 }
 if ($_SESSION['errores']){
 	if($aux == 1){
-		header('Location: altaautor.php?validar= 1&id=' . $idlibro);
+		header('Location: altaautor.php?validar= 1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: altaautor.php?validar= 2&id=' . $idlibro);
+			header('Location: altaautor.php?validar= 2&idlibro=' . $idlibro);
 		}else{
-			header('Location: altaautor.php?validar= 3&id=' . $idlibro);
+			header('Location: altaautor.php?validar= 3&idlibro=' . $idlibro);
 		}
 	}
 	exit;
@@ -42,7 +42,7 @@ if($usuario != null) {
 
 		if($aux == 1){
 			$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
-			header('Location: altaAutor.php?validar=1&id=' . $idlibro);
+			header('Location: altaAutor.php?validar=1&idlibro=' . $idlibro);
 		}else{
 			if($aux == 2){
 				$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
@@ -55,14 +55,14 @@ if($usuario != null) {
 		}
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-		header('Location: altaAutor.php?validar=1&id=' . $idlibro);
+		header('Location: altaAutor.php?validar=1&idlibro=' . $idlibro);
 	}
 	
 }
 
 if(!isset($_SESSION['errores'])){
 	if($aux == 1){
-		header('Location: altaautor.php?validar= 1&id=' . $idlibro);
+		header('Location: altaautor.php?validar= 1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
 			header('Location: cargarMetadatos.php?id=' . $idlibro);
