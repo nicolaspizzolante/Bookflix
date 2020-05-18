@@ -19,9 +19,9 @@ if ($_SESSION['errores']){
 		header('Location: altaeditorial.php?validar=1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: altaeditorial.php?validar=2&id=' . $idlibro);
+			header('Location: altaeditorial.php?validar=2&idlibro=' . $idlibro);
 		}else{
-			header('Location: altaeditorial.php?validar=3&id=' . $idlibro);
+			header('Location: altaeditorial.php?validar=3&idlibro=' . $idlibro);
 		}
 	}
 	exit;
@@ -47,7 +47,7 @@ if($usuario != null) {
 		}else{
 			if($aux == 2){
 				$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
-				header('Location: cargarMetadatos.php?id' . $idlibro);
+				header('Location: cargarMetadatos.php?id=' . $idlibro);
 			}else{
 				$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
 				header('Location: modificarMetadatos.php?id=' . $idlibro);
