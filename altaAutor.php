@@ -10,11 +10,12 @@
 	include 'views/header.php'; 
 
 	$val = $_GET['validar']; 
+	$idlibro = $_GET['idlibro'];
 	
 ?>
 <div class="container">
     <h1>Alta autor</h1>
-    <form action="validarAutor.php?validar=<?php echo $val?>" onsubmit= "return validarAutor(this);" method= "post">
+    <form action="validarAutor.php?validar=<?php echo $val?>&idlibro=<?php echo $idlibro?>" onsubmit= "return validarAutor(this);" method= "post">
         <div class="input">
             <input type="text" name="autor" placeholder="Nuevo Autor">
         </div>

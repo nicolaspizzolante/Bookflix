@@ -10,7 +10,8 @@
 
 	$db = conectar();
 	
-	$idlibro = $_GET['id']; //quitar este comentario y reemplazar la linea de abajo
+    $idlibro = $_GET['id']; //quitar este comentario y reemplazar la linea de abajo
+
 
 	$sql = "SELECT * FROM libros WHERE id = '$idlibro'";  //cambiar por $sql = "SELECT * FROM libros WHERE id = '$idlibro'";
 
@@ -48,50 +49,50 @@
         <form action="validarEdicionMetadatos.php?ident=<?php echo $id_libro;?>" onsubmit="return validarMetadatos(this);" method="post" enctype="multipart/form-data">
         
             <div class="input">
-				<label for="email">Cambiar titulo:</label>
+				<label for="titulo">Cambiar titulo:</label>
                 <input type="text" name="titulo" placeholder="Nuevo titulo" value="<?php echo $libro['titulo'] ?>">
             </div>
             
             <div class="input">
-				<label for="email">Cambiar ISBN:</label>
+				<label for="isbn">Cambiar ISBN:</label>
 				<input type="text" name="isbn" placeholder="Nuevo ISBN" value="<?php echo $libro['isbn'] ?>">
 			</div>
 			
 			
 			<div class="input">
             <div class="select-y-boton">
-			    <label for="email">Cambiar autor: </label>
+			    <label for="autor">Cambiar autor: </label>
                 <select name="autor" id="">
                     <option disabled="disabled" selected value="<?php echo $autor['id']?>"><?php echo $author_name?></option>
                     <?php foreach($autores as $autor) { ?>
                         <option value="<?php echo $autor[0]?>"> <?php echo $autor[1] ?> </option>
                     <?php }?>
                 </select>
-                <a class="boton-alta" href="altaautor.php?validar=<?php echo 3?>"><i class="fas fa-plus"></i></a>
+                <a class="boton-alta" href="altaautor.php?validar=<?php echo 3?>&idlibro=<?php echo $idlibro?>"><i class="fas fa-plus"></i></a>
 			</div>
 			</div>
 			
 			
             <div class="select-y-boton">
-            <label for="email">Cambiar genero: </label>
+            <label for="genero">Cambiar genero: </label>
                 <select name="genero" id="">
                     <option disabled="disabled" selected value="<?php echo $genero['id']?>"><?php echo $gender_name?></option>
                     <?php foreach($generos as $genero) { ?>
                         <option value="<?php echo $genero[0]?>"> <?php echo $genero[1] ?> </option>
                     <?php }?>
                 </select>
-                <a class="boton-alta" href="altagenero.php?validar=<?php echo 3?>"><i class="fas fa-plus"></i></a>
+                <a class="boton-alta" href="altagenero.php?validar=<?php echo 3?>&idlibro=<?php echo $idlibro?>"><i class="fas fa-plus"></i></a>
             </div>
 			
             <div class="select-y-boton">
-			    <label for="email">Cambiar editorial: </label>
+			    <label for="editorial">Cambiar editorial: </label>
                 <select name="editorial" id="">
                     <option disabled="disabled" selected value="<?php echo $editorial['id']?>"><?php echo $editorial_name?> </option>
                     <?php foreach($editoriales as $editorial) { ?>
                         <option value="<?php echo $editorial[0]?>"> <?php echo $editorial[1] ?> </option>
                     <?php }?>
                 </select>
-                <a class="boton-alta" href="altaeditorial.php?validar=<?php echo 3?>"><i class="fas fa-plus"></i></a>
+                <a class="boton-alta" href="altaeditorial.php?validar=<?php echo 3?>&idlibro=<?php echo $idlibro?>"><i class="fas fa-plus"></i></a>
             </div>
 
          <!--   <div class="input">

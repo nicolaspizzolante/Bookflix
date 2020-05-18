@@ -5,6 +5,7 @@ session_start();
 $conexion = conectar();
 
 $aux =$_GET['validar'];
+$idlibro = $_GET['idlibro'];
 
 $id = $_POST['id'];
 $nuevaEditorial = isset($_POST['nuevaEditorial']) ? $_POST['nuevaEditorial'] : '';
@@ -15,12 +16,12 @@ if (($nuevaEditorial == '') or (!preg_match('/^[A-Za-z0-9\s]+$/',$nuevaEditorial
 
 if ($_SESSION['errores']){
 	if($aux == 1){
-		header('Location: altaeditorial.php?validar= 1');
+		header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: altaeditorial.php?validar=2');
+			header('Location: altaeditorial.php?validar=2&id=' . $idlibro);
 		}else{
-			header('Location: altaeditorial.php?validar=3');
+			header('Location: altaeditorial.php?validar=3&id=' . $idlibro);
 		}
 	}
 	exit;
@@ -33,7 +34,7 @@ $usuario = $resultado->fetch_assoc();
 
 if($usuario != null) {
 	$_SESSION['errores'] .= '<li>La editorial ya se encuentra cargada.</li>';
-	header('Location: altaEditorial.php'); 
+	header('Location: altaeditorial.php?validar=1&id=' . $idlibro); 
 } else {
 	$sql = "INSERT INTO editoriales (nombre) VALUES('$nuevaEditorial')";
 	
@@ -42,42 +43,42 @@ if($usuario != null) {
 		$resultado = $conexion->query($sql);
 		if($aux == 1){
 			$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
-			header('Location: altaeditorial.php?validar=1');
+			header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
 		}else{
 			if($aux == 2){
 				$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
-				header('Location: cargarMetadatos.php?validar=2');
+				header('Location: cargarMetadatos.php?id' . $idlibro);
 			}else{
 				$_SESSION['exito'] = '<li>Se cargo con exito la nueva editorial.</li>';
-				header('Location: modificarMetadatos.php?validar=3');
+				header('Location: modificarMetadatos.php?id=' . $idlibro);
 			}
 			
 		}
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-		header('Location: altaEditorial.php?validar=1');
+		header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
 	}
 	
 }
 
 if(!isset($_SESSION['errores'])){
 	if($aux == 1){
-		header('Location: altaeditorial.php?validar= 1');
+		header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: cargarMetadatos.php?validar=2');
+			header('Location: cargarMetadatos.php?id=' . $idlibro);
 		}else{
-			header('Location: modificarMetadatos.php?validar=3');
+			header('Location: modificarMetadatos.php?id=' . $idlibro);
 		}
 	}
 } else {
 	if($aux == 1){
-		header('Location: altaeditorial.php?validar= 1');
+		header('Location: altaeditorial.php?validar=1&id=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: cargarMetadatos.php?validar=2');
+			header('Location: cargarMetadatos.php?id=' . $idlibro);
 		}else{
-			header('Location: modificarMetadatos.php?validar=3');
+			header('Location: modificarMetadatos.php?id=' . $idlibro);
 		}
 	}
 }

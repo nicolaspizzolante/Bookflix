@@ -7,18 +7,19 @@ $conexion = conectar();
 $autor= trim($_POST["autor"]);
 
 $aux =$_GET['validar'];
+$idlibro = $_GET['idlibro'];
 
 if (($autor == '') or (!preg_match('/^[A-Za-z\s]+$/',$autor))) {
 	$_SESSION['errores'] .= '<li>Ingrese un nombre valido.</li>';
 }
 if ($_SESSION['errores']){
 	if($aux == 1){
-		header('Location: altaautor.php?validar= 1');
+		header('Location: altaautor.php?validar= 1&id=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: altaautor.php?validar=2');
+			header('Location: altaautor.php?validar= 2&id=' . $idlibro);
 		}else{
-			header('Location: altaautor.php?validar=3');
+			header('Location: altaautor.php?validar= 3&id=' . $idlibro);
 		}
 	}
 	exit;
@@ -41,42 +42,42 @@ if($usuario != null) {
 
 		if($aux == 1){
 			$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
-			header('Location: altaAutor.php?validar=1');
+			header('Location: altaAutor.php?validar=1&id=' . $idlibro);
 		}else{
 			if($aux == 2){
 				$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
-				header('Location: cargarMetadatos.php?validar=2');
+				header('Location: cargarMetadatos.php?id' . $idlibro);
 			}else{
 				$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
-				header('Location: modificarMetadatos.php?validar=3');
+				header('Location: modificarMetadatos.php?id=' . $idlibro);
 			}
 			
 		}
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-		header('Location: altaAutor.php?validar=1');
+		header('Location: altaAutor.php?validar=1&id=' . $idlibro);
 	}
 	
 }
 
 if(!isset($_SESSION['errores'])){
 	if($aux == 1){
-		header('Location: altaautor.php?validar= 1');
+		header('Location: altaautor.php?validar= 1&id=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: cargarMetadatos.php?validar=2');
+			header('Location: cargarMetadatos.php?id=' . $idlibro);
 		}else{
-			header('Location: modificarMetadatos.php?validar=3');
+			header('Location: modificarMetadatos.php?id=' . $idlibro);
 		}
 	}
 } else {
 	if($aux == 1){
-		header('Location: altaautor.php?validar= 1');
+		header('Location: altaautor.php?validar= 1&id=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: cargarMetadatos.php?validar=2');
+			header('Location: cargarMetadatos.php?id=' . $idlibro);
 		}else{
-			header('Location: modificarMetadatos.php?validar=3');
+			header('Location: modificarMetadatos.php?id=' . $idlibro);
 		}
 	}
 }
