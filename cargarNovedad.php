@@ -22,7 +22,7 @@
             <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion"></textarea>
 
             <div class="input">
-                Adjuntar imagen o video: <input type="file" name="file" placeholder="Archivo adjunto">
+                Adjuntar imagen: <input type="file" name="file" placeholder="Archivo adjunto">
             </div>
 
             <div class="botones">

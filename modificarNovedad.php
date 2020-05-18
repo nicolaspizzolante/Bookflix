@@ -31,7 +31,7 @@ $novedad = $resultado->fetch_assoc();
             <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion"><?php echo $novedad['descripcion'] ?></textarea>
             
             <div class="input">
-                Adjuntar imagen o video: <input type="file" name="file" placeholder="Archivo adjunto">
+                Actualizar imagen: <input type="file" name="file" placeholder="Archivo adjunto">
             </div>
 
            	<div class="botones">
