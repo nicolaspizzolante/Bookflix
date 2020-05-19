@@ -20,16 +20,17 @@
         <form action="validarMetadatos.php" onsubmit="return validarMetadatos(this);" method="post" enctype="multipart/form-data">
         
             <div class="input">
-                <input type="text" name="titulo" placeholder="Titulo">
+                <input type="text" name="titulo" placeholder="Titulo" value="<?php if(isset($_GET['titulo'])){ echo $_GET['titulo'];} ?>">
             </div>
             
             <div class="input">
-                <input type="text" name="isbn" placeholder="ISBN">
+                <input type="text" name="isbn" placeholder="ISBN" value="<?php if(isset($_GET['isbn'])){ echo $_GET['isbn'];} ?>">
             </div>
 
             <div class="select-y-boton">
                 <select name="autor" id="">
-                    <option disabled="disabled" selected value=""> Seleccione un Autor </option>
+                    <option disabled="disabled" selected value=""> Seleccione un Autor </option>    
+
                     <?php foreach($autores as $autor) { ?>
                         <option value="<?php echo $autor[0]?>"> <?php echo $autor[1] ?> </option>
                     <?php }?>
@@ -66,8 +67,8 @@
             <div class="input">
                 Ingrese Imagen: <input type="file" name="foto" placeholder="foto">
             </div>
-
-            <textarea class="input_sinopsis" name="sinopsis" placeholder="Escriba una sinopsis"></textarea>
+        
+            <textarea class="input_sinopsis" name="sinopsis" placeholder="Escriba una sinopsis" ><?php if(isset($_GET['sinopsis'])){ echo $_GET['sinopsis'];} ?></textarea>
             
             <div class="botones">
                 <div class="input">

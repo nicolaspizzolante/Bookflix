@@ -13,7 +13,7 @@ $autor_id = $_POST["autor"];
 $sinopsis = trim($_POST["sinopsis"]);
 
 if ($_SESSION['errores']){
-	header('Location: cargarmetadatos.php');
+	header("Location: cargarmetadatos.php?titulo=$titulo&isbn=$isbn&sinopsis=$sinopsis&id_autor=$autor_id");
 	exit;
 }
 
@@ -24,7 +24,7 @@ $libro = $resultado->fetch_assoc();
 
 if($libro != null) {
 	$_SESSION['errores'] .= '<li>El ISBN ya está cargado.</li>';
-	header('Location: cargarmetadatos.php'); 
+	header("Location: cargarmetadatos.php?titulo=$titulo&isbn=$isbn&sinopsis=$sinopsis&id_autor=$autor_id"); 
 } else {
 	//Obtiene la foto 
 	$imagen = file_get_contents($_FILES['foto']['tmp_name']);
