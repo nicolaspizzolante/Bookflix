@@ -41,8 +41,10 @@
 
 			if($msg == 0){
 				$_SESSION['usuario']['errores'] = 'No hay novedades para mostrar';
-			}
+			}else{
 		?>
+		<h2>Ultimas novedades</h2>
+			<?php }?>
 		<h3>
 			<?php if(isset($_SESSION['usuario']['errores'])){ ?>
 				<h2 style="text-align:center; color:white;">
@@ -53,7 +55,7 @@
 				</h2>
 			<?php } ?>
 		</h3>
-		<h2>Ultimas novedades</h2>
+		
 </div>
 
 				<!-- VER NOVEDADES -->

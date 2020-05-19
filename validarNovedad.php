@@ -12,6 +12,16 @@ if ($_SESSION['errores']){
 	exit;
 }
 
+// consulta para saber si la novedad ya existe en la db
+$sql = "SELECT id FROM novedades WHERE titulo = '$titulo'";
+$resultado = $conexion->query($sql);
+$novedad = $resultado->fetch_assoc();
+
+if($novedad != null) {
+	$_SESSION['errores'] .= '<li>La novedad ya está cargada.</li>';
+	header('Location: cargarNovedad.php'); 
+}else{
+
 $file = file_get_contents($_FILES['file']['tmp_name']);
 $file = addslashes($file); 
 
@@ -25,4 +35,5 @@ try {
 } catch(Exception $e) {
 	$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 	header('Location: cargarNovedad.php');
+}
 }
