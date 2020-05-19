@@ -14,12 +14,17 @@ if ($_SESSION['errores']){
 	exit;
 }
 
-//consulta para saber si el libro ya existe en la db
-//$sql = "SELECT id FROM libros WHERE isbn = '$isbn' AND id <> '$id'";
-//$resultado = $conexion->query($sql);
-//$libro = $resultado->fetch_assoc();
+//consulta para saber si la novedad ya existe en la db
+$sql = "SELECT id FROM novedades WHERE titulo = '$titulo' AND id <> '$id'";
+$resultado = $conexion->query($sql);
+$novedad = $resultado->fetch_assoc();
 
-$sql = " UPDATE novedades SET titulo = '$titulo' WHERE id = '$id'";
+if($novedad!=null){
+	$_SESSION['errores'] .= '<li>La novedad ya está cargada.</li>';
+	header('Location: modificarNovedad.php?id=' .$id); 
+}else{
+
+	$sql = " UPDATE novedades SET titulo = '$titulo' WHERE id = '$id'";
 $resultado = $conexion->query($sql);
 
 $sql = "UPDATE novedades SET descripcion = '$descripcion' WHERE id = '$id'";
@@ -44,3 +49,6 @@ try {
 	$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 	header('Location: registrarse.php');
 }
+
+}
+
