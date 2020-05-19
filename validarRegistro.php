@@ -46,7 +46,7 @@ if (!validar_password($contrasenia, $error_password)){
 }
 
 if ($_SESSION['errores']){
-	header('Location: registrarse.php');
+	header("Location: registrarse.php?nombre=$nombre&email=$email&apellido=$apellido&contrasenia=$contrasenia&confirmar=$confirmar&numero_tarjeta=$numero_tarjeta&codigo_tarjeta=$codigo_tarjeta&mes_vencimiento=$mes_vencimiento&anio_vencimiento=$anio_vencimiento&nombre_tarjeta=$nombre_tarjeta");
 	exit;
 }
 
@@ -64,11 +64,11 @@ $tarjeta = $resultado->fetch_assoc();
 if(($usuario != null) or ($tarjeta != null)) {
 	if($usuario != null){
 		$_SESSION['errores'] .= '<li>El email ya existe.</li>';
-		header('Location: registrarse.php'); 
+		header("Location: registrarse.php?nombre=$nombre&email=$email&apellido=$apellido&contrasenia=$contrasenia&confirmar=$confirmar&numero_tarjeta=$numero_tarjeta&codigo_tarjeta=$codigo_tarjeta&mes_vencimiento=$mes_vencimiento&anio_vencimiento=$anio_vencimiento&nombre_tarjeta=$nombre_tarjeta"); 
 	}
 	if($tarjeta != null){
 		$_SESSION['errores'] .= '<li>La tarjeta ya existe.</li>';
-		header('Location: registrarse.php'); 
+		header("Location: registrarse.php?nombre=$nombre&email=$email&apellido=$apellido&contrasenia=$contrasenia&confirmar=$confirmar&numero_tarjeta=$numero_tarjeta&codigo_tarjeta=$codigo_tarjeta&mes_vencimiento=$mes_vencimiento&anio_vencimiento=$anio_vencimiento&nombre_tarjeta=$nombre_tarjeta"); 
 	}
 } else {
 	$sql = "INSERT INTO usuarios (apellido, nombre, email, contrasenia, es_admin) VALUES('$apellido', '$nombre', '$email', '$contrasenia','0')";
