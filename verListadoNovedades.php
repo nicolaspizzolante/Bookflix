@@ -55,7 +55,7 @@
             <?php } ?>
         </tbody>
 	    </table>
-		<?php }?>
+		
 	</div>
 			
 	<h3>
@@ -95,5 +95,23 @@
 		</ul>
 	</div>
   </div>
+
+  <?php }?>
+
+  <h3>
+			<?php if(isset($_SESSION['usuario']['errores'])){ ?>
+				<h2 style="text-align:center; color:white;">
+					<?php
+						echo $_SESSION['usuario']['errores']; 
+						$_SESSION['usuario']['errores'] = '';
+					?>
+				</h2>
+			<?php } ?>
+		</h3>
+
+  </div>
+  </div>
+
+
 
 <?php include 'views/footer.php' ?>
