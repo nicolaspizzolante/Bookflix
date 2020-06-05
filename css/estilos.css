@@ -463,6 +463,11 @@ select:focus {
 	width: 100px;
 	color:white;
 }
+.input input[type="button"]{
+	background: #E51F1F;
+	width: 100px;
+	color:white;
+}
 
 #btn-borrar, #btn-editar {
 	color: white;
@@ -493,6 +498,11 @@ select:focus {
 }
 
 .input input[type="submit"]:hover {
+	cursor: pointer;
+	background: var(--main-red);
+}
+
+.input input[type="button"]:hover {
 	cursor: pointer;
 	background: var(--main-red);
 }
