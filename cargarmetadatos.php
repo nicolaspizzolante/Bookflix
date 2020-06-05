@@ -14,6 +14,7 @@
     $generos = $db->query("SELECT * FROM generos")->fetch_all();
     $editoriales = $db->query("SELECT * FROM editoriales")->fetch_all();
 
+    var_dump($_GET);
 ?>
     <div class="container">
         <h1>Cargar Metadatos</h1>
@@ -28,7 +29,7 @@
             </div>
 
             <div class="select-y-boton">
-                <select name="autor" id="">
+                <select name="autor" id="autor">
                     <option disabled="disabled" selected value=""> Seleccione un Autor </option>    
 
                     <?php foreach($autores as $autor) { ?>
@@ -41,7 +42,7 @@
             </div>
             
             <div class="select-y-boton">
-                <select name="genero" id="">
+                <select name="genero" id="genero">
                     <option disabled="disabled" selected value=""> Seleccione un Genero </option>
                     <?php foreach($generos as $genero) { ?>
                         <option value="<?php echo $genero[0]?>"> <?php echo $genero[1] ?> </option>
@@ -51,7 +52,7 @@
             </div>
             
             <div class="select-y-boton">
-                <select name="editorial" id="">
+                <select name="editorial" id="editorial">
                     <option disabled="disabled" selected value=""> Seleccione una Editorial </option>
                     <?php foreach($editoriales as $editorial) { ?>
                         <option value="<?php echo $editorial[0]?>"> <?php echo $editorial[1] ?> </option>
@@ -100,5 +101,21 @@
 			?>
 		</ul>
 	<?php endif ?>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        if(<?php echo $_GET["id_autor"]; ?>){
+            $("#autor").val(<?php echo $_GET["id_autor"]; ?>);
+        }
+
+        if(<?php echo $_GET["id_editorial"]; ?>){
+            $("#editorial").val(<?php echo $_GET["id_editorial"]; ?>);
+        }
+
+        if(<?php echo $_GET["id_genero"];?>){
+            $("#genero").val(<?php echo $_GET["id_genero"]; ?>);
+        }
+    </script>
 
 <?php include 'views/footer.php'; ?> 
