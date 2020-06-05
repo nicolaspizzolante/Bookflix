@@ -21,8 +21,8 @@ class Autenticador {
 		$conexion = conectar();
 
 		$sql = "SELECT id, email, apellido, nombre, es_admin
-						FROM usuarios
-						WHERE email = '$email' AND contrasenia = '$contrasenia'";
+				FROM usuarios
+				WHERE email = '$email' AND contrasenia = '$contrasenia'";
 		
 		$resultado = $conexion->query($sql);
 

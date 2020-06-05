@@ -89,5 +89,4 @@ if(($usuario != null) or ($tarjeta != null)) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 		header('Location: registrarse.php');
 	}
-	
 }

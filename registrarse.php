@@ -63,7 +63,7 @@
 		</div>
 
 		<div class="input">
-			<input type="submit" value="Ok">
+			<input id="submit-btn" type="submit" value="Ok">
 		</div>
 	</form>
 	
@@ -82,3 +82,12 @@
 </div>
 	
 <?php include 'views/footer.php'; ?> 
+
+
+<script>
+
+	if(window.location.href.indexOf("?") !== 0){
+		history.pushState({}, null, "registrarse.php");
+	}
+
+</script>
