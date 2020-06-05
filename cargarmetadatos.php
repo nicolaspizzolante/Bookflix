@@ -13,8 +13,6 @@
     $autores = $db->query("SELECT * FROM autores")->fetch_all();
     $generos = $db->query("SELECT * FROM generos")->fetch_all();
     $editoriales = $db->query("SELECT * FROM editoriales")->fetch_all();
-
-    var_dump($_GET);
 ?>
     <div class="container">
         <h1>Cargar Metadatos</h1>
