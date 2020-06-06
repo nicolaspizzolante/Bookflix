@@ -11,8 +11,6 @@ $editorial_id = trim($_POST["editorial"]);
 $genero_id = $_POST["genero"];
 $autor_id = $_POST["autor"];
 $sinopsis = trim($_POST["sinopsis"]);
-$fecha_publicacion = $_POST["fechaPublicacion"];
-$fecha_vencimiento = $_POST["fechaVencimiento"];
 
 if ($_SESSION['errores']){
 	header("Location: cargarmetadatos.php?titulo=$titulo&isbn=$isbn&sinopsis=$sinopsis&id_autor=$autor_id&id_editorial=$editorial_id&id_genero=$genero_id");
@@ -32,13 +30,12 @@ if($libro != null) {
 	$imagen = file_get_contents($_FILES['foto']['tmp_name']);
 	$imagen = addslashes($imagen); 
 
-	
 
     $fecha = date("Y-m-d H:i:s");
 	$sql = "
         INSERT 
-        INTO libros (titulo, isbn, autor_id, editorial_id, genero_id, fecha_de_subida,imagen,pdf,sinopsis,fecha_publicacion,fecha_vencimiento) 
-        VALUES('$titulo', '$isbn', '$autor_id', '$editorial_id', '$genero_id', '$fecha','$imagen','$pdf','$sinopsis','$fecha_publicacion','$fecha_vencimiento')
+        INTO libros (titulo, isbn, autor_id, editorial_id, genero_id, fecha_de_subida,imagen,pdf,sinopsis) 
+        VALUES('$titulo', '$isbn', '$autor_id', '$editorial_id', '$genero_id', '$fecha','$imagen','$pdf','$sinopsis')
     ";
 	try {
         // guardamos usuario

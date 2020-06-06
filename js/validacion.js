@@ -228,3 +228,28 @@ function validarNovedad(form){
 
 	return true;
 }
+
+function validarLibro(form){
+	var errores = '';
+
+	if(form.pdf.value == ''){
+		errores += "<li>Ingrese un archivo pdf</li>"
+	}else{
+		if(form.pdf.value.substring(form.pdf.value.length-3,form.pdf.value.length) != 'pdf'){
+			errores += "<li>El tipo del archivo debe ser pdf</li>"
+		}
+	}
+
+	
+
+	if(form.fechaPublicacion.value == ''){
+		errores += "<li>Ingrese una fecha de publicacion</li>"
+	}
+
+	if (errores) {
+		document.getElementById('errores').innerHTML = errores;
+		document.getElementById('errores').style.display = 'block';
+		return false;
+	}
+	return true;
+}
