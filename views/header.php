@@ -22,7 +22,7 @@
 					<form action="buscar.php" onsubmit="return validarBusqueda(this);">
 						<input placeholder="Buscar... " type="text" class="buscar" name="busqueda" value="<?php if(isset($_GET['busqueda'])){ echo $_GET['busqueda'];} ?>">
 					</form>
-				</li>
+				</li> 
 				<li>
 					<a href="muro.php">Perfil</a>
 				</li>
