@@ -39,7 +39,7 @@
     $resultados= $conexion->query($sql);
     
     
-    $sql = "SELECT id, titulo, sinopsis, isbn, autor_id, genero_id, editorial_id
+    $sql = "SELECT id, titulo, sinopsis, isbn, autor_id, genero_id, editorial_id, fecha_de_subida
 					FROM libros
                     WHERE titulo like '%$busqueda%' or autor_id ='$autor_id' or genero_id = '$genero_id' or editorial_id = '$editorial_id'";
     $resultados = $conexion->query($sql);
