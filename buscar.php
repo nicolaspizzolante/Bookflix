@@ -169,7 +169,7 @@
 			<?php if($pagina == 1){ ?>
 				<li class="disabled">&laquo;</li>
 			<?php } else { ?>
-				<a href="buscar.php?p=<?php echo $pagina - 1; ?>"><li>&laquo;</li></a>
+				<a href="buscar.php?p=<?php echo $pagina - 1; ?>&busqueda=<?php echo $busqueda; ?>"><li>&laquo;</li></a>
 			<?php } ?>
 
 			<?php for($i = 1; $i<=$numero_paginas; $i++){ ?>
