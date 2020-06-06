@@ -14,12 +14,12 @@ if (($autor == '') or (!preg_match('/^[A-Za-z\s]+$/',$autor))) {
 }
 if ($_SESSION['errores']){
 	if($aux == 1){
-		header('Location: altaautor.php?validar= 1&idlibro=' . $idlibro);
+		header('Location: altaautor.php?validar=1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: altaautor.php?validar= 2&idlibro=' . $idlibro);
+			header('Location: altaautor.php?validar=2&idlibro=' . $idlibro);
 		}else{
-			header('Location: altaautor.php?validar= 3&idlibro=' . $idlibro);
+			header('Location: altaautor.php?validar=3&idlibro=' . $idlibro);
 		}
 	}
 	exit;
@@ -46,10 +46,10 @@ if($usuario != null) {
 		}else{
 			if($aux == 2){
 				$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
-				header('Location: cargarMetadatos.php?id=' . $idlibro);
+				header('Location: cargarMetadatos.php?id=' . $idlibro . '&from_alta_autor=1');
 			}else{
 				$_SESSION['exito'] = '<li>Se cargo con exito el nuevo autor.</li>';
-				header('Location: modificarMetadatos.php?id=' . $idlibro);
+				header('Location: modificarMetadatos.php?id=' . $idlibro . '&from_alta_autor=1');
 			}
 			
 		}
@@ -65,19 +65,19 @@ if(!isset($_SESSION['errores'])){
 		header('Location: altaautor.php?validar= 1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: cargarMetadatos.php?id=' . $idlibro);
+			header('Location: cargarMetadatos.php?id=' . $idlibro . '&from_alta_autor=1');
 		}else{
-			header('Location: modificarMetadatos.php?id=' . $idlibro);
+			header('Location: modificarMetadatos.php?id=' . $idlibro . '&from_alta_autor=1');
 		}
 	}
 } else {
 	if($aux == 1){
-		header('Location: altaautor.php?validar= 1&idlibro=' . $idlibro);
+		header('Location: altaautor.php?validar= 1&idlibro=' . $idlibro . '&from_alta_autor=1');
 	}else{
 		if($aux == 2){
-			header('Location: cargarMetadatos.php?id=' . $idlibro);
+			header('Location: cargarMetadatos.php?id=' . $idlibro . '&from_alta_autor=1');
 		}else{
-			header('Location: modificarMetadatos.php?id=' . $idlibro);
+			header('Location: modificarMetadatos.php?id=' . $idlibro . '&from_alta_autor=1');
 		}
 	}
 }

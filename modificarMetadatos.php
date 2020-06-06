@@ -12,40 +12,18 @@
 	
     $idlibro = $_GET['id']; //quitar este comentario y reemplazar la linea de abajo
 
-
 	$sql = "SELECT * FROM libros WHERE id = '$idlibro'";  //cambiar por $sql = "SELECT * FROM libros WHERE id = '$idlibro'";
 
 	$result = mysqli_query($db, $sql); 
-	$libro = mysqli_fetch_array($result); 
-
+    $libro = $result->fetch_assoc();
+    
     $autores = $db->query("SELECT * FROM autores")->fetch_all();
     $generos = $db->query("SELECT * FROM generos")->fetch_all();
     $editoriales = $db->query("SELECT * FROM editoriales")->fetch_all();
-//Obtiene nombre de autor
-    foreach($autores as $autor) {
-        if($autor[0] == $libro['autor_id']){
-            $author_name = $autor[1];
-        }
-    }
-//Obtiene nombre de editorial
-    foreach($generos as $genero) {
-        if($genero[0] == $libro['genero_id']){
-            $gender_name = $genero[1];
-        }
-    }
-//Obtiene nombre de editorial
-    foreach($editoriales as $editorial) {
-        if($editorial[0] == $libro['editorial_id']){
-            $editorial_name = $editorial[1];
-        }
-    }
-
-
-    
 ?>
     <div class="container">
 		<h1>Modificar libro</h1>
-		<?php $id_libro = $libro['id'];?>
+		<?php $id_libro = $libro['id']; ?>
         <form action="validarEdicionMetadatos.php?ident=<?php echo $id_libro;?>" onsubmit="return validarMetadatos(this);" method="post" enctype="multipart/form-data">
         
             <div class="input">
@@ -58,25 +36,19 @@
 				<input type="text" name="isbn" placeholder="Nuevo ISBN" value="<?php echo $libro['isbn'] ?>">
 			</div>
 			
-			
-			<div class="input">
             <div class="select-y-boton">
-			    <label for="autor">Cambiar autor: </label>
-                <select name="autor" id="">
-                    <option disabled="disabled" selected value="<?php echo $autor['id']?>"><?php echo $author_name?></option>
+                <label for="autor">Cambiar autor: </label>
+                <select name="autor" id="autor">
                     <?php foreach($autores as $autor) { ?>
                         <option value="<?php echo $autor[0]?>"> <?php echo $autor[1] ?> </option>
                     <?php }?>
                 </select>
                 <a class="boton-alta" href="altaautor.php?validar=<?php echo 3?>&idlibro=<?php echo $idlibro?>"><i class="fas fa-plus"></i></a>
-			</div>
-			</div>
-			
+            </div>
 			
             <div class="select-y-boton">
-            <label for="genero">Cambiar genero: </label>
-                <select name="genero" id="">
-                    <option disabled="disabled" selected value="<?php echo $genero['id']?>"><?php echo $gender_name?></option>
+                <label for="genero">Cambiar genero: </label>
+                <select name="genero" id="genero">
                     <?php foreach($generos as $genero) { ?>
                         <option value="<?php echo $genero[0]?>"> <?php echo $genero[1] ?> </option>
                     <?php }?>
@@ -86,18 +58,13 @@
 			
             <div class="select-y-boton">
 			    <label for="editorial">Cambiar editorial: </label>
-                <select name="editorial" id="">
-                    <option disabled="disabled" selected value="<?php echo $editorial['id']?>"><?php echo $editorial_name?> </option>
+                <select name="editorial" id="editorial">
                     <?php foreach($editoriales as $editorial) { ?>
                         <option value="<?php echo $editorial[0]?>"> <?php echo $editorial[1] ?> </option>
                     <?php }?>
                 </select>
                 <a class="boton-alta" href="altaeditorial.php?validar=<?php echo 3?>&idlibro=<?php echo $idlibro?>"><i class="fas fa-plus"></i></a>
             </div>
-
-         <!--   <div class="input">
-                Actualizar PDF: <input type="file" name="pdf" placeholder="PDF" value="">
-            </div>-->
             
             <div class="input">
                 Actualizar Imagen: <input type="file" name="foto" placeholder="foto">
@@ -133,6 +100,14 @@
 				unset($_SESSION['exito']);
 			?>
 		</ul>
-	<?php endif ?>
+    <?php endif ?>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $("#autor").val(<?php echo $libro['autor_id']; ?>).trigger('change');
+        $("#editorial").val(<?php echo $libro['editorial_id']; ?>).trigger('change');
+        $("#genero").val(<?php echo $libro['genero_id']; ?>).trigger('change');
+    </script>
 
 <?php include 'views/footer.php'; ?> 

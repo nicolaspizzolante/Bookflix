@@ -27,12 +27,10 @@ if($libro != null) {
 	$_SESSION['errores'] .= '<li>El ISBN ya está cargado.</li>';
 	header("Location: modificarMetadatos.php?id=$id"); 
 } else {
-
 	//Obtiene la foto 
 	$imagen = file_get_contents($_FILES['foto']['tmp_name']);
 	$imagen = addslashes($imagen); 
 
-	
 	$sql = " UPDATE libros SET titulo = '$titulo' WHERE id = '$id'";
 	$resultado = $conexion->query($sql);
 
@@ -51,17 +49,10 @@ if($libro != null) {
 	$sql = " UPDATE libros SET sinopsis = '$sinopsis' WHERE id = '$id'";
 	$resultado = $conexion->query($sql);
 
-	
-
 	if($imagen != null){
 		$sql = " UPDATE libros SET imagen = '$imagen' WHERE id = '$id'";
 		$resultado = $conexion->query($sql);
 	}
-
-	/*if($pdf != null){
-		$sql = " UPDATE libros SET pdf = '$pdf' WHERE id = '$id'";
-		$resultado = $conexion->query($sql);
-	}*/
 
 	try {
         // guardamos usuario

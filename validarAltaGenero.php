@@ -47,10 +47,10 @@ if($usuario != null) {
 		}else{
 			if($aux == 2){
 				$_SESSION['exito'] = '<li>Se cargo con exito el nuevo genero.</li>';
-				header('Location: cargarMetadatos.php?id' . $idlibro);
+				header('Location: cargarMetadatos.php?id' . $idlibro . '&from_alta_genero=1');
 			}else{
 				$_SESSION['exito'] = '<li>Se cargo con exito el nuevo genero.</li>';
-				header('Location: modificarMetadatos.php?id=' . $idlibro);
+				header('Location: modificarMetadatos.php?id=' . $idlibro . '&from_alta_genero=1');
 			}
 			
 		}
@@ -66,9 +66,9 @@ if(!isset($_SESSION['errores'])){
 		header('Location: altagenero.php?validar= 1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: cargarMetadatos.php?id=' . $idlibro);
+			header('Location: cargarMetadatos.php?id=' . $idlibro . '&from_alta_genero=1');
 		}else{
-			header('Location: modificarMetadatos.php?id=' . $idlibro);
+			header('Location: modificarMetadatos.php?id=' . $idlibro . '&from_alta_genero=1');
 		}
 	}
 } else {
@@ -76,9 +76,9 @@ if(!isset($_SESSION['errores'])){
 		header('Location: altagenero.php?validar= 1&idlibro=' . $idlibro);
 	}else{
 		if($aux == 2){
-			header('Location: cargarMetadatos.php?id=' . $idlibro);
+			header('Location: cargarMetadatos.php?id=' . $idlibro . '&from_alta_genero=1');
 		}else{
-			header('Location: modificarMetadatos.php?id=' . $idlibro);
+			header('Location: modificarMetadatos.php?id=' . $idlibro . '&from_alta_genero=1');
 		}
 	}
 }
