@@ -59,17 +59,22 @@
                 <a class="boton-alta" href="altaeditorial.php?validar=<?php echo 2?>&idlibro=<?php echo 0?>"><i class="fas fa-plus"></i></a>
             </div>
 
-          <!--  <div class="input">
-                Ingrese PDF: <input type="file" name="pdf" placeholder="PDF">
+            <div>
+                <p>Fecha de publicacion</p>
+                <input type="datetime-local" name="fechaPublicacion" step="1" min="2020-06-01" max="2100-12-31" value="">
             </div>
-            -->
-            <div class="input">
+            <div>
+                <p>Fecha de vencimiento</p>
+                <input type="datetime-local" name="fechaVencimiento" step="1" min="2020-06-01" max="2100-12-31" value="">
+            </div>
+
+                <div class="input">
                 Ingrese Imagen: <input type="file" name="foto" placeholder="foto">
             </div>
         
             <textarea class="input_sinopsis" name="sinopsis" placeholder="Escriba una sinopsis" ><?php if(isset($_GET['sinopsis'])){ echo $_GET['sinopsis'];} ?></textarea>
-            
-            <div class="botones">
+
+                <div class="botones">
                 <div class="input">
                     <input type="submit" value="Ok">
                 </div>
