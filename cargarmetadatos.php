@@ -19,11 +19,11 @@
         <form action="validarMetadatos.php" onsubmit="return validarMetadatos(this);" method="post" enctype="multipart/form-data">
         
             <div class="input">
-                <input type="text" name="titulo" placeholder="Titulo" value="<?php if(isset($_GET['titulo'])){ echo $_GET['titulo'];} ?>">
+                <input type="text" id="titulo" name="titulo" placeholder="Titulo" value="<?php if(isset($_GET['titulo'])){ echo $_GET['titulo'];} ?>">
             </div>
             
             <div class="input">
-                <input type="text" name="isbn" placeholder="ISBN" value="<?php if(isset($_GET['isbn'])){ echo $_GET['isbn'];} ?>">
+                <input type="text" id="isbn" name="isbn" placeholder="ISBN" value="<?php if(isset($_GET['isbn'])){ echo $_GET['isbn'];} ?>">
             </div>
 
             <div class="select-y-boton">
@@ -36,7 +36,7 @@
                 </select>
                 <!-- se envia el idlibro = 0 porque no existe un libro con ese id, pero evita que se rompa
                 al hacer el GET en altaautor. Lo mismo para el genero y la editorial -->
-                <a class="boton-alta" href="altaautor.php?validar=<?php echo 2?>&idlibro=<?php echo 0?>"><i class="fas fa-plus"></i></a>
+                <a class="boton-alta" id="alta-autor" href="altaautor.php?validar=<?php echo 2?>&idlibro=<?php echo 0?>"><i class="fas fa-plus"></i></a>
             </div>
             
             <div class="select-y-boton">
@@ -46,7 +46,7 @@
                         <option value="<?php echo $genero[0]?>"> <?php echo $genero[1] ?> </option>
                     <?php }?>
                 </select>
-                <a class="boton-alta" href="altagenero.php?validar=<?php echo 2?>&idlibro=<?php echo 0?>"><i class="fas fa-plus"></i></a>
+                <a class="boton-alta" id="alta-editorial" href="altagenero.php?validar=<?php echo 2?>&idlibro=<?php echo 0?>"><i class="fas fa-plus"></i></a>
             </div>
             
             <div class="select-y-boton">
@@ -56,14 +56,14 @@
                         <option value="<?php echo $editorial[0]?>"> <?php echo $editorial[1] ?> </option>
                     <?php }?>
                 </select>
-                <a class="boton-alta" href="altaeditorial.php?validar=<?php echo 2?>&idlibro=<?php echo 0?>"><i class="fas fa-plus"></i></a>
+                <a class="boton-alta" id="alta-genero" href="altaeditorial.php?validar=<?php echo 2?>&idlibro=<?php echo 0?>"><i class="fas fa-plus"></i></a>
             </div>
 
                 <div class="input">
                 Ingrese Imagen: <input type="file" name="foto" placeholder="foto">
             </div>
         
-            <textarea class="input_sinopsis" name="sinopsis" placeholder="Escriba una sinopsis" ><?php if(isset($_GET['sinopsis'])){ echo $_GET['sinopsis'];} ?></textarea>
+            <textarea class="input_sinopsis" id="sinopsis" name="sinopsis" placeholder="Escriba una sinopsis" ><?php if(isset($_GET['sinopsis'])){ echo $_GET['sinopsis'];} ?></textarea>
 
                 <div class="botones">
                 <div class="input">
@@ -99,16 +99,49 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
-        if(<?php echo $_GET["id_autor"]; ?>){
+        // Dejo preseleccionado autor editorial y genero que vengan en la url
+        <?php if (isset($_GET["id_autor"])){ ?>
             $("#autor").val(<?php echo $_GET["id_autor"]; ?>);
-        }
+        <?php } ?>
 
-        if(<?php echo $_GET["id_editorial"]; ?>){
+        <?php if (isset($_GET["id_editorial"])){ ?>
             $("#editorial").val(<?php echo $_GET["id_editorial"]; ?>);
-        }
+        <?php } ?>
 
-        if(<?php echo $_GET["id_genero"];?>){
+        <?php if (isset($_GET["id_genero"])){ ?>
             $("#genero").val(<?php echo $_GET["id_genero"]; ?>);
+        <?php } ?>
+        
+        $('#alta-autor').on('click', function(e){
+            saveLocalStorage();
+        });
+
+        $('#alta-editorial').on('click', function(e){
+            saveLocalStorage();
+        });
+
+        $('#alta-genero').on('click', function(e){
+            saveLocalStorage();
+        });
+
+        <?php if (isset($_GET['from_alta_autor']) || isset($_GET['from_alta_editorial']) || isset($_GET['from_alta_genero'])) { ?>
+            $("#titulo").val(localStorage.getItem('titulo'));
+            $("#isbn").val(localStorage.getItem('isbn'));
+            $("#autor").val(localStorage.getItem('autor'));
+            $("#genero").val(localStorage.getItem('genero'));
+            $("#editorial").val(localStorage.getItem('editorial'));
+            $("#sinopsis").val(localStorage.getItem('sinopsis'));
+
+            localStorage.clear();
+        <?php } ?>
+
+        function saveLocalStorage(){
+            localStorage.setItem('titulo', $("#titulo").val());
+            localStorage.setItem('isbn', $("#isbn").val());
+            localStorage.setItem('autor', $("#autor").val());
+            localStorage.setItem('genero', $("#genero").val());
+            localStorage.setItem('editorial', $("#editorial").val());
+            localStorage.setItem('sinopsis', $("#sinopsis").val());
         }
     </script>
 
