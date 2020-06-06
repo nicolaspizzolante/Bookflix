@@ -142,7 +142,6 @@
 
 				</div>
 				
-
 		</article>
       <?php } ?>
     </div>
