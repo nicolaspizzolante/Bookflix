@@ -120,7 +120,9 @@
         <?php if (isset($_GET["id_genero"])){ ?>
             $("#genero").val(<?php echo $_GET["id_genero"]; ?>);
         <?php } ?>
-        
+
+        // Al presionar el boton de alta autor, editorial o genero
+        // guardo los datos del form en el local storage
         $('#alta-autor').on('click', function(e){
             saveLocalStorage();
         });
@@ -133,6 +135,8 @@
             saveLocalStorage();
         });
 
+        // Si vengo de dar de alta un autor, editorial o genero
+        // seteo el form con los valores del localStorage y lo reseteo
         <?php if (isset($_GET['from_alta_autor']) || isset($_GET['from_alta_editorial']) || isset($_GET['from_alta_genero'])) { ?>
             $("#titulo").val(localStorage.getItem('titulo'));
             $("#isbn").val(localStorage.getItem('isbn'));
@@ -144,6 +148,7 @@
             localStorage.clear();
         <?php } ?>
 
+        // Function que guarda los datos del form en el localStorage
         function saveLocalStorage(){
             localStorage.setItem('titulo', $("#titulo").val());
             localStorage.setItem('isbn', $("#isbn").val());
@@ -154,4 +159,4 @@
         }
     </script>
 
-<?php include 'views/footer.php'; ?> 
+<?php include 'views/footer.php'; ?>
