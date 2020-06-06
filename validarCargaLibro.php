@@ -5,6 +5,8 @@ session_start();
 $conexion = conectar();
 
 $id = $_GET["id"];
+$fecha_publicacion = $_POST["fechaPublicacion"];
+$fecha_vencimiento = $_POST["fechaVencimiento"];
 
 if ($_SESSION['errores']){
 	header('Location: verListadoLibros.php');
@@ -14,7 +16,8 @@ if ($_SESSION['errores']){
 $pdf = file_get_contents($_FILES['pdf']['tmp_name']);
 $pdf = addslashes($pdf); 
 
-$sql = " UPDATE libros SET pdf = '$pdf' WHERE id = '$id'";
+$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion,fecha_vencimiento) 
+VALUES('$id','$pdf','$fecha_publicacion','$fecha_vencimiento');";
 
 try {
     $resultado = $conexion->query($sql);

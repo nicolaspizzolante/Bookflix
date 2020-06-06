@@ -20,12 +20,22 @@
     <div class="container">
         <h1>Cargar libro completo</h1>
         <p id="descripcion-novedad">Seleccione pdf para el libro "<?php echo $libro['titulo'] ?>"</p>
-        <form action="validarCargaLibro.php?id=<?php echo $idlibro?>" onsubmit="" method="post" enctype="multipart/form-data">
+        <form action="validarCargaLibro.php?id=<?php echo $idlibro?>" onsubmit="return validarLibro(this)" method="post" enctype="multipart/form-data">
             
+
+            <div>
+                <p>Fecha de publicacion</p>
+                <input type="datetime-local" name="fechaPublicacion" step="1" min="2020-06-01" max="2100-12-31" value="">
+            </div>
+            <div>
+                <p>Fecha de vencimiento</p>
+                <input type="datetime-local" name="fechaVencimiento" step="1" min="2020-06-01" max="2100-12-31" value="">
+            </div>
 
           <div class="input">
                 Ingrese PDF: <input type="file" name="pdf" placeholder="PDF">
             </div>
+
         
             
             <div class="botones">
