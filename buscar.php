@@ -16,42 +16,59 @@
 	$autor = $conexion->query($sql)->fetch_assoc();
     $autor_id = $autor['id'];
     $autor_nombre = $autor['nombre'];
-    var_dump($autor_nombre);
+    
 
     //id del genero para usarlo en la consulta de la busqueda
 	$sql = "SELECT id, nombre FROM generos WHERE nombre like '%$busqueda%'";
 	$genero = $conexion->query($sql)->fetch_assoc();
     $genero_id = $genero['id'];
     $genero_nombre = $genero['nombre'];
-    var_dump($genero_id);
+    
 
     //id de la editorial para usarlo en la consulta de la busqueda
 	$sql = "SELECT id, nombre FROM editoriales WHERE nombre like '%$busqueda%'";
 	$editorial = $conexion->query($sql)->fetch_assoc();
     $editorial_id = $editorial['id'];
     $editorial_nombre = $editorial['nombre'];
-    var_dump($editorial_id);
+    
 
     //busco por nombre
     $sql = "SELECT id, titulo, sinopsis, isbn, autor_id,    genero_id, editorial_id
 					FROM libros 
                     WHERE titulo like '%$busqueda%'";
-    $resultados= $conexion->query($sql);
-    
+	$resultados= $conexion->query($sql);
+	
+	//para la paginacion 
+    $pagina = isset($_GET['p']) ? (int)$_GET['p'] : 1; 
+	$librosPorPagina = 4;
+
+	$inicio = ($pagina > 1) ? ($pagina * $librosPorPagina - $librosPorPagina) : 0;
     
     $sql = "SELECT id, titulo, sinopsis, isbn, autor_id, genero_id, editorial_id, fecha_de_subida
 					FROM libros
-                    WHERE titulo like '%$busqueda%' or autor_id ='$autor_id' or genero_id = '$genero_id' or editorial_id = '$editorial_id'";
+					WHERE titulo like '%$busqueda%' or autor_id ='$autor_id' or genero_id = '$genero_id' or editorial_id = '$editorial_id'";
+					
     $resultados = $conexion->query($sql);
-    $total_libros = $resultados->num_rows;
-    var_dump('A ver');
-    var_dump($total_libros);    
+	$total_libros = $resultados->num_rows;
+	$numero_paginas = ceil($total_libros / $librosPorPagina);
+
+
+	//paginacion
+	$sql = "SELECT id, titulo, sinopsis, isbn, autor_id, genero_id, editorial_id, fecha_de_subida
+					FROM libros
+					WHERE titulo like '%$busqueda%' or autor_id ='$autor_id' or genero_id = '$genero_id' or editorial_id = '$editorial_id' LIMIT $inicio, $librosPorPagina";
+					
+    $resultados = $conexion->query($sql);
+	
 ?>
 
 <div class="container">
 	<!-- Libros buscados -->
 	<div class="publicaciones">
-        <h2>Resultados de la busqueda</h2>
+        <h2>Resultados de la busqueda (<?php echo $total_libros ?>):</h2>
+		<?php if ($resultados->num_rows == 0) { ?>
+ 			<h3>No se encontraron resultados para: <?php echo $busqueda; ?></h3>
+ 		<?php } ?>
       <?php while ($libro = $resultados->fetch_assoc()){ ?>
         <article class="libro">
 				<?php $id_libro = $libro['id'];?>
@@ -145,4 +162,31 @@
 		</article>
       <?php } ?>
     </div>
+<?php if ($resultados->num_rows != 0) { ?>	
+	<!-- paginacion -->
+	<div class="paginacion">
+		<ul>
+			<?php if($pagina == 1){ ?>
+				<li class="disabled">&laquo;</li>
+			<?php } else { ?>
+				<a href="buscar.php?p=<?php echo $pagina - 1; ?>"><li>&laquo;</li></a>
+			<?php } ?>
+
+			<?php for($i = 1; $i<=$numero_paginas; $i++){ ?>
+				<?php if ($i == $pagina){ ?>
+					<a href="buscar.php?p=<?php echo $i; ?>&busqueda=<?php echo $busqueda; ?>"><li class="actual"><?php echo $i; ?></li></a>
+				<?php } else { ?>
+					<a href="buscar.php?p=<?php echo $i; ?>&busqueda=<?php echo $busqueda; ?>"><li><?php echo $i; ?></li></a>
+				<?php } ?>
+			<?php } ?>
+			
+			<?php if($pagina == $numero_paginas){ ?>
+				<li class="disabled">&raquo;</li>
+			<?php } else { ?>
+				<a href="buscar.php?p=<?php echo $pagina + 1; ?>&busqueda=<?php echo $busqueda; ?>"><li>&raquo;</li></a>
+			<?php } ?>
+		</ul>
+	</div>
+<?php }?>	
 </div>    
+<?php include 'views/footer.php'; ?>
