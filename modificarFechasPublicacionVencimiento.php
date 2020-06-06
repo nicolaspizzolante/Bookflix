@@ -46,7 +46,7 @@ $libro = $resultado->fetch_assoc();
                 <div class="input">
                     <input type="submit" value="Ok">
                 </div>
-                <a href="novedad.php?id=<?php echo $id; ?>" id="btn-cancelar">Cancelar</a>
+                <a href="verListadoLibros.php" id="btn-cancelar">Cancelar</a>
             </div>
         </form>
     </div>
