@@ -8,35 +8,32 @@
 	}
 	
     include 'views/header.php';	
-    $busqueda = $_GET['busqueda'];
+	$busqueda_sin_trim = $_GET['busqueda'];
+	$busqueda = trim($busqueda_sin_trim);
     $conexion = conectar();
 
     //id del autor para usarlo en la consulta de la busqueda
-	$sql = "SELECT id, nombre FROM autores WHERE nombre like '%$busqueda%'";
+	$sql = "SELECT id, nombre FROM autores WHERE nombre like '$busqueda%'";
 	$autor = $conexion->query($sql)->fetch_assoc();
     $autor_id = $autor['id'];
     $autor_nombre = $autor['nombre'];
     
 
     //id del genero para usarlo en la consulta de la busqueda
-	$sql = "SELECT id, nombre FROM generos WHERE nombre like '%$busqueda%'";
+	$sql = "SELECT id, nombre FROM generos WHERE nombre like '$busqueda%'";
 	$genero = $conexion->query($sql)->fetch_assoc();
     $genero_id = $genero['id'];
     $genero_nombre = $genero['nombre'];
     
 
     //id de la editorial para usarlo en la consulta de la busqueda
-	$sql = "SELECT id, nombre FROM editoriales WHERE nombre like '%$busqueda%'";
+	$sql = "SELECT id, nombre FROM editoriales WHERE nombre like '$busqueda%'";
 	$editorial = $conexion->query($sql)->fetch_assoc();
     $editorial_id = $editorial['id'];
     $editorial_nombre = $editorial['nombre'];
     
 
-    //busco por nombre
-    $sql = "SELECT id, titulo, sinopsis, isbn, autor_id,    genero_id, editorial_id
-					FROM libros 
-                    WHERE titulo like '%$busqueda%'";
-	$resultados= $conexion->query($sql);
+   
 	
 	//para la paginacion 
     $pagina = isset($_GET['p']) ? (int)$_GET['p'] : 1; 
@@ -46,7 +43,7 @@
     
     $sql = "SELECT id, titulo, sinopsis, isbn, autor_id, genero_id, editorial_id, fecha_de_subida
 					FROM libros
-					WHERE titulo like '%$busqueda%' or autor_id ='$autor_id' or genero_id = '$genero_id' or editorial_id = '$editorial_id'";
+					WHERE titulo like '$busqueda%' or autor_id ='$autor_id' or genero_id = '$genero_id' or editorial_id = '$editorial_id'";
 					
     $resultados = $conexion->query($sql);
 	$total_libros = $resultados->num_rows;

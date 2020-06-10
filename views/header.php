@@ -19,8 +19,8 @@
 					<?php }?>
 				</li>
 				<li id="form-buscar">
-					<form action="buscar.php" onsubmit="return validarBusqueda(this);">
-						<input placeholder="Buscar... " type="text" class="buscar" name="busqueda" value="<?php if(isset($_GET['busqueda'])){ echo $_GET['busqueda'];} ?>">
+					<form action="buscar.php" id="formulario-buscar" onsubmit="return validarBusqueda(this);">
+						<input id="buscar" placeholder="Buscar... " type="text" class="buscar" name="busqueda" value="<?php if(isset($_GET['busqueda'])){ echo $_GET['busqueda'];} ?>">
 					</form>
 				</li> 
 				<li>
