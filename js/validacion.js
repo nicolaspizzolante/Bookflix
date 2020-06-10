@@ -184,6 +184,31 @@ function validarBusqueda(form){
 	return true;
 }
 
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth()+1),
+        day = '' + d.getDate(),
+		year = d.getFullYear(),
+		hour = d.getHours(),
+		minutes = d.getMinutes(),
+		seconds = d.getSeconds();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+		day = '0' + day;
+	if (hour.length < 2) 
+		hour = '0' + hour;
+	if (minutes.length < 2) 
+		minutes = '0' + minutes;
+	if (seconds.length < 2) 
+		seconds = '0' + seconds;
+	
+	aux = [year, month, day].join('-');
+	aux = aux + 'T' +[hour,minutes,seconds].join(':');
+	return aux;
+}
+
 
 function validarMetadatos(form){
 	var errores = '';
@@ -240,10 +265,20 @@ function validarLibro(form){
 		}
 	}
 
-	
-
 	if(form.fechaPublicacion.value == ''){
 		errores += "<li>Ingrese una fecha de publicacion</li>"
+	}else{
+		actual = new Date();
+		console.log(actual);
+		console.log(formatDate(actual));
+		console.log(form.fechaPublicacion.value);
+		if(form.fechaPublicacion.value < formatDate(actual)){
+			errores += "<li>La fecha de publicacion debe ser posterior o igual a la actual</li>"
+		}
+	}
+
+	if((form.fechaVencimiento.value != '') && ((form.fechaVencimiento.value < formatDate(new Date())) || (form.fechaVencimiento.value <= form.fechaPublicacion.value))){
+		errores += "<li>La fecha de vencimiento debe ser posterior a fecha de publicacion y a la fecha actual</li>"
 	}
 
 	if (errores) {
