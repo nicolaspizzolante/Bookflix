@@ -9,9 +9,7 @@
 	
     include 'views/header.php';	
 	$busqueda_sin_trim = $_GET['busqueda'];
-	//$busqueda = trim($busqueda_sin_trim, "     ");
-	//$busqueda = ltrim($busqueda, "    ");
-	$busqueda =str_replace(' ', '', $busqueda_sin_trim);
+	$busqueda = trim($busqueda_sin_trim);
     $conexion = conectar();
 
     //id del autor para usarlo en la consulta de la busqueda
