@@ -19,9 +19,8 @@ if ($_SESSION['errores']){
 	$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
 	$pdf = addslashes($pdf); 
 
-	if($fecha_vencimiento = ''){
-		$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion) 
-	VALUES('$id','$pdf','$fecha_publicacion';";
+	if($fecha_vencimiento == ''){
+		$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion) VALUES('$id','$pdf','$fecha_publicacion')";
 	try {
 		$resultado = $conexion->query($sql);
 		$_SESSION['exito'] = '<li>Cargaste un libro.</li>';
@@ -33,7 +32,7 @@ if ($_SESSION['errores']){
 
 	}else{
 		$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion,fecha_vencimiento) 
-		VALUES('$id','$pdf','$fecha_publicacion','$fecha_vencimiento');";
+		VALUES('$id','$pdf','$fecha_publicacion','$fecha_vencimiento')";
 		try {
 			$resultado = $conexion->query($sql);
 			$_SESSION['exito'] = '<li>Cargaste un libro.</li>';

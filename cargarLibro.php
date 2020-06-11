@@ -15,7 +15,7 @@
     $sql = "SELECT titulo FROM libros WHERE id = $idlibro";
     $resultado = $db->query($sql);
     $libro = $resultado->fetch_assoc();
-
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
 ?>
     <div class="container">
         <h1>Cargar libro completo</h1>
@@ -25,11 +25,11 @@
 
             <div>
                 <p>Fecha de publicacion</p>
-                <input type="datetime-local" name="fechaPublicacion" step="1" min="2020-06-01" max="2100-12-31" value="">
+                <input type="datetime-local" name="fechaPublicacion" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 1 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 1 days")); $hora= date('H:i:s'); echo $diaAnterior."T".$hora;?>">
             </div>
             <div>
                 <p>Fecha de vencimiento</p>
-                <input type="datetime-local" name="fechaVencimiento" step="1" min="2020-06-01" max="2100-12-31" value="">
+                <input type="datetime-local" name="fechaVencimiento" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 1 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="">
             </div>
 
           <div class="input">
@@ -42,7 +42,7 @@
                 <div class="input">
                     <input type="submit" value="Ok">
                 </div>
-                <a href="index.php" id="btn-cancelar">Cancelar</a>
+                <a href="verListadoLibros.php" id="btn-cancelar">Cancelar</a>
             </div>
         </form>
 
