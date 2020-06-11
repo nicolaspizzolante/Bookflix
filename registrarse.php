@@ -64,7 +64,9 @@
 
 		<div class="input">
 			<input id="submit-btn" type="submit" value="Ok">
+			<a href="login.php" id="btn-cancelar">Cancelar</a>
 		</div>
+	
 	</form>
 	
 
