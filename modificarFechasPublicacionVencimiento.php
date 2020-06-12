@@ -13,15 +13,33 @@ include 'views/header.php';
 $db = conectar();
 $id = $_GET['id']; 
 
-$sql = "SELECT fecha_publicacion, fecha_vencimiento FROM libros_pdf WHERE id = '$id'";
-$resultado = $db->query($sql);
 
+
+$sql = "SELECT fecha_publicacion, fecha_vencimiento, libro_id FROM libros_pdf WHERE id = '$id'";
+$resultado = $db->query($sql);
 $libro = $resultado->fetch_assoc();
+
+$idlibro = $libro['libro_id'];
+$sql = "SELECT titulo FROM libros WHERE id = '$idlibro'";
+$resultado = $db->query($sql);
+$titulo = $resultado->fetch_assoc();
+
+
+//create string con fecha y hora de publicacion y vencimiento actuales
+
+$fechaPub = substr($libro['fecha_publicacion'],0,10);
+$fechaVenc = substr($libro['fecha_vencimiento'],0,10);
+$horaPub = substr($libro['fecha_publicacion'],11,18);
+$horaVenc = substr($libro['fecha_vencimiento'],11,18);
+$fechaHoraPub = $fechaPub.'T'.$horaPub;
+$fechaHoraVenc = $fechaVenc.'T'.$horaVenc;
+
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 ?>
 
 <div class="container">
-        <h1>Editar fechas</h1>
+        <h1>Editar fechas del libro "<?php echo $titulo['titulo']?>"</h1>
         <form action="validarEdicionFechas.php?id=<?php echo $id?>" onsubmit="" method="post" enctype="multipart/form-data">
         
         <article class="libro">
@@ -30,7 +48,7 @@ $libro = $resultado->fetch_assoc();
                 
             <div>
                 <p>Nueva fecha de publicacion:</p>
-                <input type="datetime-local" name="nuevaFechaPublicacion" step="1" min="2020-06-01" max="2100-12-31" value="">
+                <input type="datetime-local" name="nuevaFechaPublicacion" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value=<?php echo $fechaHoraPub?>>
             </div>
             <br></br>
             <article class="libro">
@@ -38,7 +56,7 @@ $libro = $resultado->fetch_assoc();
             </article>
             <div>
                 <p>Nueva fecha de vencimiento</p>
-                <input type="datetime-local" name="nuevaFechaVencimiento" step="1" min="2020-06-01" max="2100-12-31" value="">
+                <input type="datetime-local" name="nuevaFechaVencimiento" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="<?php echo $fechaHoraVenc?>">
             </div>
             <br></br>
 
@@ -53,6 +71,8 @@ $libro = $resultado->fetch_assoc();
 	
 
 	<ul id="errores" style="display:none"></ul>
+
+
 
 	<?php if (isset($_SESSION['errores'])): ?>
 		<ul id="errores" style="display:block;">

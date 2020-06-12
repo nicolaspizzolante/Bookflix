@@ -25,11 +25,11 @@
 
             <div>
                 <p>Fecha de publicacion</p>
-                <input type="datetime-local" name="fechaPublicacion" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 1 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 1 days")); $hora= date('H:i:s'); echo $diaAnterior."T".$hora;?>">
+                <input type="datetime-local" name="fechaPublicacion" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); $hora= date('H:i:s'); echo $diaAnterior."T".$hora;?>">
             </div>
             <div>
                 <p>Fecha de vencimiento</p>
-                <input type="datetime-local" name="fechaVencimiento" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 1 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="">
+                <input type="datetime-local" name="fechaVencimiento" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="">
             </div>
 
           <div class="input">
