@@ -2,7 +2,7 @@
 	include 'autenticador.php';
 	$autenticador = new autenticador();
 	
-	if (!$autenticador->estaLogeado() || !$autenticador->esAdmin()) {
+	if (!$autenticador->estaLogeado()) {
 		header('Location: login.php');
 		exit;
 	} 
