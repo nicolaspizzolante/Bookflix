@@ -73,8 +73,16 @@
 				<div class="info">
 					<div class="titulo">
 						<h2>
-						<!--perfilLibro.php?id=<?php// echo $id_libro;?>-->
-							<a href="perfilLibro.php?id=<?php echo $id_libro?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+							<?php 
+								if($libro['capitulos']<=1){
+									$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$id_libro'";
+									$r = $conexion->query($sql);
+									$l = $r->fetch_assoc();
+							?>
+									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+								<?php }else{?>
+							<a href="perfilLibro.php?id=<?php echo $libro['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+								<?php }?>
 						</h2>
 					</div>
 
