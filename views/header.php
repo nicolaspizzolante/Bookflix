@@ -32,6 +32,7 @@
 				<?php if($autenticador->esAdmin()){ ?>
 					<li><a href="">Opciones de Admin</a>
 						<ul class="dropdown-1">
+							<li><a href="cargarTrailer.php">Cargar Trailer</a></li>
 							<li><a href="cargarmetadatos.php">Cargar Metadatos</a></li>
 							<li><a href="cargarnovedad.php">Cargar Novedad</a></li>
 							<li><a href="altaautor.php?validar=<?php echo 1?>&idlibro=<?php echo 0?>">Cargar Autor</a></li>

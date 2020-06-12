@@ -257,6 +257,22 @@ function validarNovedad(form){
 	return true;
 }
 
+function validarTrailer(form){
+	var errores = '';
+
+	if((form.titulo.value == '') || (form.descripcion.value == '')){
+		errores += "<li>Los campos titulo y descripcion no pueden estar vacios.</li>"
+	}
+	
+	if (errores) {
+		document.getElementById('errores').innerHTML = errores;
+		document.getElementById('errores').style.display = 'block';
+		return false;
+	}
+
+	return true;
+}
+
 function validarLibro(form){
 	var errores = '';
 
