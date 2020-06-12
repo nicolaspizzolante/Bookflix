@@ -11,6 +11,7 @@ $editorial_id = trim($_POST["editorial"]);
 $genero_id = $_POST["genero"];
 $autor_id = $_POST["autor"];
 $sinopsis = trim($_POST["sinopsis"]);
+$cantidadCapitulos = ($_POST['cantCapitulos']);
 
 if ($_SESSION['errores']){
 	header("Location: cargarmetadatos.php?titulo=$titulo&isbn=$isbn&sinopsis=$sinopsis&id_autor=$autor_id&id_editorial=$editorial_id&id_genero=$genero_id");
@@ -34,8 +35,8 @@ if($libro != null) {
     $fecha = date("Y-m-d H:i:s");
 	$sql = "
         INSERT 
-        INTO libros (titulo, isbn, autor_id, editorial_id, genero_id, fecha_de_subida,imagen,pdf,sinopsis) 
-        VALUES('$titulo', '$isbn', '$autor_id', '$editorial_id', '$genero_id', '$fecha','$imagen','$pdf','$sinopsis')
+        INTO libros (titulo, isbn, autor_id, editorial_id, genero_id, fecha_de_subida,imagen,pdf,sinopsis,capitulos) 
+        VALUES('$titulo', '$isbn', '$autor_id', '$editorial_id', '$genero_id', '$fecha','$imagen','$pdf','$sinopsis','$cantidadCapitulos')
     ";
 	try {
         // guardamos usuario

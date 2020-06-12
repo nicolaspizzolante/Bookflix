@@ -228,6 +228,9 @@ function validarMetadatos(form){
 	if(form.sinopsis.value == ''){
 		errores += "<li>La sinopsis del libro no puede ser vacia.</li>"
 	}
+	if((!soloNumeros(form.cantCapitulos.value) || (form.cantCapitulos.value == ''))){
+		errores += "<li>Ingrese una cantidad de capitulos valida.</li>"
+	}
 
 	if (errores) {
 		document.getElementById('errores').innerHTML = errores;

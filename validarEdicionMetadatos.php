@@ -12,6 +12,7 @@ $editorial_id = trim($_POST["editorial"]);
 $genero_id = $_POST["genero"];
 $autor_id = $_POST["autor"];
 $sinopsis = $_POST["sinopsis"];
+$cantidadCapitulos = $_POST["cantCapitulos"];
 
 if ($_SESSION['errores']){
 	header('Location: modificarMetadatos.php');
@@ -47,6 +48,9 @@ if($libro != null) {
 	$resultado = $conexion->query($sql);
 
 	$sql = " UPDATE libros SET sinopsis = '$sinopsis' WHERE id = '$id'";
+	$resultado = $conexion->query($sql);
+
+	$sql = " UPDATE libros SET capitulos = '$cantidadCapitulos' WHERE id = '$id'";
 	$resultado = $conexion->query($sql);
 
 	if($imagen != null){

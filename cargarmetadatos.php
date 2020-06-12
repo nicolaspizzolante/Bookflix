@@ -62,6 +62,9 @@
                 <div class="input">
                 Ingrese Imagen: <input type="file" name="foto" placeholder="foto">
             </div>
+            <div class="input">
+                <input type="number" id="cantCapitulos" name="cantCapitulos" placeholder="Cantidad de capitulos">
+            </div>
         
             <textarea class="input_sinopsis" id="sinopsis" name="sinopsis" placeholder="Escriba una sinopsis" ><?php if(isset($_GET['sinopsis'])){ echo $_GET['sinopsis'];} ?></textarea>
 
