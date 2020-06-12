@@ -131,10 +131,22 @@
 						<div class="input">
 							<a href="modificarMetadatos.php?id=<?php echo $id_libro;?>"><input type="submit" value="Editar"></a>
 						</div>
+						<?php if($libro['capitulos']>1){?>
 
-						<div class="input">
-							<a href="cargarLibro.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar libro"></a>
-						</div>
+							<?php if($libro['capitulos'] != $libro['subidos']){?>
+								<div class="input">
+									<a href="cargarLibro.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar capitulo"></a>
+								</div>
+							<?php }
+						}else{?>
+
+								<?php if($libro['capitulos'] != $libro['subidos']){?>
+							<div class="input">
+								<a href="cargarLibro.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar libro"></a>
+							</div>
+								<?php }
+						}?>
+							
 					<!--
 						<div class="input">
 							<a href=""><input type="submit" value="Eliminar"></a>

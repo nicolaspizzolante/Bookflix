@@ -19,6 +19,9 @@ if ($_SESSION['errores']){
 	$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
 	$pdf = addslashes($pdf); 
 
+	$sql = "UPDATE libros SET subidos = 1 WHERE id = '$id'";
+	$r = $conexion->query($sql);
+
 	if($fecha_vencimiento == ''){
 		$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion) VALUES('$id','$pdf','$fecha_publicacion')";
 	try {
