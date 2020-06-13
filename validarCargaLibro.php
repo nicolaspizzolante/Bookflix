@@ -5,6 +5,7 @@ session_start();
 $conexion = conectar();
 
 $id = $_GET["id"];
+$completo = $_GET["completo"];
 $fecha_publicacion = $_POST["fechaPublicacion"];
 $fecha_vencimiento = $_POST["fechaVencimiento"];
 
@@ -12,14 +13,19 @@ $fecha_vencimiento = $_POST["fechaVencimiento"];
 
 
 if ($_SESSION['errores']){
-	header("Location: cargarLibro.php?id=$id");
+	header("Location: cargarLibro.php?id=$id&completo=$completo");
 	exit;
 }else{
 
 	$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
 	$pdf = addslashes($pdf); 
-
-	$sql = "UPDATE libros SET subidos = 1 WHERE id = '$id'";
+	//se obtiene la cantidad de capitulos subidos 
+	$sql = "SELECT subidos FROM libros WHERE id = '$id'";
+	$r = $conexion->query($sql);
+	$l = $r->fetch_assoc();
+	//Se incrementa en 1 la cantidad de subidos
+	$inc = $l['subidos'] +1;
+	$sql = "UPDATE libros SET subidos = '$inc' WHERE id = '$id'";
 	$r = $conexion->query($sql);
 
 	if($fecha_vencimiento == ''){

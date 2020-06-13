@@ -78,10 +78,19 @@
 									$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$id_libro'";
 									$r = $conexion->query($sql);
 									$l = $r->fetch_assoc();
-							?>
+								?> <?php if($libro['subidos']>0 ){?>
 									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }else{?>
-							<a href="perfilLibro.php?id=<?php echo $libro['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+									<a href="" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+								<?php }?>
+									
+								<?php }else{ if($libro['subidos']>0){?>
+									<a href="perfilLibro.php?id=<?php echo $libro['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+								<?php }else{?>
+									<a href="" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+								<?php }?>
+
+							
 								<?php }?>
 						</h2>
 					</div>
@@ -135,14 +144,14 @@
 
 							<?php if($libro['capitulos'] != $libro['subidos']){?>
 								<div class="input">
-									<a href="cargarLibro.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar capitulo"></a>
+									<a href="cargarLibro.php?id=<?php echo $id_libro;?>&completo=0"><input type="button" value="Cargar capitulo"></a>
 								</div>
 							<?php }
 						}else{?>
 
 								<?php if($libro['capitulos'] != $libro['subidos']){?>
 							<div class="input">
-								<a href="cargarLibro.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar libro"></a>
+								<a href="cargarLibro.php?id=<?php echo $id_libro;?>&completo=1"><input type="button" value="Cargar libro"></a>
 							</div>
 								<?php }
 						}?>

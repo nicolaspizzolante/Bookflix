@@ -11,6 +11,8 @@
     $db = conectar();
 
     $idlibro = $_GET["id"];
+    $completo = $_GET["completo"];
+
 
     $sql = "SELECT titulo FROM libros WHERE id = $idlibro";
     $resultado = $db->query($sql);
@@ -18,9 +20,14 @@
     date_default_timezone_set('America/Argentina/Buenos_Aires');
 ?>
     <div class="container">
+    <?php if($completo == '1'){
+    ?>
         <h1>Cargar libro completo</h1>
+    <?php }else{?>
+        <h1>Cargar capitulo</h1>
+    <?php }?>
         <p id="descripcion-novedad">Seleccione pdf para el libro "<?php echo $libro['titulo'] ?>"</p>
-        <form action="validarCargaLibro.php?id=<?php echo $idlibro?>" onsubmit="return validarLibro(this)" method="post" enctype="multipart/form-data">
+        <form action="validarCargaLibro.php?id=<?php echo $idlibro?>&completo=<?php echo $completo?>" onsubmit="return validarLibro(this)" method="post" enctype="multipart/form-data">
             
 
             <div>
