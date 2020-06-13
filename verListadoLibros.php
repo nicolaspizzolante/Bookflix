@@ -37,8 +37,10 @@
 			$msg = $libros->num_rows;
 
 			if($msg == 0){
+				$paginacion = FALSE;
 				$_SESSION['usuario']['errores'] = 'No hay libros para mostrar';
-			}
+			}else{
+				$paginacion=TRUE;}
 		?>
 		<h3>
 			<?php if(isset($_SESSION['usuario']['errores'])){ ?>
@@ -211,7 +213,7 @@ $('a[href*="#"]').on("click", function(){
 		</ul>
 	<?php endif ?>
 
-
+	<?php if($paginacion){?>
 	<!-- paginacion -->
 	<div class="paginacion">
 		<ul>
@@ -236,6 +238,7 @@ $('a[href*="#"]').on("click", function(){
 			<?php } ?>
 		</ul>
 	</div>
+			<?php }?>
   </div>
-
-<?php include 'views/footer.php'; ?>
+		
+			<?php  include 'views/footer.php'; ?>
