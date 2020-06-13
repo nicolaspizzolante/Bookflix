@@ -21,13 +21,22 @@
 	$resultado = $conexion->query($sql);
 	$libro = $resultado->fetch_assoc();
 ?>
-	<h2><?php echo $libro['titulo']?></h2>
-	
+	<h2 style="color:#c6071b"><?php echo $libro['titulo']?></h2>
 		<?php $indice = 0;?>
 	<?php while ($cap = $libro_pdf->fetch_assoc()){?>
-	<ul>
-		<li><a href="leerLibro.php?id='<?php echo $cap['id']?>'">Capitulo <?php echo $indice+=1?></a></li>
-	</ul>
+
+		<article class="libro">
+				<div class="info">
+					<div class="titulo">
+						<h4>
+						<a href="leerLibro.php?id='<?php echo $cap['id']?>'">Capitulo <?php echo $indice+=1?></a>
+						</h4>
+					</div>
+				    </div>
+				</div>
+		</article>
+
+	
 		<?php } ?>	
 
 	
