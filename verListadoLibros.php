@@ -62,7 +62,7 @@
 						$tieneImagen = $imagen->num_rows;
 					?>
 		<!--perfilLibro.php?id=<?php //echo $libro['id']; ?>-->			
-					<a href="#" class="foto-link">
+					<a href="" class="foto-link">
 						<?php if($tieneImagen){ ?>
 							<img src="mostrarImagen.php?libro_id=<?php echo $id_libro?>">
 						<?php } else {?>
