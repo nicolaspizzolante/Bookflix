@@ -81,13 +81,13 @@
 								?> <?php if($libro['subidos']>0 ){?>
 									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }else{?>
-									<a href="" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+									<a href="#" onClick="alert('Aun no se ha cargado este libro')" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }?>
 									
 								<?php }else{ if($libro['subidos']>0){?>
 									<a href="perfilLibro.php?id=<?php echo $libro['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }else{?>
-									<a href="" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+									<a href="#" onClick="alert('Aun no se ha cargado este libro')" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }?>
 
 							
