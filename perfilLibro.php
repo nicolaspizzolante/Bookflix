@@ -21,7 +21,7 @@
 	$resultado = $conexion->query($sql);
 	$libro = $resultado->fetch_assoc();
 ?>
-	<h2 style="color:#c6071b"><?php echo $libro['titulo']?></h2>
+	<h2 style="color:#c6071b"><?php echo $libro['titulo']?> - Listado de capitulos</h2>
 		<?php $indice = 0;?>
 	<?php while ($cap = $libro_pdf->fetch_assoc()){?>
 
