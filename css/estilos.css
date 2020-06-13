@@ -682,6 +682,17 @@ select:focus {
     border-radius: 4px;
     display: flex
 }
+.capitulo {
+    background:#0e0e0eb0;
+    margin-bottom: 10px;
+	padding: 10px;
+	width: 40%;
+    border-radius: 4px;
+	display: flex;
+	margin: auto;
+	margin-top: 10px;
+	
+}
 .titulo, .calificacion{
 	margin-top:10px;
 	margin-bottom: 3px;
