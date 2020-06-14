@@ -809,3 +809,7 @@ select:focus {
 .opciones div input[type="submit"]{
 	width: 70px;
 }
+
+.opcion-capitulos {
+	margin: 20px 0;
+}

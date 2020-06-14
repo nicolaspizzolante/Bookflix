@@ -58,12 +58,18 @@
                 </select>
                 <a class="boton-alta" id="alta-genero" href="altaeditorial.php?validar=<?php echo 2?>&idlibro=<?php echo 0?>"><i class="fas fa-plus"></i></a>
             </div>
-
-                <div class="input">
-                Ingrese Imagen: <input type="file" name="foto" placeholder="foto">
+            
+            <div class="opcion-capitulos">
+                <input type="checkbox" id="check-capitulos" name="check-capitulos">
+                <label for="check-capitulos">Cargar por capitulos</label><br>
             </div>
+
+            <div id="input-cant-capitulos" class="input" style="display:none;">
+                <input type="number" id="cantCapitulos" name="cantCapitulos" placeholder="Cantidad de capitulos" value="1">
+            </div>
+            
             <div class="input">
-                <input type="number" id="cantCapitulos" name="cantCapitulos" placeholder="Cantidad de capitulos">
+                Ingrese Imagen: <input type="file" name="foto" placeholder="foto">
             </div>
         
             <textarea class="input_sinopsis" id="sinopsis" name="sinopsis" placeholder="Escriba una sinopsis" ><?php if(isset($_GET['sinopsis'])){ echo $_GET['sinopsis'];} ?></textarea>
@@ -142,6 +148,12 @@
             localStorage.clear();
         <?php } ?>
 
+        // mostrar input de cantidad de capitulos al hacer click en el checkbox
+        $('#check-capitulos').on('click', function(){
+            $('#input-cant-capitulos').toggle();
+        });
+
+
         // Function que guarda los datos del form en el localStorage
         function saveLocalStorage(){
             localStorage.setItem('titulo', $("#titulo").val());
@@ -151,6 +163,8 @@
             localStorage.setItem('editorial', $("#editorial").val());
             localStorage.setItem('sinopsis', $("#sinopsis").val());
         }
+
+
     </script>
 
 <?php include 'views/footer.php'; ?>
