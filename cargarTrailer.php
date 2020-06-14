@@ -10,11 +10,33 @@
 
     $db = conectar();
     $id_libro = (isset($_GET['id_libro'])) ? $_GET['id_libro'] : '';
+    $sql = "SELECT id, titulo FROM libros WHERE id ='$id_libro'";
+    $resultado =  $db->query($sql)->fetch_assoc();
+
+
+    $libros = $db->query("SELECT * FROM libros")->fetch_all();
+    var_dump($resultado);
 ?>
     <div class="container">
-        <h1>Cargar Trailer</h1>
-        <form action="validarTrailer.php" onsubmit="return validarTrailer(this);" method="post" enctype="multipart/form-data">
+        <h1>
+            Cargar trailer para: <?php if (isset($resultado['titulo'])){
+                echo $resultado['titulo'];
+            } ?>
+        </h1>
         
+        <form action="validarTrailer.php" onsubmit="return validarTrailer(this);" method="post" enctype="multipart/form-data">
+            <?php if($id_libro ===''){?>
+                <div class="select-y-boton">
+                    <select name="id_libro" id="libro_id">
+                        <option disabled="disabled" selected value=""> Seleccione un libro </option>
+                        <?php foreach($libros as $libro) { ?>
+                            <option value="<?php echo $libro[0]?>"> <?php echo $libro[1] ?> </option>
+                        <?php }?>
+                    </select>
+                </div>
+            <?php }else{?>
+                <input type="hidden" name="id_libro" value="<?php echo $id_libro ?>" />
+            <?php } ?>    
             <div class="input">
                 <input type="text" name="titulo" placeholder="Titulo">
             </div>
@@ -31,7 +53,7 @@
                 </div>
                 <a href="index.php" id="btn-cancelar">Cancelar</a>
             </div>
-            <input type="hidden" name="id_libro" value="<?php echo $id_libro ?>" />
+            
         </form>
     </div>
 	
