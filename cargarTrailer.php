@@ -9,6 +9,7 @@
     include 'views/header.php';
 
     $db = conectar();
+    $id_libro = (isset($_GET['id_libro'])) ? $_GET['id_libro'] : '';
 ?>
     <div class="container">
         <h1>Cargar Trailer</h1>
@@ -30,6 +31,7 @@
                 </div>
                 <a href="index.php" id="btn-cancelar">Cancelar</a>
             </div>
+            <input type="hidden" name="id_libro" value="<?php echo $id_libro ?>" />
         </form>
     </div>
 	

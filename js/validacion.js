@@ -176,14 +176,14 @@ function validarEditarTarjeta(form){
 
 }
 
-function validarBusqueda(form){
+/*function validarBusqueda(form){
 	if (form.busqueda.value == ''){
 		alert("Inserte al menos un caracter.");
 		return false;
 	}
 	return true;
 }
-
+*/
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth()+1),
