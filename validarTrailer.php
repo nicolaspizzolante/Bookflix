@@ -22,7 +22,7 @@ if($trailer != null) {
 	$_SESSION['errores'] .= '<li>El trailer ya está cargado.</li>';
 	header('Location: cargarTrailer.php'); 
 }else{
-
+  
 $file = file_get_contents($_FILES['file']['tmp_name']);
 $file = addslashes($file); 
 

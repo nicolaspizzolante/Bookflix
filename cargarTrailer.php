@@ -20,7 +20,7 @@
             </div>
 
             <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion para el trailer"></textarea>
-
+ 
             <div class="input">
                 Adjuntar imagen: <input type="file" name="file" placeholder="Archivo adjunto">
             </div>

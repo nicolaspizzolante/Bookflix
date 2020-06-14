@@ -175,7 +175,7 @@ function validarEditarTarjeta(form){
 	return true;
 
 }
-
+ 
 /*function validarBusqueda(form){
 	if (form.busqueda.value == ''){
 		alert("Inserte al menos un caracter.");

@@ -178,7 +178,7 @@ $('a[href*="#"]').on("click", function(){
 							$consulta = "SELECT id_libro FROM trailers WHERE id_libro = $id_libro";
 							$aux =  $conexion->query($consulta);
 							
-						?>
+						?> 
 						<?php if($aux->num_rows === 0){?>
 							<div class="input">
 								<a href="cargarTrailer.php?id_libro=<?php echo $id_libro;?>"><input type="button" value="Cargar Trailer"></a>
