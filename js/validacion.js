@@ -190,8 +190,7 @@ function formatDate(date) {
         day = '' + d.getDate(),
 		year = d.getFullYear(),
 		hour = d.getHours(),
-		minutes = d.getMinutes(),
-		seconds = d.getSeconds();
+		minutes = d.getMinutes();
 
     if (month.length < 2) 
         month = '0' + month;
@@ -201,11 +200,10 @@ function formatDate(date) {
 		hour = '0' + hour;
 	if (minutes.length < 2) 
 		minutes = '0' + minutes;
-	if (seconds.length < 2) 
-		seconds = '0' + seconds;
+
 	
 	aux = [year, month, day].join('-');
-	aux = aux + 'T' +[hour,minutes,seconds].join(':');
+	aux = aux + 'T' +[hour,minutes].join(':');
 	return aux;
 }
 
@@ -288,10 +286,9 @@ function validarLibro(form){
 		errores += "<li>Ingrese una fecha de publicacion</li>"
 	}else{
 		actual = new Date();
-		console.log(actual);
 		console.log(formatDate(actual));
-		console.log(form.fechaPublicacion.value);
-		if(form.fechaPublicacion.value < formatDate(actual)){
+		console.log(form.fechaPublicacion.value.substring(0,form.fechaPublicacion.value.length-3));
+		if(form.fechaPublicacion.value.substring(0,form.fechaPublicacion.value.length-3) < formatDate(actual)){
 			errores += "<li>La fecha de publicacion debe ser posterior o igual a la actual</li>"
 		}
 	}
