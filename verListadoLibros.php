@@ -192,6 +192,40 @@ $('a[href*="#"]').on("click", function(){
 							</div>
 								<?php }
 						}?>
+				<?php
+            if($libro['subidos'] >= 1){
+                if($libro['capitulos'] == 1){ //El libro no es subido por capitulos
+                    $sql = "SELECT id FROM libros_pdf WHERE libro_id = '$id_libro'";
+                    $result = mysqli_query($conexion, $sql);
+                    $pdf_id = $result->fetch_assoc();
+                ?>
+                    <div class="input">
+                    <a href="modificarFechasPublicacionVencimiento.php?id=<?php echo $pdf_id['id']?>"><input type="button" value="Editar fechas"></a>
+                    </div>
+                <?php }else{?>
+                    <div class="input">
+                    <a href="perfilLibro.php?id=<?php echo $id_libro?>&selector=<?php echo 0?>"><input type="button" value="Editar fechas"></a>
+                    </div>
+                <?php }?>
+            <?php }else{?>
+                <div class="input">
+                    <a href="#"><input type="button" value="Editar fechas"></a>
+                    </div>
+            <?php }?>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$('a[href*="#"]').on("click", function(){
+	Swal.fire({
+		title: 'Aviso',
+		text: "No hay libro o capitulo cargado al que modificarle fechas",
+		confirmButtonColor: '#3085d6',
+		confirmButtonText: 'Aceptar',
+	})
+});
+</script>
+
 						<?php 
 							//consulta para saber si tiene trailer
 							$consulta = "SELECT * FROM trailers WHERE id_libro = $id_libro";
@@ -207,11 +241,6 @@ $('a[href*="#"]').on("click", function(){
 							<div class="input ver-trailer">
 								<a href="trailer.php?id=<?php echo $id_libro; ?>"><input type="button" value="Ver Trailer"></a>
 							</div>
-						<!--	<div class="input eliminar-trailer">
-								<a href="#"><input type="button" value="Eliminar Trailer "></a>
-							</div>
-							
-						-->	
 						<?php }?>	
 							
 					<!--
