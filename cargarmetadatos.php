@@ -108,6 +108,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
+
         // Dejo preseleccionado autor editorial y genero que vengan en la url
         <?php if (isset($_GET["id_autor"])){ ?>
             $("#autor").val(<?php echo $_GET["id_autor"]; ?>);
@@ -144,7 +145,8 @@
             $("#genero").val(localStorage.getItem('genero'));
             $("#editorial").val(localStorage.getItem('editorial'));
             $("#sinopsis").val(localStorage.getItem('sinopsis'));
-
+            $("#cantCapitulos").val(localStorage.getItem('cantCapitulos'));
+            $('#check-capitulos').attr('checked', localStorage.getItem('check-capitulos'));
             localStorage.clear();
         <?php } ?>
 
@@ -153,6 +155,13 @@
             $('#input-cant-capitulos').toggle();
         });
 
+        // si el check ya estaba tildado (porque veniamos de cargar autor por ej),
+        // mostrar el input de cant capitulos
+        $(window).on('load', function(){
+            if($('#check-capitulos')[0].checked){
+                $('#input-cant-capitulos').show();
+            }
+        });
 
         // Function que guarda los datos del form en el localStorage
         function saveLocalStorage(){
@@ -162,8 +171,9 @@
             localStorage.setItem('genero', $("#genero").val());
             localStorage.setItem('editorial', $("#editorial").val());
             localStorage.setItem('sinopsis', $("#sinopsis").val());
+            localStorage.setItem('cantCapitulos', $("#cantCapitulos").val());
+            localStorage.setItem('check-capitulos', $('#check-capitulos')[0].checked);
         }
-
 
     </script>
 
