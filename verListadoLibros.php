@@ -24,6 +24,8 @@
 	$total_libros = $total_libros->num_rows;
 	
 	$numero_paginas = ceil($total_libros / $librosPorPagina);
+
+	$paginacion = !($total_libros < $librosPorPagina);
 ?>	
   <div class="container">
 	<?php if (isset($_SESSION['errores'])): ?>
@@ -55,10 +57,8 @@
 			$msg = $libros->num_rows;
 
 			if($msg == 0){
-				$paginacion = FALSE;
 				$_SESSION['usuario']['errores'] = 'No hay libros para mostrar';
-			}else{
-				$paginacion=TRUE;}
+			}
 		?>
 		<h3>
 			<?php if(isset($_SESSION['usuario']['errores'])){ ?>
