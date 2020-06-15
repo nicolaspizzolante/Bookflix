@@ -437,6 +437,9 @@ a {
 	background: #282828;
 	margin-bottom: 10px;
 }
+.eliminar-trailer a input[type="button"]{
+	width: 110px;
+}
 
 select {
 	margin-bottom: 0;
