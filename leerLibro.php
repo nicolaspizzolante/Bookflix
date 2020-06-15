@@ -23,19 +23,28 @@
   padding: 0;
 }
 
-.top-bar {
-  background: #333;
+html {
+  padding-bottom:0;
+}
+
+.bar {
+  display:flex;
+  justify-content: center;
   color: #fff;
-  padding: 1rem;
+  margin: 5px 0;
 }
 
 .btn {
-  background: coral;
-  color: #fff;
+  color: #10d5f5;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 0.7rem 2rem;
+  background: none;
+}
+
+.btn i {
+  font-size: 20px;
+  color: #dc1025;
 }
 
 .btn:hover {
@@ -43,7 +52,7 @@
 }
 
 .page-info {
-  margin-left: 1rem;
+  margin: .5rem;
 }
 
 .error {
@@ -54,21 +63,34 @@
 </style>
 
 
-<div class="top-bar">
-<button class="btn" id="prev-page">
-<i class="fas fa-arrow-circle-left"></i> Prev Page
-</button>
-<button class="btn" id="next-page">
-Next Page <i class="fas fa-arrow-circle-right"></i>
-</button>
-<span class="page-info">
-Page <span id="page-num"></span> of <span id="page-count"></span>
-</span>
+<div class="bar">
+  <button class="btn prev-page">
+    <i class="fas fa-arrow-circle-left"></i>
+  </button>
+  <span class="page-info">
+    <span class="page-num"></span> de <span class="page-count"></span>
+  </span>
+  <button class="btn next-page">
+    <i class="fas fa-arrow-circle-right"></i>
+  </button>
 </div>
 
 <div style="display:flex; justify-content:center;">
-<canvas id="pdf-render"></canvas>
+  <canvas id="pdf-render"></canvas>
 </div>
+
+<div class="bar">
+  <button class="btn prev-page-bottom">
+    <i class="fas fa-arrow-circle-left"></i>
+  </button>
+  <span class="page-info">
+    <span class="page-num-bottom"></span> de <span class="page-count-bottom"></span>
+  </span>
+  <button class="btn next-page-bottom">
+    <i class="fas fa-arrow-circle-right"></i>
+  </button>
+</div>
+
 <script src="http://mozilla.github.io/pdf.js/build/pdf.js"></script>
 
 <script>
@@ -95,7 +117,7 @@ let pdfDoc = null,
   pageIsRendering = false,
   pageNumIsPending = null;
 
-const scale = 1.5,
+const scale = 1,
   canvas = document.querySelector('#pdf-render'),
   ctx = canvas.getContext('2d');
 
@@ -125,7 +147,8 @@ const renderPage = num => {
     });
 
     // Output current page
-    document.querySelector('#page-num').textContent = num;
+    document.querySelector('.page-num').textContent = num;
+    document.querySelector('.page-num-bottom').textContent = num;
   });
 };
 
@@ -162,7 +185,8 @@ pdfjsLib
   .promise.then(pdfDoc_ => {
     pdfDoc = pdfDoc_;
 
-    document.querySelector('#page-count').textContent = pdfDoc.numPages;
+    document.querySelector('.page-count').textContent = pdfDoc.numPages;
+    document.querySelector('.page-count-bottom').textContent = pdfDoc.numPages;
 
     renderPage(pageNum);
   })
@@ -173,12 +197,24 @@ pdfjsLib
     div.appendChild(document.createTextNode(err.message));
     document.querySelector('body').insertBefore(div, canvas);
     // Remove top bar
-    document.querySelector('.top-bar').style.display = 'none';
+    document.querySelector('.bar').style.display = 'none';
   });
 
 // Button Events
-document.querySelector('#prev-page').addEventListener('click', showPrevPage);
-document.querySelector('#next-page').addEventListener('click', showNextPage);
+document.querySelector('.prev-page').addEventListener('click', showPrevPage);
+document.querySelector('.prev-page-bottom').addEventListener('click', showPrevPage);
+document.querySelector('.next-page').addEventListener('click', showNextPage);
+document.querySelector('.next-page-bottom').addEventListener('click', showNextPage);
 
+// Pasar de pagina con las flechas del teclado
+document.addEventListener('keydown', function(e){
+  if(e.key === "ArrowRight"){
+    showNextPage();
+  }
+
+  if(e.key === "ArrowLeft"){
+    showPrevPage();
+  }
+});
 
 </script>
