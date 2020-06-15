@@ -51,7 +51,7 @@
 
 
 	//paginacion
-	$sql = "SELECT id, titulo, sinopsis, isbn, autor_id, genero_id, editorial_id, fecha_de_subida
+	$sql = "SELECT *
 					FROM libros
 					WHERE titulo like '%$busqueda%' or autor_id ='$autor_id' or genero_id = '$genero_id' or editorial_id = '$editorial_id' LIMIT $inicio, $librosPorPagina";
 					
@@ -88,10 +88,44 @@
 				<div class="info">
 					<div class="titulo">
 						<h2>
-						<!--perfilLibro.php?id=<?php// echo $id_libro;?>-->
-							<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+						<?php 
+								if($libro['capitulos']<=1){
+									$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$id_libro'";
+									$r = $conexion->query($sql);
+									$l = $r->fetch_assoc();
+								?> <?php if($libro['subidos']>0 ){?>
+									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+								<?php }else{?>
+									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+								<?php }?>
+									
+								<?php }else{ if($libro['subidos']>0){?>
+									<a href="perfilLibro.php?id=<?php echo $libro['id']?>&selector=<?php echo 1?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+								<?php }else{?>
+									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+								<?php }?>
+
+							
+								<?php }?>
 						</h2>
 					</div>
+
+					<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+
+$('a[href*="#"]').on("click", function(){
+	Swal.fire({
+		title: 'Aviso',
+		text: "Aún no se ha cargado este libro",
+		confirmButtonColor: '#3085d6',
+		confirmButtonText: 'Aceptar',
+	})
+});
+
+</script>
 
 					<div><span>ISBN:</span><span><?php echo $libro['isbn']; ?></span>
 				    </div>
