@@ -87,7 +87,7 @@
 								<?php }?>
 									
 								<?php }else{ if($libro['subidos']>0){?>
-									<a href="perfilLibro.php?id=<?php echo $libro['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
+									<a href="perfilLibro.php?id=<?php echo $libro['id']?>&selector=<?php echo 1?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }else{?>
 									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }?>
