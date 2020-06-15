@@ -194,7 +194,7 @@ $('a[href*="#"]').on("click", function(){
 						}?>
 						<?php 
 							//consulta para saber si tiene trailer
-							$consulta = "SELECT id_libro FROM trailers WHERE id_libro = $id_libro";
+							$consulta = "SELECT * FROM trailers WHERE id_libro = $id_libro";
 							$aux =  $conexion->query($consulta);
 							
 						?> 
@@ -205,7 +205,7 @@ $('a[href*="#"]').on("click", function(){
 						<?php }else{?>
 							
 							<div class="input ver-trailer">
-								<a href="#"><input type="button" value="Ver Trailer"></a>
+								<a href="trailer.php?id=<?php echo $id_libro; ?>"><input type="button" value="Ver Trailer"></a>
 							</div>
 						<!--	<div class="input eliminar-trailer">
 								<a href="#"><input type="button" value="Eliminar Trailer "></a>
