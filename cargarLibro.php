@@ -23,6 +23,25 @@
     date_default_timezone_set('America/Argentina/Buenos_Aires');
 ?>
     <div class="container">
+
+    <?php if (isset($_SESSION['errores'])): ?>
+		<ul id="errores" style="display:block;">
+			<?php 
+				echo $_SESSION['errores']; 
+				unset($_SESSION['errores']);
+			?>
+		</ul>
+	<?php endif ?>
+
+    <?php if (isset($_SESSION['exito'])): ?>
+		<ul id="exito" style="display:block;">
+			<?php 
+				echo $_SESSION['exito']; 
+				unset($_SESSION['exito']);
+			?>
+		</ul>
+	<?php endif ?>
+    
     <?php if($completo == '1'){ ?>
         <h1>Cargar libro completo</h1>
     <?php } else {?>
@@ -52,26 +71,6 @@
         </form>
     </div>
 	
-
 	<ul id="errores" style="display:none"></ul>
-
-    <?php if (isset($_SESSION['errores'])): ?>
-		<ul id="errores" style="display:block;">
-			<?php 
-				echo $_SESSION['errores']; 
-				unset($_SESSION['errores']);
-			?>
-		</ul>
-	<?php endif ?>
-
-    <?php if (isset($_SESSION['exito'])): ?>
-		<ul id="exito" style="display:block;">
-			<?php 
-				echo $_SESSION['exito']; 
-				unset($_SESSION['exito']);
-			?>
-		</ul>
-	<?php endif ?>
-	
 
 <?php include 'views/footer.php'; ?> 

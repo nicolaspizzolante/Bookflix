@@ -15,6 +15,24 @@
     $editoriales = $db->query("SELECT * FROM editoriales")->fetch_all();
 ?>
     <div class="container">
+        <?php if (isset($_SESSION['errores'])): ?>
+            <ul id="errores" style="display:block;">
+                <?php 
+                    echo $_SESSION['errores']; 
+                    unset($_SESSION['errores']);
+                ?>
+            </ul>
+        <?php endif ?>
+
+        <?php if (isset($_SESSION['exito'])): ?>
+            <ul id="exito" style="display:block;">
+                <?php 
+                    echo $_SESSION['exito']; 
+                    unset($_SESSION['exito']);
+                ?>
+            </ul>
+        <?php endif ?>
+
         <h1>Cargar Metadatos</h1>
         <form action="validarMetadatos.php" onsubmit="return validarMetadatos(this);" method="post" enctype="multipart/form-data">
         
@@ -83,27 +101,8 @@
         </form>
 
     </div>
-	
 
 	<ul id="errores" style="display:none"></ul>
-
-	<?php if (isset($_SESSION['errores'])): ?>
-		<ul id="errores" style="display:block;">
-			<?php 
-				echo $_SESSION['errores']; 
-				unset($_SESSION['errores']);
-			?>
-		</ul>
-	<?php endif ?>
-
-    <?php if (isset($_SESSION['exito'])): ?>
-		<ul id="exito" style="display:block;">
-			<?php 
-				echo $_SESSION['exito']; 
-				unset($_SESSION['exito']);
-			?>
-		</ul>
-	<?php endif ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
