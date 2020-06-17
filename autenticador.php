@@ -56,4 +56,12 @@ class Autenticador {
 			throw new Exception("El usuario no puede realizar esta accion", 1);
 		}
 	}
+
+	function retornarTitulo($libro_id){
+		$conexion = conectar();
+
+		$sql = "SELECT titulo FROM libros WHERE id = '$libro_id'";
+
+		return $conexion->query($sql)->fetch_assoc()['titulo'];
+	}
 }

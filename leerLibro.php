@@ -91,6 +91,7 @@ html {
   </button>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://mozilla.github.io/pdf.js/build/pdf.js"></script>
 
 <script>
@@ -216,5 +217,16 @@ document.addEventListener('keydown', function(e){
     showPrevPage();
   }
 });
+
+function guardarHistorial(libro_id, $usuario_id) {
+  $.ajax({
+    url: 'guardarhistorial.php?pdf_id=' + libro_id + '&usuario_id=' + $usuario_id,
+    context: document.body
+  }).done((e) => {
+    console.log(e);
+  });
+}
+
+guardarHistorial(<?= $libro_id ?>, <?= $_SESSION['usuario']['id'] ?>);
 
 </script>
