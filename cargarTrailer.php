@@ -15,7 +15,7 @@
 
 
     $libros = $db->query("SELECT * FROM libros")->fetch_all();
-    var_dump($resultado);
+    
 ?>
     <div class="container">
         <h1>
