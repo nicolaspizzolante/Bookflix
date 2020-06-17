@@ -36,7 +36,7 @@
 	<p id="fecha-novedad"><?php echo  date("d/m/Y H:i", strtotime($trailer['fecha'])) . "hs"; ?></p>
 	</div>
 	<?php if($trailer['foto_video'] != ''){ ?>
-		<img id="imagen-novedad" src="mostrarImagenNovedad.php?id=<?php echo $id ?>">
+		<img id="imagen-novedad" src="mostrarImagenTrailer.php?id=<?php echo $trailer['id_libro'] ?>">
 	<?php } ?>
 
 	<article class="libro">
