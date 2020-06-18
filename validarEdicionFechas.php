@@ -39,10 +39,10 @@ $libro_pdf = $resultado->fetch_assoc();
 		$fechaPublicacionValida = (($fechaHoraPub != '') and ($fechaHoraPub >= date('Y-m-d H:i')));
 	}
 	
-	if((substr($libro_pdf['fecha_vencimiento'],0,16) == $fechaHoraVenc) and ($fechaHoraVenc > $fechaHoraPub)){
+	if(((substr($libro_pdf['fecha_vencimiento'],0,16) == $fechaHoraVenc) and ($fechaHoraVenc > $fechaHoraPub))){
 		$fechaVencimientoValida = TRUE;
 	}else{
-		$fechaVencimientoValida = ((($fechaHoraVenc != '')and ($fechaHoraVenc > $fechaHoraPub)) or ($fechaHoraVenc==''));
+		$fechaVencimientoValida = ((($fechaHoraVenc != '')and ($fechaHoraVenc>date('Y-m-d H:i'))and ($fechaHoraVenc > $fechaHoraPub)) or ($fechaHoraVenc==''));
 	}
 	
 	if($fechaPublicacionValida and $fechaVencimientoValida){
@@ -72,7 +72,7 @@ $libro_pdf = $resultado->fetch_assoc();
 			$_SESSION['errores'] = '<li>La fecha de publicacion debe ser posterior a la actual.</li>';
 		}
 		if(!$fechaVencimientoValida){
-			$_SESSION['errores'] .= '<li>La fecha de vencimiento debe ser posterior a fecha de publicacion.</li>';
+			$_SESSION['errores'] .= '<li>La fecha de vencimiento debe ser posterior a fecha de publicacion y a la actual.</li>';
 		}
 		header("Location: modificarFechasPublicacionVencimiento.php?id=$id");
 	}
