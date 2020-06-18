@@ -21,12 +21,30 @@ $libro_pdf = $resultado->fetch_assoc();
 	$fechaVenc = substr($fechaVencimiento,0,10);
 	$horaPub = substr($fechaPublicacion,11,5);
 	$horaVenc = substr($fechaVencimiento,11,5);
-	$fechaHoraPub = $fechaPub.' '.$horaPub;
-	$fechaHoraVenc = $fechaVenc.' '.$horaVenc;
+	if($fechaPub == ''){
+		$fechaHoraPub = $fechaPub.$horaPub;
+	}else{
+		$fechaHoraPub = $fechaPub.' '.$horaPub;
+	}
+	if($fechaVenc == ''){
+		$fechaHoraVenc = $fechaVenc.$horaVenc;
+	}else{
+		$fechaHoraVenc = $fechaVenc.' '.$horaVenc;
+	}
+	
 
-	$fechaPublicacionValida = (($fechaHoraPub != '') and ($fechaHoraPub >= date('Y-m-d H:i')));
-	$fechaVencimientoValida = ((($fechaHoraVenc != ' ')and ($fechaHoraVenc > $fechaHoraPub)) or ($fechaHoraVenc==' '));
-
+	if(substr($libro_pdf['fecha_publicacion'],0,16) == $fechaHoraPub){
+		$fechaPublicacionValida = TRUE;
+	}else{
+		$fechaPublicacionValida = (($fechaHoraPub != '') and ($fechaHoraPub >= date('Y-m-d H:i')));
+	}
+	
+	if((substr($libro_pdf['fecha_vencimiento'],0,16) == $fechaHoraVenc) and ($fechaHoraVenc > $fechaHoraPub)){
+		$fechaVencimientoValida = TRUE;
+	}else{
+		$fechaVencimientoValida = ((($fechaHoraVenc != '')and ($fechaHoraVenc > $fechaHoraPub)) or ($fechaHoraVenc==''));
+	}
+	
 	if($fechaPublicacionValida and $fechaVencimientoValida){
 		if($fechaHoraVenc==' '){
 			$sql = " UPDATE libros_pdf SET fecha_publicacion = '$fechaPublicacion' WHERE id = '$id'";

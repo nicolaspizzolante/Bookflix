@@ -47,10 +47,10 @@
     <?php } else {?>
         <h1>Cargar capitulo <?= $subidos + 1 ?> de <?= $capitulos ?> </h1>
     <?php } ?>
-        <p id="descripcion-novedad">Seleccione pdf para el libro "<?php echo $libro['titulo'] ?>"</p>
+        <p id="descripcion-novedad">Seleccione archivo pdf y fechas para el libro"<?php echo $libro['titulo'] ?>"</p>
         <form action="validarCargaLibro.php?id=<?php echo $idlibro ?>&completo=<?php echo $completo ?>" onsubmit="return validarLibro(this)" method="post" enctype="multipart/form-data">
             <div>
-                <p>Fecha de publicacion</p>
+                <p>Fecha de publicacion (*)</p>
                 <input type="datetime-local" name="fechaPublicacion" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); $hora= date('H:i:s'); echo $diaAnterior."T".$hora;?>">
             </div>
             <div>
@@ -59,7 +59,11 @@
             </div>
 
             <div class="input">
-                Ingrese PDF: <input type="file" name="pdf" placeholder="PDF">
+                Ingrese PDF: <input type="file" name="pdf" placeholder="PDF"> (*)
+            </div>
+
+            <div style="margin-bottom: 22px; margin-top:12px">
+            <p> (*) Campos obligatorios</p>
             </div>
 
             <div class="botones">

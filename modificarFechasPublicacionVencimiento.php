@@ -34,6 +34,7 @@ $horaVenc = substr($libro['fecha_vencimiento'],11,18);
 $fechaHoraPub = $fechaPub.'T'.$horaPub;
 $fechaHoraVenc = $fechaVenc.'T'.$horaVenc;
 
+
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 ?>
@@ -48,7 +49,11 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                 
             <div>
                 <p>Nueva fecha de publicacion:</p>
+                <?php if(substr($libro['fecha_publicacion'],0,16) > date('Y-m-d H:i')){?>
                 <input type="datetime-local" name="nuevaFechaPublicacion" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value=<?php echo $fechaHoraPub?>>
+                <?php }else{?>
+                    <input type="datetime-local" name="nuevaFechaPublicacion" step="1" min=<?php echo $fechaHoraPub;?> max="2100-12-31" value=<?php echo $fechaHoraPub?>>
+                <?php }?>
             </div>
             <br></br>
             <article class="libro">
@@ -56,7 +61,11 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
             </article>
             <div>
                 <p>Nueva fecha de vencimiento</p>
+                <?php if(substr($libro['fecha_vencimiento'],0,16) > date('Y-m-d H:i')){?>
                 <input type="datetime-local" name="nuevaFechaVencimiento" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="<?php echo $fechaHoraVenc?>">
+                <?php }else{?>
+                    <input type="datetime-local" name="nuevaFechaVencimiento" step="1" min=<?php echo $fechaHoraVenc;?> max="2100-12-31" value="<?php echo $fechaHoraVenc?>">
+                <?php }?>
             </div>
             <br></br>
 

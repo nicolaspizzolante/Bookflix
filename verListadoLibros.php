@@ -80,8 +80,7 @@
 						$sql = "SELECT id FROM libros WHERE id = $id_libro and imagen is not null and trim(imagen) <> ''";
 						$imagen = $conexion->query($sql);
 						$tieneImagen = $imagen->num_rows;
-					?>
-		<!--perfilLibro.php?id=<?php //echo $libro['id']; ?>-->			
+					?>		
 					<a class="foto-link">
 						<?php if($tieneImagen){ ?>
 							<img src="mostrarImagen.php?libro_id=<?php echo $id_libro?>">
@@ -115,22 +114,6 @@
 						</h2>
 					</div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-<script>
-
-$('a[href*="#"]').on("click", function(){
-	Swal.fire({
-		title: 'Aviso',
-		text: "Aún no se ha cargado este libro",
-		confirmButtonColor: '#3085d6',
-		confirmButtonText: 'Aceptar',
-	})
-});
-
-</script>
 
 					<div><span>ISBN:</span><span><?php echo $libro['isbn']; ?></span>
 				    </div>
@@ -215,15 +198,19 @@ $('a[href*="#"]').on("click", function(){
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 <script>
+
 $('a[href*="#"]').on("click", function(){
 	Swal.fire({
 		title: 'Aviso',
-		text: "No hay libro o capitulo cargado al que modificarle fechas",
+		text: "Aún no se ha cargado este libro",
 		confirmButtonColor: '#3085d6',
 		confirmButtonText: 'Aceptar',
 	})
 });
+
 </script>
 
 						<?php 
@@ -289,17 +276,6 @@ $('a[href*="#"]').on("click", function(){
 	</div>
 			<?php }?>
   </div>
-  <script>
 
-$('.ver-trailer a[href*="#"]').on("click", function(){
-	Swal.fire({
-		title: 'Aviso',
-		text: "Funcionalidad aún no implementada",
-		confirmButtonColor: '#3085d6',
-		confirmButtonText: 'Aceptar',
-	})
-});
-
-</script>
 		
 <?php  include 'views/footer.php'; ?>
