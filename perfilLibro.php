@@ -39,14 +39,16 @@ h2{
 				<div class="info">
 					<div class="titulo">
 						<h4>
-						<a href="leerLibro.php?id='<?php echo $cap['id']?>'">Capitulo <?php echo $indice+=1?></a>
+						<?php if(($autenticador->esAdmin()) or (($cap['fecha_publicacion']<=date('Y-m-d H:i')) and ($cap['fecha_vencimiento'] > date('Y-m-d H:i')))){?>
+							<a href="leerLibro.php?id='<?php echo $cap['id']?>'">Capitulo <?php echo $indice+=1?></a>
+						<?php }else {?>
+							<a href="#">Capitulo <?php echo $indice+=1?></a>
+						<?php }?>
 						</h4>
 					</div>
 				    </div>
 				</div>
 		</article>
-
-	
 		<?php } }else{?>
 			<h2>Capitulos del libro: <?php echo $libro['titulo']?> - Seleccione para editar fechas de publicacion/vencimiento</h2>
 			<?php $indice = 0;?>
@@ -63,6 +65,21 @@ h2{
 				</article>
 		<?php }}?>	
 
-	
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+
+$('a[href*="#"]').on("click", function(){
+	Swal.fire({
+		title: 'Aviso',
+		text: "El capitulo no está disponible",
+		confirmButtonColor: '#3085d6',
+		confirmButtonText: 'Aceptar',
+	})
+});
+
+</script>
 
 <?php include 'views/footer.php'; ?>

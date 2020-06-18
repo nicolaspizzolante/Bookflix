@@ -56,6 +56,8 @@
 			$libros = $conexion->query($sql);
 			$msg = $libros->num_rows;
 
+			
+
 			if($msg == 0){
 				$_SESSION['usuario']['errores'] = 'No hay libros para mostrar';
 			}
@@ -71,7 +73,8 @@
 			<?php } ?>
 		</h3>
 
-		<?php while ($libro = $libros->fetch_assoc()){ ?>
+		<?php while ($libro = $libros->fetch_assoc()){ 
+			?>
 			<article class="libro">
 				<?php $id_libro = $libro['id'];?>
 				<div class="foto">
@@ -97,11 +100,12 @@
 									$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$id_libro'";
 									$r = $conexion->query($sql);
 									$l = $r->fetch_assoc();
-								?> <?php if($libro['subidos']>0 ){?>
+								?> <?php if(($libro['subidos']>0)and (($autenticador->esAdmin()) or (($l['fecha_publicacion']<=date('Y-m-d H:i')) and ($l['fecha_vencimiento'] > date('Y-m-d H:i'))))){?>
 									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }else{?>
+								<?php }else{
+									if($libro['subidos']>0){?>
 									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }?>
+								<?php }}?>
 									
 								<?php }else{ if($libro['subidos']>0){?>
 									<a href="perfilLibro.php?id=<?php echo $libro['id']?>&selector=<?php echo 1?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
@@ -113,6 +117,9 @@
 								<?php }?>
 						</h2>
 					</div>
+
+
+
 
 
 					<div><span>ISBN:</span><span><?php echo $libro['isbn']; ?></span>
@@ -196,22 +203,7 @@
                     </div>
             <?php }?>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-<script>
-
-$('a[href*="#"]').on("click", function(){
-	Swal.fire({
-		title: 'Aviso',
-		text: "Aún no se ha cargado este libro",
-		confirmButtonColor: '#3085d6',
-		confirmButtonText: 'Aceptar',
-	})
-});
-
-</script>
 
 						<?php 
 							//consulta para saber si tiene trailer
@@ -247,7 +239,25 @@ $('a[href*="#"]').on("click", function(){
 
 		</article>
 		<?php } ?>
+						
 	</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+
+$('a[href*="#"]').on("click", function(){
+	Swal.fire({
+		title: 'Aviso',
+		text: "Aún no se ha cargado este libro",
+		confirmButtonColor: '#3085d6',
+		confirmButtonText: 'Aceptar',
+	})
+});
+
+</script>
 
 	<?php if($paginacion){?>
 	<!-- paginacion -->
