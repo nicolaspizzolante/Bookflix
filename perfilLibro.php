@@ -39,7 +39,8 @@ h2{
 				<div class="info">
 					<div class="titulo">
 						<h4>
-						<?php if(($autenticador->esAdmin()) or (($cap['fecha_publicacion']<=date('Y-m-d H:i')) and ($cap['fecha_vencimiento'] > date('Y-m-d H:i')))){?>
+						
+						<?php if(($autenticador->esAdmin()) or (($cap['fecha_publicacion']<=date('Y-m-d H:i')) and (($cap['fecha_vencimiento'] > date('Y-m-d H:i'))or ($cap['fecha_vencimiento'] == '0000-00-00 00:00:00')))){?>
 							<a href="leerLibro.php?id='<?php echo $cap['id']?>'">Capitulo <?php echo $indice+=1?></a>
 						<?php }else {?>
 							<a href="#">Capitulo <?php echo $indice+=1?></a>
