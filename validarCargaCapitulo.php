@@ -5,12 +5,11 @@ session_start();
 $conexion = conectar();
 
 $id = $_GET["id"];
-$completo = $_GET["completo"];
 $fecha_publicacion = $_POST["fechaPublicacion"];
 $fecha_vencimiento = $_POST["fechaVencimiento"];
 
 if ($_SESSION['errores']){
-	header("Location: cargarLibro.php?id=$id&completo=$completo");
+	header("Location: cargarCapitulo.php?id=$id");
 	exit;
 } else {
 	$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
