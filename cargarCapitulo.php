@@ -16,6 +16,8 @@
     $resultado = $db->query($sql);
     $libro = $resultado->fetch_assoc();
 
+    
+
     $capitulos = $libro['capitulos'];
     $subidos = ($libro['subidos'] == null) ? 0 : $libro['subidos'];
 
@@ -41,10 +43,21 @@
 		</ul>
 	<?php endif ?>
     
-    
-        <h1>Cargar capitulo <?= $subidos + 1 ?> de <?= $capitulos ?> </h1>
+        
+        <?php if($capitulos == 0){ ?>
+            <h1>Cargar capitulo </h1>
+        <?php }else{?>
+            <h1>Cargar capitulo <?= $subidos + 1 ?> de <?= $capitulos ?> </h1>
+        <?php }?>
         <p id="descripcion-novedad">Seleccione archivo pdf y fechas para el libro"<?php echo $libro['titulo'] ?>"</p>
         <form action="validarCargaCapitulo.php?id=<?php echo $idlibro ?>" onsubmit="return validarLibro(this)" method="post" enctype="multipart/form-data">
+           
+           <?php if($capitulos == 0){ ?>
+            <div class="input">
+                <input type="number" id="cantidadCapitulos" name="cantidadCapitulos" placeholder="Cantidad de capitulos">
+            </div>
+           <?php }?>
+       
             <div>
                 <p>Fecha de publicacion (*)</p>
                 <input type="datetime-local" name="fechaPublicacion" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); $hora= date('H:i:s'); echo $diaAnterior."T".$hora;?>">

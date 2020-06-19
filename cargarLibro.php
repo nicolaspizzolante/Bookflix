@@ -16,9 +16,6 @@
     $resultado = $db->query($sql);
     $libro = $resultado->fetch_assoc();
 
-    $capitulos = $libro['capitulos'];
-    $subidos = ($libro['subidos'] == null) ? 0 : $libro['subidos'];
-
     date_default_timezone_set('America/Argentina/Buenos_Aires');
 ?>
     <div class="container">

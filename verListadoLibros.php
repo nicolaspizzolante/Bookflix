@@ -104,7 +104,7 @@
 								?> <?php if(($libro['subidos']>0)and (($autenticador->esAdmin()) or ((substr($l['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and (substr($l['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))))){?>
 									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }else{
-									if($libro['subidos']>0){?>
+									if($libro['subidos']==0){?>
 									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }}?>
 									

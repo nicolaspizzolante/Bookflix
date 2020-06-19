@@ -15,10 +15,6 @@ if ($_SESSION['errores']){
 	$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
 	$pdf = addslashes($pdf);
 
-	//se obtiene la cantidad de capitulos subidos 
-	$sql = "SELECT subidos FROM libros WHERE id = '$id'";
-	$r = $conexion->query($sql);
-	$l = $r->fetch_assoc();
 
 	if($fecha_vencimiento == ''){
 		$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion) VALUES('$id','$pdf','$fecha_publicacion')";
