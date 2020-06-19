@@ -35,8 +35,8 @@ if($libro != null) {
     $fecha = date("Y-m-d H:i:s");
 	$sql = "
         INSERT 
-        INTO libros (titulo, isbn, autor_id, editorial_id, genero_id, fecha_de_subida,imagen,pdf,sinopsis,capitulos) 
-        VALUES('$titulo', '$isbn', '$autor_id', '$editorial_id', '$genero_id', '$fecha','$imagen','$pdf','$sinopsis','$cantidadCapitulos')
+        INTO libros (titulo, isbn, autor_id, editorial_id, genero_id, fecha_de_subida,imagen,pdf,sinopsis) 
+        VALUES('$titulo', '$isbn', '$autor_id', '$editorial_id', '$genero_id', '$fecha','$imagen','$pdf','$sinopsis')
     ";
 	try {
         // guardamos usuario
