@@ -87,9 +87,6 @@
             <div class="input">
                 Actualizar Imagen: <input type="file" name="foto" placeholder="foto">
             </div>
-            <div class="input">
-                <input type="number" id="cantCapitulos" name="cantCapitulos" placeholder="Cantidad de capitulos" value="<?php echo $libro['capitulos']?>">
-            </div>
 
             <textarea class="input_sinopsis" name="sinopsis" placeholder="Escriba una sinopsis"><?php echo $libro['sinopsis'] ?></textarea>
             
