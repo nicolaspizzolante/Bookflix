@@ -21,7 +21,8 @@ $novedad = $resultado->fetch_assoc();
 
 if($novedad!=null){
 	$_SESSION['errores'] .= '<li>La novedad ya está cargada.</li>';
-	header('Location: modificarNovedad.php?id=' .$id); 
+	$v = 1;
+	header("Location: modificarNovedad.php?id=$id&tituloNovedad=$titulo&descripcionNovedad=$descripcion&verificar=$v"); 
 }else{
 
 	$sql = " UPDATE novedades SET titulo = '$titulo' WHERE id = '$id'";

@@ -19,7 +19,7 @@ $novedad = $resultado->fetch_assoc();
 
 if($novedad != null) {
 	$_SESSION['errores'] .= '<li>La novedad ya está cargada.</li>';
-	header('Location: cargarNovedad.php'); 
+	header("Location: cargarNovedad.php?tituloNovedad=$titulo&descripcionNovedad=$descripcion"); 
 }else{
 
 $file = file_get_contents($_FILES['file']['tmp_name']);
@@ -31,9 +31,9 @@ $sql = "INSERT INTO novedades (titulo, descripcion, fecha, foto_video) VALUES('$
 try {
     $resultado = $conexion->query($sql);
     $_SESSION['exito'] = '<li>Cargaste una novedad.</li>';
-	header('Location: cargarNovedad.php');
+	header("Location: cargarNovedad.php?tituloNovedad=&descripcionNovedad=");
 } catch(Exception $e) {
 	$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-	header('Location: cargarNovedad.php');
+	header("Location: cargarNovedad.php?tituloNovedad=$titulo&descripcionNovedad=$descripcion");
 }
 }

@@ -8,7 +8,10 @@
 	} 
     include 'views/header.php';
 
-    $db = conectar();
+	$db = conectar();
+	
+	$titulo = $_GET['tituloNovedad'];
+	$descripcion = $_GET['descripcionNovedad'];
 
 ?>
     <div class="container">
@@ -16,10 +19,10 @@
         <form action="validarNovedad.php" onsubmit="return validarNovedad(this);" method="post" enctype="multipart/form-data">
         
             <div class="input">
-                <input type="text" name="titulo" placeholder="Titulo">
+                <input type="text" name="titulo" placeholder="Titulo" value="<?php echo $titulo?>">
             </div>
 
-            <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion"></textarea>
+            <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion" ><?php echo $descripcion?></textarea>
 
             <div class="input">
                 Adjuntar imagen: <input type="file" name="file" placeholder="Archivo adjunto">

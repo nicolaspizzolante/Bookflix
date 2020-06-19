@@ -48,7 +48,7 @@
 	</article>
 
 	<?php if($autenticador->esAdmin()) {?>
-    	<a href="modificarnovedad.php?id=<?php echo $novedad['id'] ?>"><button id="btn-editar">Editar</button></a>
+    	<a href="modificarnovedad.php?id=<?php echo $novedad['id']?>&tituloNovedad=&descripcionNovedad=&verificar=<?php echo 0?>"><button id="btn-editar">Editar</button></a>
     	<button id="btn-borrar">Eliminar</button>
 	<?php } ?>
 </div>

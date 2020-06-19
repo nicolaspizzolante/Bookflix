@@ -36,7 +36,7 @@
 							<li><a href="historial.php">Historial</a></li>
 							<li><a href="cargarTrailer.php">Cargar Trailer</a></li>
 							<li><a href="cargarmetadatos.php">Cargar Metadatos</a></li>
-							<li><a href="cargarnovedad.php">Cargar Novedad</a></li>
+							<li><a href="cargarnovedad.php?tituloNovedad=<?php echo ''?>&descripcionNovedad=<?php echo ''?>">Cargar Novedad</a></li>
 							<li><a href="altaautor.php?validar=<?php echo 1?>&idlibro=<?php echo 0?>">Cargar Autor</a></li>
 							<li><a href="altaeditorial.php?validar=<?php echo 1?>&idlibro=<?php echo 0?>">Cargar Editorial</a></li>
 							<li><a href="altagenero.php?validar=<?php echo 1?>&idlibro=<?php echo 0?>">Cargar Genero</a></li>
