@@ -172,15 +172,15 @@
 						<?php if($libro['subidos']==0){ //Si no se cargó nada?>
 
 							<div class="input">
-								<a href="cargarLibro.php?id=<?php echo $id_libro;?>&completo=0"><input type="button" value="Cargar capitulo"></a>
+								<a href="cargarCapitulo.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar capitulo"></a>
 							</div>
 
 							<div class="input">
-								<a href="cargarLibro.php?id=<?php echo $id_libro;?>&completo=1"><input type="button" value="Cargar libro"></a>
+								<a href="cargarLibro.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar libro"></a>
 							</div>
 						<?php }elseif (($libro['capitulos'] > 1) and ($libro['capitulos'] > $libro['subidos'])) { ?>
 							<div class="input">
-								<a href="cargarLibro.php?id=<?php echo $id_libro;?>&completo=0"><input type="button" value="Cargar capitulo"></a>
+								<a href="cargarCapitulo.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar capitulo"></a>
 							</div>
 						<?php }?>
 						

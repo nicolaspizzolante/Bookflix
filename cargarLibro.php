@@ -11,7 +11,6 @@
     $db = conectar();
 
     $idlibro = $_GET["id"];
-    $completo = $_GET["completo"];
 
     $sql = "SELECT titulo, subidos, capitulos FROM libros WHERE id = $idlibro";
     $resultado = $db->query($sql);
@@ -42,13 +41,10 @@
 		</ul>
 	<?php endif ?>
     
-    <?php if($completo == '1'){ ?>
         <h1>Cargar libro completo</h1>
-    <?php } else {?>
-        <h1>Cargar capitulo <?= $subidos + 1 ?> de <?= $capitulos ?> </h1>
-    <?php } ?>
+    
         <p id="descripcion-novedad">Seleccione archivo pdf y fechas para el libro"<?php echo $libro['titulo'] ?>"</p>
-        <form action="validarCargaLibro.php?id=<?php echo $idlibro ?>&completo=<?php echo $completo ?>" onsubmit="return validarLibro(this)" method="post" enctype="multipart/form-data">
+        <form action="validarCargaLibro.php?id=<?php echo $idlibro ?>" onsubmit="return validarLibro(this)" method="post" enctype="multipart/form-data">
             <div>
                 <p>Fecha de publicacion (*)</p>
                 <input type="datetime-local" name="fechaPublicacion" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); $hora= date('H:i:s'); echo $diaAnterior."T".$hora;?>">

@@ -5,12 +5,11 @@ session_start();
 $conexion = conectar();
 
 $id = $_GET["id"];
-$completo = $_GET["completo"];
 $fecha_publicacion = $_POST["fechaPublicacion"];
 $fecha_vencimiento = $_POST["fechaVencimiento"];
 
 if ($_SESSION['errores']){
-	header("Location: cargarLibro.php?id=$id&completo=$completo");
+	header("Location: cargarLibro.php?id=$id");
 	exit;
 } else {
 	$pdf = file_get_contents($_FILES['pdf']['tmp_name']);
@@ -31,14 +30,7 @@ if ($_SESSION['errores']){
 	try {
 		$resultado = $conexion->query($sql);
 		$_SESSION['exito'] = '<li>Cargaste un libro.</li>';
-
-		//Se incrementa en 1 la cantidad de subidos
-		$inc = $l['subidos'] + 1;
-		if($completo == 1){
-			$sql = "UPDATE libros SET subidos = '$inc', capitulos = 1 WHERE id = '$id'";
-		}else{
-			$sql = "UPDATE libros SET subidos = '$inc' WHERE id = '$id'";
-		}
+		$sql = "UPDATE libros SET subidos = 1, capitulos = 1 WHERE id = '$id'";
 		$r = $conexion->query($sql);
 
 		header('Location: verListadoLibros.php');
