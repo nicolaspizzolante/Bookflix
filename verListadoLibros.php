@@ -11,6 +11,7 @@
 ?>
 
 <?php
+	date_default_timezone_set('America/Argentina/Buenos_Aires');
 	$conexion = conectar();
 
 	$pagina = isset($_GET['p']) ? (int)$_GET['p'] : 1; 
@@ -100,7 +101,7 @@
 									$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$id_libro'";
 									$r = $conexion->query($sql);
 									$l = $r->fetch_assoc();
-								?> <?php if(($libro['subidos']>0)and (($autenticador->esAdmin()) or (($l['fecha_publicacion']<=date('Y-m-d H:i')) and ($l['fecha_vencimiento'] > date('Y-m-d H:i'))))){?>
+								?> <?php if(($libro['subidos']>0)and (($autenticador->esAdmin()) or ((substr($l['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and (substr($l['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))))){?>
 									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }else{
 									if($libro['subidos']>0){?>
