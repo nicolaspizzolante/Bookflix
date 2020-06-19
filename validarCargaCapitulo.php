@@ -34,11 +34,7 @@ if ($_SESSION['errores']){
 
 		//Se incrementa en 1 la cantidad de subidos
 		$inc = $l['subidos'] + 1;
-		if($completo == 1){
-			$sql = "UPDATE libros SET subidos = '$inc', capitulos = 1 WHERE id = '$id'";
-		}else{
-			$sql = "UPDATE libros SET subidos = '$inc' WHERE id = '$id'";
-		}
+		$sql = "UPDATE libros SET subidos = '$inc' WHERE id = '$id'";
 		$r = $conexion->query($sql);
 
 		header('Location: verListadoLibros.php');

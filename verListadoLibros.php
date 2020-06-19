@@ -168,21 +168,23 @@
 						<div class="input">
 							<a href="modificarMetadatos.php?id=<?php echo $id_libro;?>"><input type="submit" value="Editar"></a>
 						</div>
-						<?php if($libro['capitulos']>1){?>
+						
+						<?php if($libro['subidos']==0){ //Si no se cargó nada?>
 
-							<?php if($libro['capitulos'] != $libro['subidos']){?>
-								<div class="input">
-									<a href="cargarLibro.php?id=<?php echo $id_libro;?>&completo=0"><input type="button" value="Cargar capitulo"></a>
-								</div>
-							<?php }
-						}else{?>
+							<div class="input">
+								<a href="cargarLibro.php?id=<?php echo $id_libro;?>&completo=0"><input type="button" value="Cargar capitulo"></a>
+							</div>
 
-								<?php if($libro['capitulos'] != $libro['subidos']){?>
 							<div class="input">
 								<a href="cargarLibro.php?id=<?php echo $id_libro;?>&completo=1"><input type="button" value="Cargar libro"></a>
 							</div>
-								<?php }
-						}?>
+						<?php }elseif (($libro['capitulos'] > 1) and ($libro['capitulos'] > $libro['subidos'])) { ?>
+							<div class="input">
+								<a href="cargarLibro.php?id=<?php echo $id_libro;?>&completo=0"><input type="button" value="Cargar capitulo"></a>
+							</div>
+						<?php }?>
+						
+							
 				<?php
             if($libro['subidos'] >= 1){
                 if($libro['capitulos'] == 1){ //El libro no es subido por capitulos
@@ -232,7 +234,7 @@
 							<a href=""><input type="submit" value="Subir"></a>
 						</div>
 					-->	
-				<?php } ?>
+				<?php } //end if es admin?>
 
 
 				</div>
