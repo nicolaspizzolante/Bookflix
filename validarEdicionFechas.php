@@ -10,8 +10,7 @@ $fechaPublicacion = $_POST['nuevaFechaPublicacion'];
 $fechaVencimiento = $_POST['nuevaFechaVencimiento'];
 $checkPublicacion = isset($_POST['checkFechaPublicacion']);
 $checkVencimiento = isset($_POST['checkFechaVencimiento']);
-var_dump($checkVencimiento);
-var_dump($checkPublicacion);
+
 
 $bol = FALSE;
 date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -112,6 +111,7 @@ $libro_pdf = $resultado->fetch_assoc();
 							header('Location: registrarse.php');
 						}
 					}
+				}
 				if($checkVencimiento){ //actualizo todos los capitulos con la misma fecha de vencimiento
 					while ($cap = $libro_pdf->fetch_assoc()){
 						$ident = $cap['id'];
@@ -132,7 +132,7 @@ $libro_pdf = $resultado->fetch_assoc();
 						$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 						header('Location: registrarse.php');
 					}
-					}
+					
 					
 				}
 			}
