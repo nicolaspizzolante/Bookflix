@@ -101,12 +101,12 @@
 									$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$id_libro'";
 									$r = $conexion->query($sql);
 									$l = $r->fetch_assoc();
-								?> <?php if(($libro['subidos']>0)and (($autenticador->esAdmin()) or ((substr($l['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and (substr($l['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))))){?>
+								?> <?php if(($libro['subidos']>0)and (($autenticador->esAdmin()) or ((substr($l['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and (substr($l['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or (($l['fecha_vencimiento'] == '0000-00-00 00:00:00')or($l['fecha_vencimiento'] == ''))))){?>
 									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 								<?php }else{
-									if($libro['subidos']==0){?>
+									?>
 									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }}?>
+								<?php }?>
 									
 								<?php }else{ if($libro['subidos']>0){?>
 									<a href="perfilLibro.php?id=<?php echo $libro['id']?>&selector=<?php echo 1?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>

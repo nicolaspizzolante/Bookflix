@@ -43,7 +43,7 @@ h2{
 						<h4>
 						<?php 
 						
-						if(($autenticador->esAdmin()) or ((substr($cap['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and ((substr($cap['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or ($cap['fecha_vencimiento'] == '0000-00-00 00:00:00')))){?>
+						if(($autenticador->esAdmin()) or ((substr($cap['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and ((substr($cap['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or (($cap['fecha_vencimiento'] == '0000-00-00 00:00:00')or($cap['fecha_vencimiento'] == ''))))){?>
 							<a href="leerLibro.php?id='<?php echo $cap['id']?>'">Capitulo <?php echo $indice+=1?></a>
 						<?php }else {?>
 							<a href="#">Capitulo <?php echo $indice+=1?></a>
