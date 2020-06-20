@@ -9,12 +9,19 @@
     include 'views/header.php';
 
     $db = conectar();
-    $libro_id = $_GET['id'];
+    $pdf_id = $_GET['id'];
+    $usuario_id = $_SESSION['usuario']['id'];
 
-    $sql = "SELECT pdf FROM libros_pdf WHERE id = $libro_id";
+    $sql = "SELECT pdf FROM libros_pdf WHERE id = $pdf_id";
     $resultado = $db->query($sql);
     $libro = $resultado->fetch_assoc()['pdf'];
 
+    // traer numero de la ultima pagina
+    $sql = "SELECT pagina FROM ultima_pagina WHERE pdf_id = '$pdf_id' AND usuario_id = '$usuario_id'";
+    $resultado = $db->query($sql);
+    $ultima_pagina = $resultado->fetch_assoc()['pagina'];
+    
+    $ultima_pagina = $ultima_pagina != null ? $ultima_pagina : '1';
 ?>
 
 <style>
@@ -114,7 +121,7 @@ var pdfAsDataUri = "data:application/pdf;base64,<?php echo base64_encode($libro)
 var pdfAsArray = convertDataURIToBinary(pdfAsDataUri);
 
 let pdfDoc = null,
-  pageNum = 1,
+  pageNum = Number(<?= $ultima_pagina ?>), // mostrar ultima pagina
   pageIsRendering = false,
   pageNumIsPending = null;
 
@@ -202,31 +209,72 @@ pdfjsLib
   });
 
 // Button Events
-document.querySelector('.prev-page').addEventListener('click', showPrevPage);
-document.querySelector('.prev-page-bottom').addEventListener('click', showPrevPage);
-document.querySelector('.next-page').addEventListener('click', showNextPage);
-document.querySelector('.next-page-bottom').addEventListener('click', showNextPage);
+document.querySelector('.prev-page').addEventListener('click', function(){
+  showPrevPage();
+  guardarHistorial(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>);
+  
+  //TODO: guardar ultima pagina
+  guardarUltimaPagina(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>, pageNum);
+});
+document.querySelector('.prev-page-bottom').addEventListener('click', function(){
+  showPrevPage();
+  guardarHistorial(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>);
+  
+  //TODO: guardar ultima pagina
+  guardarUltimaPagina(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>, pageNum);
+});
+document.querySelector('.next-page').addEventListener('click', function(){
+  showNextPage();
+  guardarHistorial(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>);
+  
+  //TODO: guardar ultima pagina
+  guardarUltimaPagina(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>, pageNum);
+});
+document.querySelector('.next-page-bottom').addEventListener('click', function(){
+  showNextPage();
+  guardarHistorial(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>);
+  
+  //TODO: guardar ultima pagina
+  guardarUltimaPagina(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>, pageNum);
+});
 
 // Pasar de pagina con las flechas del teclado
 document.addEventListener('keydown', function(e){
   if(e.key === "ArrowRight"){
     showNextPage();
+    guardarHistorial(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>);
+    
+    // TODO: guardar ultima pagina
+    guardarUltimaPagina(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>, pageNum);
   }
 
   if(e.key === "ArrowLeft"){
     showPrevPage();
+    guardarHistorial(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>);
+    
+    // TODO: guardar ultima pagina
+    guardarUltimaPagina(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>, pageNum);
   }
 });
 
-function guardarHistorial(libro_id, $usuario_id) {
+function guardarHistorial(pdf_id, usuario_id) {
   $.ajax({
-    url: 'guardarhistorial.php?pdf_id=' + libro_id + '&usuario_id=' + $usuario_id,
+    url: 'guardarhistorial.php?pdf_id=' + pdf_id + '&usuario_id=' + usuario_id,
     context: document.body
   }).done((e) => {
     console.log(e);
   });
 }
 
-guardarHistorial(<?= $libro_id ?>, <?= $_SESSION['usuario']['id'] ?>);
+function guardarUltimaPagina(pdf_id, usuario_id, pagina){
+  $.ajax({
+    url: 'guardarultimapagina.php?pdf_id=' + pdf_id + '&usuario_id=' + usuario_id + '&pagina=' + pagina,
+    context: document.body
+  }).done((e) => {
+    console.log(e);
+  });
+}
+
+guardarHistorial(<?= $pdf_id ?>, <?= $_SESSION['usuario']['id'] ?>);
 
 </script>
