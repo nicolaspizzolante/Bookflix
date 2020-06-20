@@ -19,13 +19,17 @@
         <form action="validarNovedad.php" onsubmit="return validarNovedad(this);" method="post" enctype="multipart/form-data">
         
             <div class="input">
-                <input type="text" name="titulo" placeholder="Titulo" value="<?php echo $titulo?>">
+                <input type="text" name="titulo" placeholder="Titulo" value="<?php echo $titulo?>">(*)
             </div>
 
-            <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion" ><?php echo $descripcion?></textarea>
+            <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion" ><?php echo $descripcion?></textarea>(*)
 
             <div class="input">
                 Adjuntar imagen: <input type="file" name="file" placeholder="Archivo adjunto">
+            </div>
+
+			<div style="margin-bottom: 22px; margin-top:12px">
+            <p> (*) Campos obligatorios</p>
             </div>
 
             <div class="botones">

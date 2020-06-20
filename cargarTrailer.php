@@ -38,15 +38,19 @@
                 <input type="hidden" name="id_libro" value="<?php echo $id_libro ?>" />
             <?php } ?>    
             <div class="input">
-                <input type="text" name="titulo" placeholder="Titulo">
+                <input type="text" name="titulo" placeholder="Titulo"> (*)
             </div>
 
-            <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion para el trailer"></textarea>
+            <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion para el trailer"></textarea>(*)
  
             <div class="input">
                 Adjuntar imagen: <input type="file" name="file" placeholder="Archivo adjunto">
             </div>
-
+            
+            <div style="margin-bottom: 22px; margin-top:12px">
+            <p> (*) Campos obligatorios</p>
+            </div>
+            
             <div class="botones">
                 <div class="input">
                     <input type="submit" value="Ok">
