@@ -14,7 +14,10 @@
     $sql = "SELECT libro_id, fecha FROM historial WHERE usuario_id = $id ORDER BY fecha DESC";
     $rows = $db->query($sql);
 
-    ?>
+    if($rows->num_rows == 0){
+    $_SESSION['usuario']['errores'] = 'Aun no se han realizado lecturas';
+
+    }else{?>
 
     <table class = "table table-striped table-dark">
         <tr>
@@ -31,6 +34,18 @@
         <?php } ?>
     </tbody>
     </table>
+        <?php }?>
+
+    <h3>
+			<?php if(isset($_SESSION['usuario']['errores'])){ ?>
+				<h2 style="text-align:center; color:white;">
+					<?php
+						echo $_SESSION['usuario']['errores']; 
+						$_SESSION['usuario']['errores'] = '';
+					?>
+				</h2>
+			<?php } ?>
+		</h3>
 
 
 
