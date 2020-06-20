@@ -208,34 +208,24 @@
 
 
 
-						<?php 
+						
+				<?php } //end if es admin?>
+
+				<?php 
 							//consulta para saber si tiene trailer
 							$consulta = "SELECT * FROM trailers WHERE id_libro = $id_libro";
 							$aux =  $conexion->query($consulta);
 							
 						?> 
-						<?php if($aux->num_rows === 0){?>
+						<?php if(($aux->num_rows === 0) and ($autenticador->esAdmin())){?>
 							<div class="input">
 								<a href="cargarTrailer.php?id_libro=<?php echo $id_libro;?>"><input type="button" value="Cargar Trailer"></a>
 							</div>
-						<?php }else{?>
-							
-							<div class="input ver-trailer">
+						<?php }elseif(($aux->num_rows != 0)){?>
+							<div class="input">
 								<a href="trailer.php?id=<?php echo $id_libro; ?>"><input type="button" value="Ver Trailer"></a>
 							</div>
-						<?php }?>	
-							
-					<!--
-						<div class="input">
-							<a href=""><input type="submit" value="Eliminar"></a>
-						</div> 
-
-						<div class="input">
-							<a href=""><input type="submit" value="Subir"></a>
-						</div>
-					-->	
-				<?php } //end if es admin?>
-
+						<?php }?>
 
 				</div>
 				
