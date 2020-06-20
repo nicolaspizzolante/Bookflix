@@ -48,6 +48,7 @@
 	</article>
 
 	<?php if($autenticador->esAdmin()) {?>
+		<a href="modificarTrailer.php?id=<?php echo $trailer['id']?>&titulo_trailer=&descripcionTrailer=&verificar=<?php echo 0?>"><button id="btn-editar">Editar</button></a>
     	
     	<button id="btn-borrar">Eliminar</button>
 	<?php } ?>
