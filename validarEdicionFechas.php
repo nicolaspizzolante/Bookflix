@@ -4,9 +4,14 @@ session_start();
 
 $conexion = conectar();
 
-$id = $_GET['id'];
+$id = $_GET['id']; //id de libro completo o capitulo
+$idLibro = $_GET['idLibro']; //id metadatos
 $fechaPublicacion = $_POST['nuevaFechaPublicacion'];
 $fechaVencimiento = $_POST['nuevaFechaVencimiento'];
+$checkPublicacion = isset($_POST['checkFechaPublicacion']);
+$checkVencimiento = isset($_POST['checkFechaVencimiento']);
+var_dump($checkVencimiento);
+var_dump($checkPublicacion);
 
 $bol = FALSE;
 date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -46,25 +51,90 @@ $libro_pdf = $resultado->fetch_assoc();
 	}
 	
 	if($fechaPublicacionValida and $fechaVencimientoValida){
-		if($fechaHoraVenc==' '){
-			$sql = " UPDATE libros_pdf SET fecha_publicacion = '$fechaPublicacion' WHERE id = '$id'";
-			try {
-				$resultado = $conexion->query($sql);
-				$_SESSION['exito'] = '<li>Fechas actualizadas.</li>';	
-				header("Location: modificarFechasPublicacionVencimiento.php?id=$id");
-			} catch(Exception $e) {
-				$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-				header('Location: registrarse.php');
+		if((!$checkVencimiento) && (!$checkPublicacion)){ //ninguno de los checkbox esta marcado
+			if($fechaHoraVenc==' '){
+				$sql = " UPDATE libros_pdf SET fecha_publicacion = '$fechaPublicacion' WHERE id = '$id'";
+				try {
+					$resultado = $conexion->query($sql);
+					$_SESSION['exito'] = '<li>Fechas actualizadas.</li>';	
+					header("Location: modificarFechasPublicacionVencimiento.php?id=$id");
+				} catch(Exception $e) {
+					$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
+					header('Location: registrarse.php');
+				}
+			}else{
+				$sql = " UPDATE libros_pdf SET fecha_publicacion = '$fechaPublicacion', fecha_vencimiento = '$fechaVencimiento' WHERE id = '$id'";
+				try {
+					$resultado = $conexion->query($sql);
+					$_SESSION['exito'] = '<li>Fechas actualizadas.</li>';	
+					header("Location: modificarFechasPublicacionVencimiento.php?id=$id");
+				} catch(Exception $e) {
+					$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
+					header('Location: registrarse.php');
+				}
 			}
-		}else{
-			$sql = " UPDATE libros_pdf SET fecha_publicacion = '$fechaPublicacion', fecha_vencimiento = '$fechaVencimiento' WHERE id = '$id'";
-			try {
-				$resultado = $conexion->query($sql);
-				$_SESSION['exito'] = '<li>Fechas actualizadas.</li>';	
-				header("Location: modificarFechasPublicacionVencimiento.php?id=$id");
-			} catch(Exception $e) {
-				$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-				header('Location: registrarse.php');
+		}else{//algunos de los checkbox está marcado
+			$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$idLibro'";
+			$libro_pdf = $conexion->query($sql);
+			if($checkPublicacion && $checkVencimiento){
+				while ($cap = $libro_pdf->fetch_assoc()){
+					$ident = $cap['id'];
+					$sql2 = "UPDATE libros_pdf SET fecha_publicacion = '$fechaPublicacion', fecha_vencimiento = '$fechaVencimiento' WHERE id = '$ident'";
+					try {
+						$resultado = $conexion->query($sql2);
+						$_SESSION['exito'] = '<li>Fechas actualizadas.</li>';	
+						header("Location: modificarFechasPublicacionVencimiento.php?id=$id");
+					} catch(Exception $e) {
+						$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
+						header('Location: registrarse.php');
+					}
+				}
+			}else{
+				if($checkPublicacion){ //actualizo todos los capitulos con la misma fecha de publicacion
+					while ($cap = $libro_pdf->fetch_assoc()){
+						$ident = $cap['id'];
+						$sql2 = "UPDATE libros_pdf SET fecha_publicacion = '$fechaPublicacion' WHERE id = '$ident'";
+						try {
+							$resultado = $conexion->query($sql2);
+						} catch(Exception $e) {
+							$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
+							header('Location: registrarse.php');
+						}
+					}
+					if($fechaHoraVenc!=' '){
+						$sql = " UPDATE libros_pdf SET fecha_vencimiento = '$fechaVencimiento' WHERE id = '$id'";
+						try {
+							$resultado = $conexion->query($sql);
+							$_SESSION['exito'] = '<li>Fechas actualizadas.</li>';	
+							header("Location: modificarFechasPublicacionVencimiento.php?id=$id");
+						} catch(Exception $e) {
+							$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
+							header('Location: registrarse.php');
+						}
+					}
+				if($checkVencimiento){ //actualizo todos los capitulos con la misma fecha de vencimiento
+					while ($cap = $libro_pdf->fetch_assoc()){
+						$ident = $cap['id'];
+						$sql2 = "UPDATE libros_pdf SET fecha_vencimiento = '$fechaVencimiento' WHERE id = '$ident'";
+						try {
+							$resultado = $conexion->query($sql2);
+						} catch(Exception $e) {
+							$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
+							header('Location: registrarse.php');
+						}
+					}
+					$sql = " UPDATE libros_pdf SET fecha_publicacion = '$fechaPublicacion' WHERE id = '$id'";
+					try {
+						$resultado = $conexion->query($sql);
+						$_SESSION['exito'] = '<li>Fechas actualizadas.</li>';	
+						header("Location: modificarFechasPublicacionVencimiento.php?id=$id");
+					} catch(Exception $e) {
+						$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
+						header('Location: registrarse.php');
+					}
+					}
+					
+				}
 			}
 		}
 	}else{

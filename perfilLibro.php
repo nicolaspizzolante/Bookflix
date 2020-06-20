@@ -54,14 +54,15 @@ h2{
 				</div>
 		</article>
 		<?php } }else{?>
-			<h2>Capitulos del libro: <?php echo $libro['titulo']?> - Seleccione para editar fechas de publicacion/vencimiento</h2>
+			<h2>Capitulos del libro: <?php echo $libro['titulo']?> </h2>
+			<h2>Seleccione capitulo para modificarle sus fechas</h2>
 			<?php $indice = 0;?>
 			<?php while ($cap = $libro_pdf->fetch_assoc()){?>
 				<article class="capitulo">
 						<div class="info">
 							<div class="titulo">
 								<h4>
-								<a href="modificarFechasPublicacionVencimiento.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a>
+								<a href="modificarFechasPublicacionVencimiento.php?id=<?php echo $cap['id']?>&idLibro=<?php echo $idlibro?>">Capitulo <?php echo $indice+=1?></a>
 								</h4>
 							</div>
 						    </div>

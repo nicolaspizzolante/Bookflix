@@ -20,7 +20,7 @@ $resultado = $db->query($sql);
 $libro = $resultado->fetch_assoc();
 
 $idlibro = $libro['libro_id'];
-$sql = "SELECT titulo FROM libros WHERE id = '$idlibro'";
+$sql = "SELECT id,titulo,capitulos FROM libros WHERE id = '$idlibro'";
 $resultado = $db->query($sql);
 $titulo = $resultado->fetch_assoc();
 
@@ -41,7 +41,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 <div class="container">
         <h1>Editar fechas del libro "<?php echo $titulo['titulo']?>"</h1>
-        <form action="validarEdicionFechas.php?id=<?php echo $id?>" onsubmit="" method="post" enctype="multipart/form-data">
+        <form action="validarEdicionFechas.php?id=<?php echo $id?>&idLibro=<?php echo $idlibro?>" onsubmit="" method="post" enctype="multipart/form-data">
         
         <article class="libro">
             <p>Fecha de publicacion actual: <?php echo $libro['fecha_publicacion']?></p>
@@ -55,6 +55,11 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                     <input type="datetime-local" name="nuevaFechaPublicacion" step="1" min=<?php echo $fechaHoraPub;?> max="2100-12-31" value=<?php echo $fechaHoraPub?>>
                 <?php }?>
             </div>
+   
+            <?php if($titulo['capitulos'] > 1){ //Si es subido de a capitulos ?>
+                <label><input type="checkbox" name="checkFechaPublicacion" value="checkP"> Aplicar a todos los capitulos</label>
+            <?php }?>
+
             <br></br>
             <article class="libro">
             <p>Fecha de vencimiento actual: <?php echo $libro['fecha_vencimiento']?></p>
@@ -67,8 +72,12 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                     <input type="datetime-local" name="nuevaFechaVencimiento" step="1" min=<?php echo $fechaHoraVenc;?> max="2100-12-31" value="<?php echo $fechaHoraVenc?>">
                 <?php }?>
             </div>
-            <br></br>
 
+            <?php if($titulo['capitulos'] > 1){ //Si es subido de a capitulos ?>
+                <label><input type="checkbox" name="checkFechaVencimiento" value="checkV"> Aplicar a todos los capitulos</label>
+            <?php }?>
+            <br></br>
+           
            	<div class="botones">
                 <div class="input">
                     <input type="submit" value="Ok">
