@@ -86,6 +86,18 @@
             <?php } ?>
             
         <?php } else { if($libro['subidos'] > 0) {?>
+            
+            <?php if($libro['capitulos'] == $libro['subidos']){?>
+                <?php
+                    $sql = "SELECT id FROM libros_pdf WHERE libro_id = '$libro_id' LIMIT 1";
+                    $resultado = $db->query($sql);
+                    $l = $resultado->fetch_assoc()['id'];
+                ?>
+                <div class="input">
+                    <a href="leerLibro.php?id=<?php echo $l ?>"><input type="button" value="Leer completo"></a>
+                </div>
+            <?php } ?>
+
             <div class="input">
                 <a href="perfilLibro.php?id=<?php echo $libro['id']?>&selector=<?php echo 1?>"><input type="button" value="Ver Capitulos"></a>
             </div>
