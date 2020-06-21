@@ -132,7 +132,7 @@
                     </div>
                 <?php }else{?>
                     <div class="input">
-                        <a href="perfilLibro.php?id=<?php echo $id_libro?>&selector=<?php echo 0?>"><input type="button" value="Editar fechas"></a>
+                        <a href="perfilLibro.php?id=<?php echo $libro_id?>&selector=<?php echo 0?>"><input type="button" value="Editar fechas"></a>
                     </div>
                 <?php }?>
             <?php } ?> <!-- fin boton editar fechas -->
