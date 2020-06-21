@@ -46,12 +46,31 @@
 	</div>
 	</div>
 	</article>
+	<div class="ops-trailer">
 
-	<?php if($autenticador->esAdmin()) {?>
-		<a href="modificarTrailer.php?id=<?php echo $trailer['id']?>&titulo_trailer=&descripcionTrailer=&verificar=<?php echo 0?>"><button id="btn-editar">Editar</button></a>
-    	
-    	<button id="btn-borrar">Eliminar</button>
-	<?php } ?>
+		<?php 
+			$id_libro= $trailer['id_libro'];
+			$sql= "SELECT id FROM libros WHERE id= '$id_libro'";
+			$aux = $db->query($sql);
+			
+		?>
+		<?php if($aux->num_rows > 0){?>
+			<div class="input">
+				<a href="libro.php?id=<?php echo $trailer['id_libro']?>"><input type="button" value="Ver libro"></a>
+			</div>
+		<?php } ?>
+
+		<?php if($autenticador->esAdmin()) {?>
+			
+				<div class="input">
+					<a href="modificarTrailer.php?id=<?php echo $trailer['id']?>&titulo_trailer=&descripcionTrailer=&verificar=<?php echo 0?>"><button id="btn-editar">Editar</button></a>
+				</div>	
+				
+			<div class="input">
+				<button id="btn-borrar">Eliminar</button>
+			</div>	
+		<?php } ?>
+	</div>	
 </div>
 
 
