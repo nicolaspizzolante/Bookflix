@@ -18,7 +18,7 @@
     $_SESSION['usuario']['errores'] = 'Aun no se han realizado lecturas';
 
     }else{?>
-
+    <div style="text-align:center"><h1> Historial de lecturas </h1></div>
     <table class = "table table-striped table-dark">
         <tr>
             <td style="text-align: center">Libro</td>
