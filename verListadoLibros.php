@@ -47,6 +47,33 @@
 		</ul>
 	<?php endif ?>
 
+	<?php if($paginacion){?>
+	<!-- paginacion -->
+	<div class="paginacion">
+		<ul>
+			<?php if($pagina == 1){ ?>
+				<li class="disabled">&laquo;</li>
+			<?php } else { ?>
+				<a href="verListadoLibros.php?p=<?php echo $pagina - 1; ?>"><li>&laquo;</li></a>
+			<?php } ?>
+
+			<?php for($i = 1; $i<=$numero_paginas; $i++){ ?>
+				<?php if ($i == $pagina){ ?>
+					<a href="verListadoLibros.php?p=<?php echo $i; ?>"><li class="actual"><?php echo $i; ?></li></a>
+				<?php } else { ?>
+					<a href="verListadoLibros.php?p=<?php echo $i; ?>"><li><?php echo $i; ?></li></a>
+				<?php } ?>
+			<?php } ?>
+			
+			<?php if($pagina == $numero_paginas){ ?>
+				<li class="disabled">&raquo;</li>
+			<?php } else { ?>
+				<a href="verListadoLibros.php?p=<?php echo $pagina + 1; ?>"><li>&raquo;</li></a>
+			<?php } ?>
+		</ul>
+	</div>
+			<?php }?>
+
 	<!-- Libros publicados -->
 	<div class="publicaciones">
 		<?php
@@ -85,7 +112,7 @@
 						$imagen = $conexion->query($sql);
 						$tieneImagen = $imagen->num_rows;
 					?>		
-					<a class="foto-link">
+					<a href="libro.php?id=<?php echo $libro['id'] ?>" class="foto-link">
 						<?php if($tieneImagen){ ?>
 							<img src="mostrarImagen.php?libro_id=<?php echo $id_libro?>">
 						<?php } else {?>

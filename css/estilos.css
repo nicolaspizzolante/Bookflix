@@ -178,6 +178,10 @@ h1 {
 	margin:10px 0;
 }
 
+h2 a{
+	color: var(--secondary-red);
+}
+
 h3 {
 	margin-bottom: 5px;
 	color: white;
@@ -469,7 +473,7 @@ select:focus {
 }
 .input input[type="button"]{
 	background: #E51F1F;
-	width: 100px;
+	width: auto;
 	color:white;
 }
 
