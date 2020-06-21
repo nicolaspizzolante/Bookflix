@@ -831,6 +831,12 @@ select:focus {
 .opciones div input[type="submit"]{
 	width: 70px;
 }
+.ops-trailer{
+	display: flex;
+}
+.ops-trailer div{
+	margin:0 3px;
+}
 
 .opcion-capitulos {
 	margin: 20px 0;
