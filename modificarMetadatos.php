@@ -95,7 +95,7 @@
                 <div class="input">
                     <input type="submit" value="Ok">
                 </div>
-                <a href="verlistadolibros.php" id="btn-cancelar">Cancelar</a>
+                <a href="libro.php?id=<?php echo $idlibro?>" id="btn-cancelar">Cancelar</a>
             </div>
         </form>
     </div>

@@ -28,7 +28,7 @@
             <?php if($id_libro ===''){?>
                 <div class="select-y-boton">
                     <select name="id_libro" id="libro_id">
-                        <option disabled="disabled" selected value=""> Seleccione un libro </option>
+                        <option disabled="disabled" selected value=""> Seleccione libro si desea asociarlo </option>
                         <?php foreach($libros as $libro) { ?>
                             <?php 
                                 $sql= "SELECT id_libro FROM trailers WHERE id_libro= '$libro[0]'";
