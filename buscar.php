@@ -87,45 +87,10 @@
 				</div>
 				<div class="info">
 					<div class="titulo">
-						<h2>
-						<?php 
-								if($libro['capitulos']<=1){
-									$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$id_libro'";
-									$r = $conexion->query($sql);
-									$l = $r->fetch_assoc();
-								?> <?php if($libro['subidos']>0 ){?>
-									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }else{?>
-									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }?>
-									
-								<?php }else{ if($libro['subidos']>0){?>
-									<a href="perfilLibro.php?id=<?php echo $libro['id']?>&selector=<?php echo 1?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }else{?>
-									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }?>
-
-							
-								<?php }?>
+						<h2> 
+							<a href="libro.php?id=<?php echo $id_libro?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
 						</h2>
 					</div>
-
-					<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-<script>
-
-$('a[href*="#"]').on("click", function(){
-	Swal.fire({
-		title: 'Aviso',
-		text: "Aún no se ha cargado este libro",
-		confirmButtonColor: '#3085d6',
-		confirmButtonText: 'Aceptar',
-	})
-});
-
-</script>
 
 					<div><span>ISBN:</span><span><?php echo $libro['isbn']; ?></span>
 				    </div>
@@ -169,13 +134,7 @@ $('a[href*="#"]').on("click", function(){
 								<a href="perfilLibro.php?id=<?//php echo $id_libro;?>"><input type="submit" value="Ver"></a>
 							</div>
 						-->
-						<div class="input">
-							<a href="modificarMetadatos.php?id=<?php echo $id_libro;?>"><input type="submit" value="Editar"></a>
-						</div>
-
-						<div class="input">
-							<a href="cargarLibro.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar libro"></a>
-						</div>
+				
 					<!--
 						<div class="input">
 							<a href=""><input type="submit" value="Eliminar"></a>
