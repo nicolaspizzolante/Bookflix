@@ -831,3 +831,41 @@ select:focus {
 .opcion-capitulos {
 	margin: 20px 0;
 }
+
+/* ESTILOS DE LIBRO.PHP */
+.main {
+	display: flex;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.imagen-libro img {
+	border: 5px solid white;
+	border-radius: 5px;
+	width: 230px;
+	height: 345px;
+}
+.imagen-libro {
+	margin-right: 15px;
+}
+.titulo-libro {
+	color: #b31217;
+}
+.genero {
+	margin-bottom: 7px;
+} 
+.genero, .sinopsis, .calificacion{
+	color: #919191;
+}
+.sinopsis-libro {
+	color: #919191;
+	margin-top: 10px;
+}
+.botones-libro {
+    display:flex;
+}
+.botones-libro .input {
+	margin-right:5px;
+}
+.botones-libro .input input[type="button"]:hover {
+	background: rgba(229, 31, 31, .8);
+}

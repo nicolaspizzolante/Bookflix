@@ -93,35 +93,13 @@
 						<?php } ?>
 					</a>	
 				</div>
+
 				<div class="info">
 					<div class="titulo">
 						<h2>
-							<?php 
-								if($libro['capitulos']<=1){
-									$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$id_libro'";
-									$r = $conexion->query($sql);
-									$l = $r->fetch_assoc();
-								?> <?php if(($libro['subidos']>0)and (($autenticador->esAdmin()) or ((substr($l['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and (substr($l['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or (($l['fecha_vencimiento'] == '0000-00-00 00:00:00')or($l['fecha_vencimiento'] == ''))))){?>
-									<a href="leerLibro.php?id=<?php echo $l['id']?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }else{
-									?>
-									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }?>
-									
-								<?php }else{ if($libro['subidos']>0){?>
-									<a href="perfilLibro.php?id=<?php echo $libro['id']?>&selector=<?php echo 1?>" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }else{?>
-									<a href="#" class="titulo-libro"><?php echo $libro['titulo']; ?></a>
-								<?php }?>
-
-							
-								<?php }?>
+							<a href="libro.php?id=<?php echo $libro['id'] ?>"> <?= $libro['titulo'] ?> </a>
 						</h2>
 					</div>
-
-
-
-
 
 					<div><span>ISBN:</span><span><?php echo $libro['isbn']; ?></span>
 				    </div>
@@ -152,83 +130,6 @@
 					<div>
 						<span><?php echo $aux->fetch_assoc()['nombre'];?></span>
 					</div>	
-					
-
-				<?php if($autenticador->esAdmin()){ ?>
-
-					<div><span>Fecha de subida: </span><span><?php echo $libro['fecha_de_subida']; ?></span>
-				    </div>
-
-					<div class="opciones">
-						<!--
-						<div class="input">
-								<a href="perfilLibro.php?id=<?//php echo $id_libro;?>"><input type="submit" value="Ver"></a>
-							</div>
-						-->
-						<div class="input">
-							<a href="modificarMetadatos.php?id=<?php echo $id_libro;?>"><input type="submit" value="Editar"></a>
-						</div>
-						
-						<?php if($libro['subidos']==0){ //Si no se cargó nada?>
-
-							<div class="input">
-								<a href="cargarCapitulo.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar capitulo"></a>
-							</div>
-
-							<div class="input">
-								<a href="cargarLibro.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar libro"></a>
-							</div>
-						<?php }elseif (($libro['capitulos'] > 1) and ($libro['capitulos'] > $libro['subidos'])) { ?>
-							<div class="input">
-								<a href="cargarCapitulo.php?id=<?php echo $id_libro;?>"><input type="button" value="Cargar capitulo"></a>
-							</div>
-						<?php }?>
-						
-							
-				<?php
-            if($libro['subidos'] >= 1){
-                if($libro['capitulos'] == 1){ //El libro no es subido por capitulos
-                    $sql = "SELECT id FROM libros_pdf WHERE libro_id = '$id_libro'";
-                    $result = mysqli_query($conexion, $sql);
-                    $pdf_id = $result->fetch_assoc();
-                ?>
-                    <div class="input">
-                    <a href="modificarFechasPublicacionVencimiento.php?id=<?php echo $pdf_id['id']?>"><input type="button" value="Editar fechas"></a>
-                    </div>
-                <?php }else{?>
-                    <div class="input">
-                    <a href="perfilLibro.php?id=<?php echo $id_libro?>&selector=<?php echo 0?>"><input type="button" value="Editar fechas"></a>
-                    </div>
-                <?php }?>
-            <?php }else{?>
-                <div class="input">
-                    <a href="#"><input type="button" value="Editar fechas"></a>
-                    </div>
-            <?php }?>
-
-
-
-						
-				<?php } //end if es admin?>
-
-				<?php 
-							//consulta para saber si tiene trailer
-							$consulta = "SELECT * FROM trailers WHERE id_libro = $id_libro";
-							$aux =  $conexion->query($consulta);
-							
-						?> 
-						<?php if(($aux->num_rows === 0) and ($autenticador->esAdmin())){?>
-							<div class="input">
-								<a href="cargarTrailer.php?id_libro=<?php echo $id_libro;?>"><input type="button" value="Cargar Trailer"></a>
-							</div>
-						<?php }elseif(($aux->num_rows != 0)){?>
-							<div class="input">
-								<a href="trailer.php?id=<?php echo $id_libro; ?>"><input type="button" value="Ver Trailer"></a>
-							</div>
-						<?php }?>
-
-				</div>
-				
 
 		</article>
 		<?php } ?>
