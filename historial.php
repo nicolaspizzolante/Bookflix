@@ -28,7 +28,7 @@
         <?php while ($row = $rows->fetch_assoc()){ ?>
 
         <tr>
-            <td ><?php echo $autenticador->retornarTitulo($row['libro_id']); ?></td>
+            <td ><a href="libro.php?id=<?php echo $row['libro_id']; ?>"><?php echo $autenticador->retornarTitulo($row['libro_id']); ?></a></td>
             <td style="text-align: center"><?php echo date("d/m/Y H:i", strtotime($row['fecha'])); ?></td>
         </tr>
         <?php } ?>
