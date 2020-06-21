@@ -42,6 +42,7 @@
 							<li><a href="altagenero.php?validar=<?php echo 1?>&idlibro=<?php echo 0?>">Cargar Genero</a></li>
 							<li><a href="verlistadolibros.php">Ver Listado de Libros</a></li>
 							<li><a href="verlistadonovedades.php">Ver Listado de Novedades</a></li>
+							<li><a href="verListadoTrailers.php">Ver Listado de Trailers</a></li>
 						</ul>
 					</li>
 				<?php } ?>

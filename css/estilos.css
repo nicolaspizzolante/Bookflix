@@ -729,6 +729,12 @@ select:focus {
 .foto-link img:hover {
     border: 2px solid #b31217;
 }
+.btn-trailer{
+	margin-top:55px;
+}
+.descripcion-trailer p{
+	padding-top: 5px;
+}
 
 .info span{
     color: #919191;
