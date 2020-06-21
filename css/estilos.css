@@ -730,10 +730,17 @@ select:focus {
     border: 2px solid #b31217;
 }
 .btn-trailer{
-	margin-top:55px;
+	margin-top:53px;
 }
 .descripcion-trailer p{
 	padding-top: 5px;
+}
+.desc-trailer{
+	display: flex;
+	
+}
+.desc-trailer span{
+	margin: .7rem 0;
 }
 
 .info span{

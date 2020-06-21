@@ -40,9 +40,10 @@
             <div class="input">
                 <input type="text" name="titulo" placeholder="Titulo"> (*)
             </div>
-
-            <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion para el trailer"></textarea>(*)
- 
+            <div class="desc-trailer">
+                <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion para el trailer"></textarea>
+                <span>(*)</span>
+            </div>
             <div class="input">
                 Adjuntar imagen: <input type="file" name="file" placeholder="Archivo adjunto">
             </div>
