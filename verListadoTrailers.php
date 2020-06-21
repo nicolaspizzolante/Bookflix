@@ -82,7 +82,7 @@
 				<?php $id_trailer = $trailer['id'];?>
 				<div class="foto">
 							
-					<a class="foto-link">
+					<a class="foto-link" href="trailer.php?id=<?php echo $trailer['id_libro']; ?>">
                         <?php if($trailer['foto_video'] != ''){ ?>
 		                <img id="" src="mostrarImagenTrailer.php?id=<?php echo $trailer['id_libro'] ?>">
 	                    
@@ -95,7 +95,7 @@
 					<div class="titulo">
 						<h2> 
 								
-									<a href="#" class="titulo-libro"><?php echo $trailer['titulo']; ?></a>
+									<a href="trailer.php?id=<?php echo $trailer['id_libro']; ?>" class="titulo-libro"><?php echo $trailer['titulo']; ?></a>
 									
 						</h2>
 					</div>
