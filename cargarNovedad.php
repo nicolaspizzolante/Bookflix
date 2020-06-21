@@ -22,7 +22,10 @@
                 <input type="text" name="titulo" placeholder="Titulo" value="<?php echo $titulo?>">(*)
             </div>
 
-            <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion" ><?php echo $descripcion?></textarea>(*)
+            <div class="desc-trailer">
+                <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion"></textarea>
+                <span>(*)</span>
+            </div>
 
             <div class="input">
                 Adjuntar imagen: <input type="file" name="file" placeholder="Archivo adjunto">

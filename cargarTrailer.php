@@ -30,7 +30,13 @@
                     <select name="id_libro" id="libro_id">
                         <option disabled="disabled" selected value=""> Seleccione un libro </option>
                         <?php foreach($libros as $libro) { ?>
-                            <option value="<?php echo $libro[0]?>"> <?php echo $libro[1] ?> </option>
+                            <?php 
+                                $sql= "SELECT id_libro FROM trailers WHERE id_libro= '$libro[0]'";
+                                $aux= $db->query($sql)->fetch_assoc();
+                            ?>
+                            <?php  if($aux['id_libro'] != $libro[0]){ ?>
+                                <option value="<?php echo $libro[0]?>"> <?php echo $libro[1] ?> </option>
+                            <?php } ?>    
                         <?php }?>
                     </select>
                 </div>

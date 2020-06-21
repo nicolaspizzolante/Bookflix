@@ -80,8 +80,9 @@
             <div class="input">
                 Ingrese Imagen: <input type="file" name="foto" placeholder="foto">
             </div>
-        
-            <textarea class="input_sinopsis" id="sinopsis" name="sinopsis" placeholder="Escriba una sinopsis" ><?php if(isset($_GET['sinopsis'])){ echo $_GET['sinopsis'];} ?></textarea>(*)
+            <div class="desc-trailer">
+                <textarea class="input_sinopsis" id="sinopsis" name="sinopsis" placeholder="Escriba una sinopsis" ><?php if(isset($_GET['sinopsis'])){ echo $_GET['sinopsis'];} ?></textarea><span>(*)</span>
+            </div>    
 
             <div style="margin-bottom: 22px; margin-top:12px">
             <p> (*) Campos obligatorios</p>
