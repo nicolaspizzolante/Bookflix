@@ -99,6 +99,7 @@
                     $resultado = $db->query($sql);
                     $todosDisponibles =TRUE;
                     while ($cap = $resultado->fetch_assoc()){
+                        $idUltimo = $cap['id'];
                         if((substr($cap['fecha_publicacion'],0,16)>date('Y-m-d H:i')) or ((substr($cap['fecha_vencimiento'],0,16) <= date('Y-m-d H:i'))and($cap['fecha_vencimiento'] != '0000-00-00 00:00:00')and($cap['fecha_vencimiento'] != ''))){
                             $todosDisponibles = FALSE;
                         }
@@ -106,7 +107,7 @@
                     if($todosDisponibles){
                 ?>
                 <div class="input">
-                    <a href="leerLibro.php?id=<?php echo $cap['id'] ?>"><input type="button" value="Leer completo"></a>
+                    <a href="leerLibro.php?id=<?php echo $idUltimo ?>"><input type="button" value="Leer completo"></a>
                 </div>
             <?php } ?>
         <?php } ?>
