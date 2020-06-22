@@ -81,12 +81,15 @@
                 $resultado = $db->query($sql);
                 $l = $resultado->fetch_assoc();
         ?> 
+        <?php if(($libro['subidos']<=0) or ((substr($l['fecha_publicacion'],0,16)>date('Y-m-d H:i')) or (substr($l['fecha_vencimiento'],0,16) <= date('Y-m-d H:i')))){ ?>
+            <h3> Libro no disponible  </h3>
+        <?php }?>
 
             <?php if(($libro['subidos'] > 0) and (($autenticador->esAdmin()) or ((substr($l['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and (substr($l['fecha_vencimiento'],0,16) > date('Y-m-d H:i')or (($l['fecha_vencimiento'] == '0000-00-00 00:00:00')or($l['fecha_vencimiento'] == '')))))){?>
                 <div class="input">
                     <a href="leerLibro.php?id=<?php echo $l['id']?>"><input type="button" value="Leer completo"></a>
                 </div>
-            <?php } ?>
+            <?php }?>
             
         <?php } else { if($libro['subidos'] > 0) {?>
             
@@ -104,6 +107,8 @@
             <div class="input">
                 <a href="perfilLibro.php?id=<?php echo $libro['id']?>&selector=<?php echo 1?>"><input type="button" value="Ver Capitulos"></a>
             </div>
+        <?php }else{ ?>
+                <h3> Libro no disponible  </h3>
         <?php } ?>
                
         <?php }?>
