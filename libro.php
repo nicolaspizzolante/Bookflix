@@ -81,7 +81,7 @@
                 $resultado = $db->query($sql);
                 $l = $resultado->fetch_assoc();
         ?> 
-        <?php if(($libro['subidos']<=0) or ((substr($l['fecha_publicacion'],0,16)>date('Y-m-d H:i')) or (substr($l['fecha_vencimiento'],0,16) <= date('Y-m-d H:i')))){ ?>
+        <?php if(($libro['subidos']<=0) or ((substr($l['fecha_publicacion'],0,16)>date('Y-m-d H:i')) or ((substr($l['fecha_vencimiento'],0,16) <= date('Y-m-d H:i'))and($l['fecha_vencimiento']!='')and($l['fecha_vencimiento'] !='0000-00-00 00:00:00' )))){ ?>
             <h3> Libro no disponible  </h3>
         <?php }?>
 
@@ -98,8 +98,12 @@
                     $sql = "SELECT * FROM libros_pdf WHERE libro_id = '$libro_id'";
                     $resultado = $db->query($sql);
                     $todosDisponibles =TRUE;
+                    $int = 1;
                     while ($cap = $resultado->fetch_assoc()){
-                        $idUltimo = $cap['id'];
+                        if($int == 1){
+                            $idPrimero = $cap['id'];
+                            $int = $int +1;
+                        }
                         if((substr($cap['fecha_publicacion'],0,16)>date('Y-m-d H:i')) or ((substr($cap['fecha_vencimiento'],0,16) <= date('Y-m-d H:i'))and($cap['fecha_vencimiento'] != '0000-00-00 00:00:00')and($cap['fecha_vencimiento'] != ''))){
                             $todosDisponibles = FALSE;
                         }
@@ -107,7 +111,7 @@
                     if($todosDisponibles){
                 ?>
                 <div class="input">
-                    <a href="leerLibro.php?id=<?php echo $idUltimo ?>"><input type="button" value="Leer completo"></a>
+                    <a href="leerLibro.php?id=<?php echo $idPrimero ?>"><input type="button" value="Leer completo"></a>
                 </div>
             <?php } ?>
         <?php } ?>
