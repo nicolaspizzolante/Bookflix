@@ -70,6 +70,7 @@
 
     <!-- Botones -->
     <div class="botones-libro">
+
         
         <!-- boton leer completo -->
         <?php 
@@ -78,6 +79,9 @@
                 $resultado = $db->query($sql);
                 $l = $resultado->fetch_assoc();
         ?>
+        <?php if(((($libro['capitulos'] == 0) && ($libro['subidos'] == 0)) && ((!$autenticador->esAdmin()))) || (((substr($l['fecha_publicacion'],0,16)>date('Y-m-d H:i')) && (substr($l['fecha_vencimiento'],0,16) <= date('Y-m-d H:i'))|| (($l['fecha_vencimiento'] != '0000-00-00 00:00:00')||($l['fecha_vencimiento'] != '')))) && (!$autenticador->esAdmin())){?>
+        <h3> Libro no disponible  </h3>
+    <?php }?>
 
             <?php if(($libro['subidos'] > 0) and (($autenticador->esAdmin()) or ((substr($l['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and (substr($l['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or (($l['fecha_vencimiento'] == '0000-00-00 00:00:00')or($l['fecha_vencimiento'] == ''))))){?>
                 <div class="input">

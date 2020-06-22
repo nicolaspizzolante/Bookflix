@@ -43,10 +43,12 @@ h2{
 						<h4>
 						<?php 
 						
-						if(($autenticador->esAdmin()) or ((substr($cap['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and ((substr($cap['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or (($cap['fecha_vencimiento'] == '0000-00-00 00:00:00')or($cap['fecha_vencimiento'] == ''))))){?>
+						if(((substr($cap['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and ((substr($cap['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or (($cap['fecha_vencimiento'] == '0000-00-00 00:00:00')or($cap['fecha_vencimiento'] == ''))))){?>
 							<a href="leerLibro.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a>
-						<?php }else {?>
+						<?php }else if(!$autenticador->esAdmin()){?>
 							<a style="text-decoration:line-through" href="#">Capitulo <?php echo $indice+=1?></a>  No disponible
+						<?php }else{?>
+							<a style="text-decoration:line-through" href="leerLibro.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a>  No disponible
 						<?php }?>
 						</h4>
 					</div>
