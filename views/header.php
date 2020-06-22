@@ -26,6 +26,9 @@
 				<li>
 					<a href="muro.php">Perfil</a>
 				</li>
+				<li>
+					<a href="verListadoTrailers.php">Ver trailers</a>
+				</li>
 				<?php if(!$autenticador->esAdmin()){ ?>
 				<li><a href="historial.php">Historial</a></li>
 				<li><a href="verListadoLibros.php">Ver listado de libros</a></li>
