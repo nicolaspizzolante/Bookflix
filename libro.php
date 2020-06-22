@@ -95,14 +95,21 @@
             
             <?php if($libro['capitulos'] == $libro['subidos']){?>
                 <?php
-                    $sql = "SELECT id FROM libros_pdf WHERE libro_id = '$libro_id' LIMIT 1";
+                    $sql = "SELECT * FROM libros_pdf WHERE libro_id = '$libro_id'";
                     $resultado = $db->query($sql);
-                    $l = $resultado->fetch_assoc()['id'];
+                    $todosDisponibles =TRUE;
+                    while ($cap = $resultado->fetch_assoc()){
+                        if((substr($cap['fecha_publicacion'],0,16)>date('Y-m-d H:i')) or ((substr($cap['fecha_vencimiento'],0,16) <= date('Y-m-d H:i'))and($cap['fecha_vencimiento'] != '0000-00-00 00:00:00')and($cap['fecha_vencimiento'] != ''))){
+                            $todosDisponibles = FALSE;
+                        }
+                    }
+                    if($todosDisponibles){
                 ?>
                 <div class="input">
-                    <a href="leerLibro.php?id=<?php echo $l ?>"><input type="button" value="Leer completo"></a>
+                    <a href="leerLibro.php?id=<?php echo $cap['id'] ?>"><input type="button" value="Leer completo"></a>
                 </div>
             <?php } ?>
+        <?php } ?>
 
             <div class="input">
                 <a href="perfilLibro.php?id=<?php echo $libro['id']?>&selector=<?php echo 1?>"><input type="button" value="Ver Capitulos"></a>
