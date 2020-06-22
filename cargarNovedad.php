@@ -23,7 +23,7 @@
             </div>
 
             <div class="desc-trailer">
-                <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion"></textarea>
+                <textarea class="input_publicar" name="descripcion" placeholder="Escriba una descripcion"><?php echo $descripcion?></textarea>
                 <span>(*)</span>
             </div>
 
