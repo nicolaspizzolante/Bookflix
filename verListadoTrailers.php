@@ -47,7 +47,7 @@
 			?>
 		</ul>
 	<?php endif ?>
-    <h1>Listado de trailers</h1>
+    
 
 	<!-- Libros publicados -->
 	<div class="publicaciones">
@@ -63,8 +63,10 @@
 
 			if($msg == 0){
 				$_SESSION['usuario']['errores'] = 'No hay trailers para mostrar';
-			}
+			}else{
 		?>
+		<h1>Listado de trailers</h1>
+			<?php }?>
 		<h3>
 			<?php if(isset($_SESSION['usuario']['errores'])){ ?>
 				<h2 style="text-align:center; color:white;">
