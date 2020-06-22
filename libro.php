@@ -8,6 +8,8 @@
 	} 
     include 'views/header.php';
 
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+
     $db = conectar();
     $libro_id = $_GET['id'];
 
@@ -78,12 +80,9 @@
                 $sql = "SELECT * FROM libros_pdf WHERE libro_id = '$libro_id'";
                 $resultado = $db->query($sql);
                 $l = $resultado->fetch_assoc();
-        ?>
-        <?php if(((($libro['capitulos'] == 0) && ($libro['subidos'] == 0)) && ((!$autenticador->esAdmin()))) || (((substr($l['fecha_publicacion'],0,16)>date('Y-m-d H:i')) && (substr($l['fecha_vencimiento'],0,16) <= date('Y-m-d H:i'))|| (($l['fecha_vencimiento'] != '0000-00-00 00:00:00')||($l['fecha_vencimiento'] != '')))) && (!$autenticador->esAdmin())){?>
-        <h3> Libro no disponible  </h3>
-    <?php }?>
+        ?> 
 
-            <?php if(($libro['subidos'] > 0) and (($autenticador->esAdmin()) or ((substr($l['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and (substr($l['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or (($l['fecha_vencimiento'] == '0000-00-00 00:00:00')or($l['fecha_vencimiento'] == ''))))){?>
+            <?php if(($libro['subidos'] > 0) and (($autenticador->esAdmin()) or ((substr($l['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and (substr($l['fecha_vencimiento'],0,16) > date('Y-m-d H:i')or (($l['fecha_vencimiento'] == '0000-00-00 00:00:00')or($l['fecha_vencimiento'] == '')))))){?>
                 <div class="input">
                     <a href="leerLibro.php?id=<?php echo $l['id']?>"><input type="button" value="Leer completo"></a>
                 </div>
