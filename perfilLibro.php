@@ -17,7 +17,7 @@
 	$sql = "SELECT * FROM libros_pdf WHERE libro_id = '$idlibro'";
 	$libro_pdf = $conexion->query($sql);
 	
-	$sql = "SELECT titulo FROM libros WHERE id = '$idlibro'";
+	$sql = "SELECT id,titulo FROM libros WHERE id = '$idlibro'";
 	$resultado = $conexion->query($sql);
 	$libro = $resultado->fetch_assoc();
 
@@ -51,6 +51,9 @@ h2{
 							<a style="text-decoration:line-through" href="leerLibro.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a>  No disponible
 						<?php }?>
 						</h4>
+						<div class="input">
+            				<a href="borrarLibro.php?idLibro=<?php echo $libro['id']?>&pdf_id=<?php echo $cap['id']?>"><input type="button" value="Eliminar capitulo"></a>
+        				</div>
 					</div>
 				    </div>
 				</div>

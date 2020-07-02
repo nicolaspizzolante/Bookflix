@@ -49,6 +49,15 @@
 
 <div class="container">
 
+<?php if(isset($_SESSION['exito'])){ ?>
+		<ul id="exito" class="asd">
+				<?php 
+					echo $_SESSION['exito']; 
+					unset($_SESSION['exito']);
+				?>
+		</ul>
+	<?php } ?>
+
     <!-- Informacion principal -->
     <div class="main"> 
 
@@ -157,11 +166,14 @@
                 if($libro['capitulos'] == 1){ //El libro no es subido por capitulos
                     $sql = "SELECT id FROM libros_pdf WHERE libro_id = '$libro_id'";
                     $result = $db->query($sql);
-                    $pdf_id = $result->fetch_assoc();
+                    $pdf_id = $result->fetch_assoc()['id'];
             ?>
                     <div class="input">
-                        <a href="modificarFechasPublicacionVencimiento.php?id=<?php echo $pdf_id['id']?>"><input type="button" value="Editar fechas"></a>
+                        <a href="modificarFechasPublicacionVencimiento.php?id=<?php echo $pdf_id?>"><input type="button" value="Editar fechas"></a>
                     </div>
+                    <div class="input">
+                    <a href="borrarLibro.php?idLibro=<?php echo $libro_id?>&pdf_id=<?php echo $pdf_id?>"><input type="button" value="Eliminar contenido"></a>
+                </div>
                 <?php }else{?>
                     <div class="input">
                         <a href="perfilLibro.php?id=<?php echo $libro_id?>&selector=<?php echo 0?>"><input type="button" value="Editar fechas"></a>
@@ -184,11 +196,10 @@
                 <a href="trailer.php?id=<?php echo $libro_id; ?>"><input type="button" value="Ver Trailer"></a>
             </div>
     
-        <?php }?>
-
-        
+        <?php }?>        
     </div>
 
 </div>
+
 
 <?php include 'views/footer.php'; ?>

@@ -158,7 +158,12 @@
 						<span><?php echo $aux->fetch_assoc()['nombre'];?></span>
 					</div>	
 
+						
+					<div class="boton_eliminar">
+						<button onClick="confirmation('<?php echo $id_libro?>')">Eliminar</button>
+						</div>
 		</article>
+
 		<?php } ?>
 						
 	</div>
@@ -166,6 +171,38 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script>
+function confirmation($identLibro){
+//$(".boton_eliminar").on("click", function(){
+	Swal.fire({
+		title: '¿Seguro?',
+		text: "¡Esta acción no se puede revertir!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: '¡Sí, borrar!',
+		cancelButtonText: 'Cancelar'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: "borrarLibro.php?idLibro=" + $identLibro,
+				context: document.body
+			}).done(() => {
+				Swal.fire(
+					'¡Borrado!',
+					'El libro fue borrado con exito',
+					'success'
+				).then(() =>{
+					window.location.href = "verListadoLibros.php";
+				});
+			});
+		}
+	})
+//});
+}
+
+</script>
 
 <script>
 
@@ -179,6 +216,8 @@ $('a[href*="#"]').on("click", function(){
 });
 
 </script>
+
+
 
 	<?php if($paginacion){?>
 	<!-- paginacion -->
