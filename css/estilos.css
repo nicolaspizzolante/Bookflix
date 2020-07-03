@@ -879,3 +879,72 @@ select:focus {
 .botones-libro .input input[type="button"]:hover {
 	background: rgba(229, 31, 31, .8);
 }
+
+.comentar {
+    width: 100%;
+    background: #171717;
+    border: none;
+    resize: none;
+    height: 80px;
+    color: #919191;
+    padding: 10px;
+    font-size: 18px;
+}
+textarea:focus {
+    outline: none;
+}
+.boton-comentar {
+	margin: 0;
+    padding: 10px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    background: #b31217;
+}
+.boton-comentar:hover {
+    cursor: pointer;
+    background: #771504;
+}
+.lista-comentarios {
+    margin-top: 10px;
+    color: #919191;
+}
+.form-comentario{
+	margin-top: 20px;
+}
+.opciones-comentar{
+	display: flex;
+	justify-content: space-between;
+}
+.opciones-comentar div{
+	padding: .5rem;
+}
+.eleccion-spoiler{
+	display: flex;
+	padding: 0;
+	justify-content: center;
+}
+.eleccion-spoiler div{
+	padding: 0;
+}
+.eleccion-spoiler input{
+	margin-right: 1rem;
+}
+.comentario{
+	padding: .5rem;
+	border-bottom: 2px solid grey;
+}
+.parte-superior div{
+	margin-right: .5rem;
+}
+.parte-superior{
+	display: flex;
+	justify-content: left;
+}
+.parte-inferior{
+	margin: 5px 0;
+}
+.nombre-usuario{
+	color: #981300;
+	font-weight: bold;
+}

@@ -200,6 +200,125 @@
     
         <?php }?>        
     </div>
+    <form action="comentar.php" method="get" class="form-comentario" id="formulario-comentar">
+			<textarea class="comentar" placeholder="Deja un comentario" name="comentario"></textarea>
+			<input type="hidden" name="id_libro" value="<?php echo $libro_id; ?>">
+			<div class="opciones-comentar">
+                <div class="puntuacion-ratio" name="puntuacion">
+                    <p>Deja una puntuacion:</p>
+                    <input type="radio" name="puntuacion" value="1"> 1
+                    <input type="radio" name="puntuacion" value="2"> 2
+                    <input type="radio" name="puntuacion" value="3" checked> 3
+                    <input type="radio" name="puntuacion" value="4"> 4
+                    <input type="radio" name="puntuacion" value="5"> 5
+                </div>
+                <div class="contiene-spoiler">
+                    <p>Tu comentario contiene spoilers?</p>
+                    <div class="eleccion-spoiler">
+                        <div >
+                        <span>SI</span> <input type="radio" name="spoiler" value="1" checked>
+                        </div>
+                        <div>
+                            <span> NO</span> <input type="radio" name="spoiler" value="0"> 
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+			<input type="submit" class="boton-comentar">
+		</form>
+		
+
+		<?php // consulta a la tabla de comentarios
+			$sql = "SELECT texto, fecha, libro_id, usuario_id, calificacion FROM comentarios ORDER BY fecha DESC";
+            $comentarios = $db->query($sql);
+            
+			?> 
+	
+		<div class="lista-comentarios">
+			<h2 class="titulo-comentarios">Comentarios</h2>
+	<?php while ($comentario = $comentarios->fetch_assoc()){ //array asociativo con los comentarios?>
+			<?php 
+				$id_libro_comentario = $comentario['libro_id'];
+				
+				if ($libro_id === $id_libro_comentario) {
+                   
+					$usuario_id = $comentario['usuario_id'];
+					$sql = "SELECT nombre, apellido FROM usuarios WHERE id = $usuario_id";
+                    $nombres = $db->query($sql);//traigo nom y ape de la tabla de usuarios usando el usuario id del comentario 
+                    
+			?>
+			  <?php $nombre = $nombres->fetch_assoc(); ?>
+	 			<div class="comentario">
+                    <div class="parte-superior">
+                        <div>
+                            <?php switch ($comentario['calificacion']) {
+                                case 5:
+                                    ?>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <?php
+                                    break;
+                                case 4:
+                                    ?>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <?php
+                                    break;
+                                case 3:
+                                    ?>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <?php
+                                    break;        
+                                case 2:
+                                    ?>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <?php
+                                    break;     
+                                    case 1:
+                                        ?>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <?php
+                                        break;        
+                            }?>
+                            
+                        </div>
+                        <div>
+                            <span class="nombre-usuario"><?php echo $nombre['nombre'];?> <?php echo $nombre['apellido'] ?></span>
+                        </div>
+                        <div>
+                            <i class="far fa-clock"></i>
+                            <span class="fecha-comentario"><?php echo $comentario['fecha'] ?></span>
+                        </div> 
+                    </div>
+                    <div class="parte-inferior container">
+                        <p><?php echo $comentario['texto'] ?></p>
+                    </div>
+
+                </div>
+			  
+		  <?php }?>
+
+	<?php } ?>		
+	</div>
 
 </div>
 <script>

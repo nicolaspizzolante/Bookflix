@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/estilos.css">
 	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<script src="https://kit.fontawesome.com/c7cd9c5077.js" crossorigin="anonymous"></script>
 	<title>Bookflix</title>
 </head>
 <body>
