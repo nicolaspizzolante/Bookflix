@@ -52,7 +52,9 @@ h2{
 						<?php }?>
 						</h4>
 						<div class="input">
-            				<a href="borrarLibro.php?idLibro=<?php echo $libro['id']?>&pdf_id=<?php echo $cap['id']?>"><input type="button" value="Eliminar capitulo"></a>
+						<div class="boton_eliminar">
+						    <button onClick="confirmation('<?php echo $cap['id']?>','<?php echo $libro['id']?>')">Eliminar</button>
+						</div>
         				</div>
 					</div>
 				    </div>
@@ -78,6 +80,35 @@ h2{
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script>
+function confirmation($identPDF, $identLibro){
+	Swal.fire({
+		title: '¿Seguro?',
+		text: "¡Esta acción no se puede revertir!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: '¡Sí, borrar!',
+		cancelButtonText: 'Cancelar'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: "borrarLibro.php?idLibro=" + $identLibro+"&pdf_id=" + $identPDF,
+				context: document.body
+			}).done(() => {
+				Swal.fire(
+					'¡Borrado!',
+					'El libro fue borrado con exito',
+					'success'
+				).then(() =>{
+					window.location.href = "verListadoLibros.php";
+				});
+			});
+		}
+	})
+}
+</script>
 
 <script>
 
