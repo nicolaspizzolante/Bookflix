@@ -42,6 +42,44 @@
 </div>
 </form>
 
+<?php if(!$autenticador->esAdmin()){?>
+	<button onClick="bajarUsuario('<?php echo $_SESSION['usuario']['id']?>')">Eliminar cuenta</button>
+
+
+<?php }?>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+function bajarUsuario($identUser){
+	Swal.fire({
+		title: '¿Seguro?',
+		text: "¡Esta acción no se puede revertir!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: '¡Sí, borrar!',
+		cancelButtonText: 'Cancelar'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: "bajaUsuario.php?id_user=" + $identUser,
+				context: document.body
+			}).done(() => {
+				Swal.fire(
+					'¡Borrado!',
+					'El libro fue borrado con exito',
+					'success'
+				)
+			});
+		}
+	})
+}
+
+</script>
 
 	<?php if (isset($_SESSION['errores'])): ?>
 		<ul id="errores" class="errores_mensaje" style="display:block;">
