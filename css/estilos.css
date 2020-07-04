@@ -953,12 +953,16 @@ textarea:focus {
 	color: white;
     border: none;
     padding: 3px 5px;
-    background-color: var(--main-red);
+    background-color: #1d1d1d;
 	border-radius: 4px;
 	line-height: 1;
 }
 #btn-borrar-com:hover{
 	cursor: pointer;
+}
+#btn-borrar-com i{
+	color: var(--main-red);
+	font-size: 1rem;
 }
 
 .parte-inferior{
@@ -982,8 +986,7 @@ textarea:focus {
   }
 .eliminar-com {
     float: right;
-    background-color: var(--main-red);
-	margin-top: -20px;
+	margin-top: -24px;
 	transition: all .5s ease-in-out;
 }
 .eliminar-com:hover{

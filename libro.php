@@ -230,10 +230,10 @@
                         <p>Tu comentario contiene spoilers?</p>
                         <div class="eleccion-spoiler">
                             <div >
-                            <span>SI</span> <input type="radio" name="spoiler" value="1" checked>
+                            <span>SI</span> <input type="radio" name="spoiler" value="1">
                             </div>
                             <div>
-                                <span> NO</span> <input type="radio" name="spoiler" value="0"> 
+                                <span> NO</span> <input type="radio" name="spoiler" value="0" checked> 
                             </div>
                         </div>
                         
@@ -245,7 +245,7 @@
         <h1 class="ya-comentado">Ya dejaste tu opinión del libro !</h1>	
     <?php } ?>
 		<?php // consulta a la tabla de comentarios
-			$sql = "SELECT texto, fecha, libro_id, usuario_id, calificacion FROM comentarios ORDER BY fecha DESC";
+			$sql = "SELECT id, texto, fecha, libro_id, usuario_id, calificacion FROM comentarios ORDER BY fecha DESC";
             $comentarios = $db->query($sql);
             $comentarios1 = $db->query($sql);
 			?> 
@@ -269,12 +269,12 @@
 				if ($libro_id === $id_libro_comentario) {
                    
 					$usuario_id = $comentario['usuario_id'];
-					$sql = "SELECT nombre, apellido FROM usuarios WHERE id = $usuario_id";
+					$sql = "SELECT id, nombre, apellido FROM usuarios WHERE id = $usuario_id";
                     $nombres = $db->query($sql);//traigo nom y ape de la tabla de usuarios usando el usuario id del comentario 
                     
 			?>
 			  <?php $nombre = $nombres->fetch_assoc(); ?>
-	 			<div class="comentario">
+	 			<div class="comentario" id="comentario:<?php echo $comentario['id'] ?>" >
                     <div class="parte-superior">
                         <div class="izq">
                             <div>
@@ -338,7 +338,7 @@
                         <div class="der">
                         <?php
                             if($comentario['usuario_id']==$user_id){?>  
-                            <div class="eliminar-com"><button id="btn-borrar-com">X</button></div>
+                            <div class="eliminar-com"><button id="btn-borrar-com"><i class="fas fa-trash"></i></button></div>
                         <?php } ?>
                         </div>
                         
