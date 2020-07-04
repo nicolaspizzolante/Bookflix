@@ -9,8 +9,6 @@
     $calificacion = $_GET['puntuacion'];
     $contiene_spoiler = $_GET['spoiler'];
 
-    if ($comentario !='') {
-
 
         $sql = "INSERT INTO comentarios (texto, fecha, libro_id, usuario_id, calificacion, es_spoiler) 
             VALUES ('$comentario', now(), '$id_libro', '$id_usuario', '$calificacion', '$contiene_spoiler')";
@@ -32,4 +30,4 @@
             $_SESSION['errores'] .= '<li>Error de la base de datos.</li>';
             header('Location: libro.php?id='.$id_libro);
         }
-    }
+    

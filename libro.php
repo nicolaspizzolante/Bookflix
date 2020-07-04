@@ -200,44 +200,69 @@
     
         <?php }?>        
     </div>
-    <form action="comentar.php" method="get" class="form-comentario" id="formulario-comentar">
-			<textarea class="comentar" placeholder="Deja un comentario" name="comentario"></textarea>
-			<input type="hidden" name="id_libro" value="<?php echo $libro_id; ?>">
-			<div class="opciones-comentar">
-                <div class="puntuacion-ratio" name="puntuacion">
-                    <p>Deja una puntuacion:</p>
-                    <input type="radio" name="puntuacion" value="1"> 1
-                    <input type="radio" name="puntuacion" value="2"> 2
-                    <input type="radio" name="puntuacion" value="3" checked> 3
-                    <input type="radio" name="puntuacion" value="4"> 4
-                    <input type="radio" name="puntuacion" value="5"> 5
-                </div>
-                <div class="contiene-spoiler">
-                    <p>Tu comentario contiene spoilers?</p>
-                    <div class="eleccion-spoiler">
-                        <div >
-                        <span>SI</span> <input type="radio" name="spoiler" value="1" checked>
-                        </div>
-                        <div>
-                            <span> NO</span> <input type="radio" name="spoiler" value="0"> 
-                        </div>
+    <?php 
+            $sql = "SELECT texto, fecha, libro_id, usuario_id, calificacion FROM comentarios ORDER BY fecha DESC";
+            $coms = $db->query($sql);
+            $Comentaste =false;
+            $user_id = $_SESSION['usuario']['id'];
+    ?>
+    <?php foreach ($coms as $com) {
+        if($com['usuario_id'] == $user_id && $com['libro_id'] == $libro_id) {
+           
+            $Comentaste = true;
+        }
+     } 
+    ?> 
+    <?php if($Comentaste == false){ ?>
+        <form action="comentar.php" method="get" class="form-comentario" id="formulario-comentar">
+                <textarea class="comentar" placeholder="Deja un comentario" name="comentario"></textarea>
+                <input type="hidden" name="id_libro" value="<?php echo $libro_id; ?>">
+                <div class="opciones-comentar">
+                    <div class="puntuacion-ratio" name="puntuacion">
+                        <p>Deja una puntuacion:</p>
+                        <input type="radio" name="puntuacion" value="1"> 1
+                        <input type="radio" name="puntuacion" value="2"> 2
+                        <input type="radio" name="puntuacion" value="3" checked> 3
+                        <input type="radio" name="puntuacion" value="4"> 4
+                        <input type="radio" name="puntuacion" value="5"> 5
                     </div>
-                    
+                    <div class="contiene-spoiler">
+                        <p>Tu comentario contiene spoilers?</p>
+                        <div class="eleccion-spoiler">
+                            <div >
+                            <span>SI</span> <input type="radio" name="spoiler" value="1" checked>
+                            </div>
+                            <div>
+                                <span> NO</span> <input type="radio" name="spoiler" value="0"> 
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
-            </div>
-			<input type="submit" class="boton-comentar">
-		</form>
-		
-
+                <input type="submit" class="boton-comentar">
+        </form>
+    <?php }else{ ?>
+        <h1 class="ya-comentado">Ya dejaste tu opinión del libro !</h1>	
+    <?php } ?>
 		<?php // consulta a la tabla de comentarios
 			$sql = "SELECT texto, fecha, libro_id, usuario_id, calificacion FROM comentarios ORDER BY fecha DESC";
             $comentarios = $db->query($sql);
-            
+            $comentarios1 = $db->query($sql);
 			?> 
 	
 		<div class="lista-comentarios">
-			<h2 class="titulo-comentarios">Comentarios</h2>
-	<?php while ($comentario = $comentarios->fetch_assoc()){ //array asociativo con los comentarios?>
+            <?php $hayComentarios=false;
+                  foreach ($comentarios as $comentario) {
+                      if($libro_id== $comentario['libro_id']){
+                          $hayComentarios = true;
+                    }
+                 }
+                if($hayComentarios==true){?>
+                <h2 class="titulo-comentarios">Comentarios</h2>
+            <?php }else{?>
+                <h2 class="reseña">Se el primero en dejar su opinión !</h2>  
+            <?php }?>      
+	<?php while ($comentario = $comentarios1->fetch_assoc()){ //array asociativo con los comentarios?>
 			<?php 
 				$id_libro_comentario = $comentario['libro_id'];
 				
@@ -251,63 +276,72 @@
 			  <?php $nombre = $nombres->fetch_assoc(); ?>
 	 			<div class="comentario">
                     <div class="parte-superior">
-                        <div>
-                            <?php switch ($comentario['calificacion']) {
-                                case 5:
-                                    ?>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <?php
-                                    break;
-                                case 4:
-                                    ?>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <?php
-                                    break;
-                                case 3:
-                                    ?>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <?php
-                                    break;        
-                                case 2:
-                                    ?>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <?php
-                                    break;     
-                                    case 1:
+                        <div class="izq">
+                            <div>
+                                <?php switch ($comentario['calificacion']) {
+                                    case 5:
                                         ?>
                                         <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <?php
+                                        break;
+                                    case 4:
+                                        ?>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
                                         <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
+                                        <?php
+                                        break;
+                                    case 3:
+                                        ?>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
                                         <i class="far fa-star"></i>
                                         <i class="far fa-star"></i>
                                         <?php
                                         break;        
-                            }?>
-                            
+                                    case 2:
+                                        ?>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <?php
+                                        break;     
+                                        case 1:
+                                            ?>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <?php
+                                            break;        
+                                }?>
+                                
+                            </div>
+                            <div>
+                                <span class="nombre-usuario"><?php echo $nombre['nombre'];?> <?php echo $nombre['apellido'] ?></span>
+                            </div>
+                            <div>
+                                <i class="far fa-clock"></i>
+                                <span class="fecha-comentario"><?php echo $comentario['fecha'] ?></span>
+                            </div> 
+                        </div><!--.izq-->
+                        <div class="der">
+                        <?php
+                            if($comentario['usuario_id']==$user_id){?>  
+                            <div class="eliminar-com"><button id="btn-borrar-com">X</button></div>
+                        <?php } ?>
                         </div>
-                        <div>
-                            <span class="nombre-usuario"><?php echo $nombre['nombre'];?> <?php echo $nombre['apellido'] ?></span>
-                        </div>
-                        <div>
-                            <i class="far fa-clock"></i>
-                            <span class="fecha-comentario"><?php echo $comentario['fecha'] ?></span>
-                        </div> 
+                        
                     </div>
                     <div class="parte-inferior container">
                         <p><?php echo $comentario['texto'] ?></p>
@@ -321,6 +355,7 @@
 	</div>
 
 </div>
+
 <script>
 function confirmation($identPDF, $identLibro){
 	Swal.fire({

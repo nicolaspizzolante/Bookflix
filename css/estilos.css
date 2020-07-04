@@ -268,7 +268,7 @@ a {
 .eliminar button:focus,
 .boton_seguir_perfil:focus,
 #btn-borrar:focus,
-#btn-editar:focus{
+#btn-editar:focus, #btn-borrar-com{
 	outline:none;
 }
 
@@ -934,17 +934,59 @@ textarea:focus {
 	padding: .5rem;
 	border-bottom: 2px solid grey;
 }
+.comentario:nth-last-child(1){
+	border: none;
+}
+.parte-superior {
+	justify-content: space-between;
+	
+}
 .parte-superior div{
 	margin-right: .5rem;
 }
-.parte-superior{
+.parte-superior .izq{
 	display: flex;
 	justify-content: left;
 }
+#btn-borrar-com{
+	text-decoration: none;
+	color: white;
+    border: none;
+    padding: 3px 5px;
+    background-color: var(--main-red);
+	border-radius: 4px;
+	line-height: 1;
+}
+#btn-borrar-com:hover{
+	cursor: pointer;
+}
+
 .parte-inferior{
 	margin: 5px 0;
 }
 .nombre-usuario{
 	color: #981300;
 	font-weight: bold;
+}
+.reseña{
+	text-align: center;
+	margin-bottom: 1rem;
+}
+.ya-comentado{
+	text-align: center;
+	transition: all .5s ease-in-out;
+}
+.ya-comentado:hover{
+	cursor: pointer;
+	-webkit-transform: scale(1.1);
+  }
+.eliminar-com {
+    float: right;
+    background-color: var(--main-red);
+	margin-top: -20px;
+	transition: all .5s ease-in-out;
+}
+.eliminar-com:hover{
+	-webkit-transform: scale(1.2);
+	cursor: pointer;
 }
