@@ -43,7 +43,7 @@
 </form>
 
 <?php if(!$autenticador->esAdmin()){?>
-	<button onClick="bajarUsuario('<?php echo $_SESSION['usuario']['id']?>')">Eliminar cuenta</button>
+	<button id="btn-borrar">Eliminar cuenta</button>
 
 
 <?php }?>
@@ -53,9 +53,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
-function bajarUsuario($identUser){
+var idUsuario = <?php echo $_SESSION['usuario']['id']?>;
+
+$("#btn-borrar").on("click", function(){
 	Swal.fire({
-		title: '¿Seguro?',
+		title: '¿Seguro desea eliminar su cuenta?',
 		text: "¡Esta acción no se puede revertir!",
 		icon: 'warning',
 		showCancelButton: true,
@@ -66,18 +68,20 @@ function bajarUsuario($identUser){
 	}).then((result) => {
 		if (result.value) {
 			$.ajax({
-				url: "bajaUsuario.php?id_user=" + $identUser,
+				url: "bajaUsuario.php?id_user=" + idUsuario,
 				context: document.body
 			}).done(() => {
 				Swal.fire(
 					'¡Borrado!',
-					'El libro fue borrado con exito',
+					'Cuenta eliminada',
 					'success'
-				)
+				).then(() =>{
+					window.location.href = "index.php";
+				});
 			});
 		}
 	})
-}
+});
 
 </script>
 
