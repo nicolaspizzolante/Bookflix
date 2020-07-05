@@ -1024,3 +1024,11 @@ textarea:focus {
 	-webkit-transform: scale(1.2);
 	cursor: pointer;
 }
+
+.mr-2 {
+	margin-right: 5px;
+}
+
+.ml-2 {
+	margin-left: 5px;
+}

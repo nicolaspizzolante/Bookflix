@@ -28,13 +28,6 @@
 					<a href="muro.php">Perfil</a>
 				</li>
 				
-				<?php if(!$autenticador->esAdmin()){ ?>
-				<li>
-					<a href="verListadoTrailers.php">Ver trailers</a>
-				</li>
-				<li><a href="historial.php">Historial</a></li>
-				<li><a href="verListadoLibros.php">Ver listado de libros</a></li>
-				<?php } ?>
 				<?php if($autenticador->esAdmin()){ ?>
 					<li><a href="">Opciones de Admin</a>
 						<ul class="dropdown-1">
@@ -50,11 +43,27 @@
 							<li><a href="verListadoTrailers.php">Ver Listado de Trailers</a></li>
 						</ul>
 					</li>
+				<?php } else { ?>
+					<li><a href="">Opciones</a>
+						<ul class="dropdown-1">
+							<li><a href="verListadoTrailers.php">Ver trailers</a></li>
+							<li><a href="historial.php">Historial</a></li>
+							<li><a href="administrarPerfiles.php">Administrar perfiles</a></li>
+							<li><a href="verListadoLibros.php">Ver listado de libros</a></li>
+						</ul>	
+					</li>
 				<?php } ?>
 				<li>
-					<a href="cerrarsesion.php">Cerrar Sesion</a>
+					<?php if(isset($_SESSION['usuario']['perfil_nombre'])){ ?>
+					<a href="#"><i class="fas fa-user mr-2"></i> <?= $_SESSION['usuario']['perfil_nombre'] ?></a>
+					<ul class="dropdown-1">
+						<li><a href="cerrarsesion.php">Cerrar Sesion <i class="fas fa-sign-out-alt ml-2"></i></a></li>
+					</ul>
+					<?php } else { ?>
+						<a href="cerrarsesion.php">Cerrar Sesion <i class="fas fa-sign-out-alt ml-2"></i></a>
+					<?php } ?>
 				</li>
 			</ul>
 		</div>
 	</div>
-<?php }// var_dump($_SESSION); ?>
+<?php } //var_dump($_SESSION); ?>

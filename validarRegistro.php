@@ -81,8 +81,12 @@ if(($usuario != null) or ($tarjeta != null)) {
 		$id = $_SESSION['id'];
 
 		// guardamos tarjeta
-		$sql_tarjeta = "INSERT INTO tarjetas (numero, codigo, mes_vencimiento, anio_vencimiento, nombre_y_apellido, usuario_id) VALUES('$numero_tarjeta', '$codigo_tarjeta', '$mes_vencimiento', '$anio_vencimiento', '$nombre_tarjeta', '$id')";
-		$resultado = $conexion->query($sql_tarjeta);
+		$sql = "INSERT INTO tarjetas (numero, codigo, mes_vencimiento, anio_vencimiento, nombre_y_apellido, usuario_id) VALUES('$numero_tarjeta', '$codigo_tarjeta', '$mes_vencimiento', '$anio_vencimiento', '$nombre_tarjeta', '$id')";
+		$resultado = $conexion->query($sql);
+
+		// creamos perfil
+		$sql = "INSERT INTO perfiles (nombre, usuario_id) VALUES('$nombre', '$id')";
+		$resultado = $conexion->query($sql);
 		
 		header('Location: index.php');
 	} catch(Exception $e) {
