@@ -51,11 +51,13 @@ h2{
 							<a style="text-decoration:line-through" href="leerLibro.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a>  No disponible
 						<?php }?>
 						</h4>
+						<?php if($autenticador->esAdmin()){?>
 						<div class="input">
 						<div class="boton_eliminar">
 						    <button onClick="confirmation('<?php echo $cap['id']?>','<?php echo $libro['id']?>')">Eliminar</button>
 						</div>
         				</div>
+						<?php }?>
 					</div>
 				    </div>
 				</div>

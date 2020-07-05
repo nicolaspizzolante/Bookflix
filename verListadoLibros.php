@@ -158,10 +158,11 @@
 						<span><?php echo $aux->fetch_assoc()['nombre'];?></span>
 					</div>	
 
-						
+					<?php if($autenticador->esAdmin()){?>
 					<div class="input">
 						<button id="btn-borrar" onClick="confirmation('<?php echo $id_libro?>')">Eliminar libro</button>
 					</div>
+					<?php }?>
 		</article>
 
 		<?php } ?>
