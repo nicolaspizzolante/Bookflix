@@ -172,9 +172,7 @@
                         <a href="modificarFechasPublicacionVencimiento.php?id=<?php echo $pdf_id?>"><input type="button" value="Editar fechas"></a>
                     </div>
                     <div class="input">
-                        <div class="boton_eliminar">
-						    <button onClick="confirmation('<?php echo $pdf_id?>','<?php echo $libro_id?>')">Eliminar</button>
-						</div>
+						<button id="btn-borrar" onClick="confirmation('<?php echo $pdf_id?>','<?php echo $libro_id?>')">Eliminar pdf</button>
                     </div>
                 <?php }else{?>
                     <div class="input">

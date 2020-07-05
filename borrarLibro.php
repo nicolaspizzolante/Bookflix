@@ -25,7 +25,7 @@ if(!$idpdf){
         $sql = "UPDATE libros SET capitulos = 0";
         $db->query($sql);
     }
-    $_SESSION['exito'] = '<li>Se ha borrado el contenido del libro</li>';
+
     header("Location: libro.php?id=$idLibro");
 }
 

@@ -159,9 +159,9 @@
 					</div>	
 
 						
-					<div class="boton_eliminar">
-						<button onClick="confirmation('<?php echo $id_libro?>')">Eliminar</button>
-						</div>
+					<div class="input">
+						<button id="btn-borrar" onClick="confirmation('<?php echo $id_libro?>')">Eliminar libro</button>
+					</div>
 		</article>
 
 		<?php } ?>
