@@ -2,9 +2,9 @@ const formBuscar= document.querySelector('#formulario-buscar');
 
 eventListener();
 function eventListener() {
-    //inputBuscar.addEventListener('input', validarInputBuscar);
+    //document.querySelector('.warning').addEventListener('click', cambiarClase);
     formBuscar.addEventListener('submit', textoValido);
-    document.querySelector('.lista-comentarios').addEventListener('click', borrarComentario);
+    
 }
 
 function textoValido(e){
@@ -21,7 +21,7 @@ function textoValido(e){
 
 function borrarComentario(e) {
     e.preventDefault();
-    console.log(e.target.classList.contains('fa-trash'));
+    //console.log(e.target.classList.contains('fa-trash'));
     if(e.target.classList.contains('fa-trash')) {
         swal({
             title: 'Seguro(a)?',
@@ -83,3 +83,9 @@ function eliminarComentarioDB(comentarioEliminar) {
     //enviar la peticion
     xhr.send(datos);
 }
+
+/*function cambiarClase(e) {
+    e.preventDefault();
+    console.log(e);
+    console.log('pero lpm');
+}*/

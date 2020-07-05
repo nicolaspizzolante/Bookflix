@@ -344,7 +344,16 @@
                         
                     </div>
                     <div class="parte-inferior container">
-                        <p><?php echo $comentario['texto'] ?></p>
+                        <?php 
+                            if($comentario['es_spoiler']==1){ ?>
+                                <div class="cont-spoiler">
+                                    <p class="warning" onClick="myFunction()">Warning: spoiler</p>
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                </div>
+                                
+                        <?php } ?>
+                        
+                        <p class="<?php echo ($comentario['es_spoiler']==1 ? 'no-mostrar' : 'mostrar') ?>"><?php echo $comentario['texto'] ?></p>
                     </div>
 
                 </div>
@@ -355,6 +364,14 @@
 	</div>
 
 </div>
+<script>
+    /*function myFunction(e) {
+        console.log('ahora???');
+        let parrafo = document.querySelector('.no-mostrar');
+        parrafo.style.opacity = "100%";
+        console.log(parrafo);
+    } */
+</script>
 
 <script>
 function confirmation($identPDF, $identLibro){

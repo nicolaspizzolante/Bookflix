@@ -973,6 +973,31 @@ textarea:focus {
 	opacity: 0;
 }
 */
+.no-mostrar{
+	opacity: 0;
+	transition: all 2s ease-in-out;
+}
+.no-mostrar:hover{
+	opacity: 50%;
+	cursor: pointer;
+}
+.cont-spoiler{
+	display: flex;
+}
+.cont-spoiler i{
+	color: var(--main-red);
+	margin-left: .5rem;
+	padding: 0;
+}
+.cont-spoiler i:hover{
+	cursor: pointer;
+}
+.warning{
+	color: var(--main-red);
+	font-size: bold;
+	
+}
+
 .nombre-usuario{
 	color: #16517f;
 	font-weight: bold;
