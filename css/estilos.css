@@ -515,6 +515,9 @@ select:focus {
 	background: var(--main-red);
 }
 
+
+
+
 .input2 input[type="submit"]{
 	background: #E51F1F;
 	width: 100px;
