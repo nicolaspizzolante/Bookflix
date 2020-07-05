@@ -44,7 +44,7 @@ function borrarComentario(e) {
                 
               swal(
                 'Eliminado!',
-                'La tarea fue eliminada!.',
+                'El comentario fue eliminado!.',
                 'success'
               )
             }
