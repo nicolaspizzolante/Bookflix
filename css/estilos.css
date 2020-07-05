@@ -992,9 +992,7 @@ textarea:focus {
 	margin-left: .5rem;
 	padding: 0;
 }
-.cont-spoiler i:hover{
-	cursor: pointer;
-}
+
 .warning{
 	color: var(--main-red);
 	font-size: bold;
