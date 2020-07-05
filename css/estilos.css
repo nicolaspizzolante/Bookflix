@@ -968,8 +968,13 @@ textarea:focus {
 .parte-inferior{
 	margin: 5px 0;
 }
+/*para el comentario con spoiler
+.parte-inferior p{
+	opacity: 0;
+}
+*/
 .nombre-usuario{
-	color: #981300;
+	color: #16517f;
 	font-weight: bold;
 }
 .reseña{

@@ -213,7 +213,7 @@
         }
      } 
     ?> 
-    <?php if($Comentaste == false){ ?>
+    <?php if($Comentaste == false && !($autenticador->esAdmin())){ ?>
         <form action="comentar.php" method="get" class="form-comentario" id="formulario-comentar">
                 <textarea class="comentar" placeholder="Deja un comentario" name="comentario"></textarea>
                 <input type="hidden" name="id_libro" value="<?php echo $libro_id; ?>">
@@ -241,11 +241,11 @@
                 </div>
                 <input type="submit" class="boton-comentar">
         </form>
-    <?php }else{ ?>
+    <?php }elseif(!$autenticador->esAdmin()){ ?>
         <h1 class="ya-comentado">Ya dejaste tu opinión del libro !</h1>	
     <?php } ?>
 		<?php // consulta a la tabla de comentarios
-			$sql = "SELECT id, texto, fecha, libro_id, usuario_id, calificacion FROM comentarios ORDER BY fecha DESC";
+			$sql = "SELECT * FROM comentarios ORDER BY fecha DESC";
             $comentarios = $db->query($sql);
             $comentarios1 = $db->query($sql);
 			?> 
@@ -337,7 +337,7 @@
                         </div><!--.izq-->
                         <div class="der">
                         <?php
-                            if($comentario['usuario_id']==$user_id){?>  
+                            if($comentario['usuario_id']==$user_id || $autenticador->esAdmin()){?>  
                             <div class="eliminar-com"><button id="btn-borrar-com"><i class="fas fa-trash"></i></button></div>
                         <?php } ?>
                         </div>
