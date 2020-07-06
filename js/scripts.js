@@ -4,7 +4,7 @@ eventListener();
 function eventListener() {
     //document.querySelector('.warning').addEventListener('click', cambiarClase);
     formBuscar.addEventListener('submit', textoValido);
-    
+    document.querySelector('.lista-comentarios').addEventListener('click', borrarComentario);
 }
 
 function textoValido(e){
