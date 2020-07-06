@@ -39,6 +39,17 @@ body {
     justify-content: center;
 }
 
+.main {
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+}
+
+h1 {
+    font-size: 2.5em !important;
+    margin-bottom: 30px;
+}
+
 .perfiles {
     display:flex;
 }
@@ -51,7 +62,7 @@ body {
     background: #212121;
     padding: 25px;
     border: 5px solid transparent;
-    transition: all .5 ease-out;
+    transition: border .2s;
     color: white;
     border-radius: 3px;
 }
@@ -71,22 +82,41 @@ body {
 
 <body>
 
-<div class="perfiles">
 
-    <?php while ($perfil = $resultado->fetch_assoc()){ ?>
-        <a href="elegirPerfil.php?id=<?= $perfil['id'] ?>&nombre=<?= $perfil['nombre'] ?>" class="perfil">
-            <i class="far fa-user"></i>
-            <?= $perfil['nombre'] ?> 
+<div class="main">
+    <h1>¿Quien está leyendo?</h1>
+    
+    <div class="perfiles" style="display:none;">
+
+        <?php while ($perfil = $resultado->fetch_assoc()){ ?>
+            <a href="elegirPerfil.php?id=<?= $perfil['id'] ?>&nombre=<?= $perfil['nombre'] ?>" class="perfil">
+                <i class="far fa-user"></i>
+                <?= $perfil['nombre'] ?> 
+            </a>
+        <?php } ?>
+
+        <a href="altaperfil.php" class="perfil">
+            <i class="fas fa-plus"></i>
+            Agregar perfil
         </a>
-    <?php } ?>
+        
+    </div>
 
-    <a href="altaperfil.php" class="perfil">
-        <i class="fas fa-plus"></i>
-        Agregar perfil
-    </a>
-    
 </div>
+
     
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+$(window).on('load', function(){
+    $('.perfiles').fadeIn(1000);
+});
+
+
+</script>
+
+
 </body>
 </html>
 
