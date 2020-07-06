@@ -4,7 +4,7 @@ eventListener();
 function eventListener() {
     //document.querySelector('.warning').addEventListener('click', cambiarClase);
     formBuscar.addEventListener('submit', textoValido);
-    
+    document.querySelector('.lista-comentarios').addEventListener('click', borrarComentario);
 }
 
 function textoValido(e){
@@ -44,7 +44,7 @@ function borrarComentario(e) {
                 
               swal(
                 'Eliminado!',
-                'La tarea fue eliminada!.',
+                'El comentario fue eliminado!.',
                 'success'
               )
             }
