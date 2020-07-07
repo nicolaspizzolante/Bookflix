@@ -338,10 +338,13 @@
                             </div> 
                         </div><!--.izq-->
                         <div class="der">
+                        <div class="prueba">
                         <?php
                             if($comentario['usuario_id']==$user_id || $autenticador->esAdmin()){?>  
                             <div class="eliminar-com"><button id="btn-borrar-com"><i class="fas fa-trash"></i></button></div>
-                            
+                            <?php } ?>
+                        </div>
+                            <?php if($autenticador->esAdmin()){?>
                                 <?php if($comentario['es_spoiler'] == 1){?>
                                     <div class="checkSpoiler">
                                         <a href="marcarSpoiler.php?idComment=<?php echo $comentario['id']?>&idLibro=<?php echo $libro_id?>&identificador=0" id="checkSpoiler">No es spoiler</a>
@@ -351,8 +354,8 @@
                                         <a href="marcarSpoiler.php?idComment=<?php echo $comentario['id']?>&idLibro=<?php echo $libro_id?>&identificador=1" id="checkSpoiler">Es spoiler</a>
                                     </div>
                                 <?php }?>
-                            
-                        <?php } ?>
+                                <?php }?>
+                        
                         </div>
                         
                     </div>
