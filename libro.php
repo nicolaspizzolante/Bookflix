@@ -76,7 +76,6 @@
             <div class="editorial"> <?php echo $libro['editorial']; ?> </div>
             <div class="sinopsis-libro"><?php echo $libro['sinopsis'] ?></div>
         </div>
-
 	</div>
 
     <!-- Botones -->

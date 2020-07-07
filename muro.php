@@ -37,14 +37,15 @@
 	</table>
 
 <form action="editar.php">
-<div class="input2">
+<div class="editar-perfil">
 	<input type="submit" value="Editar perfil">
 </div>
 </form>
 
+<div class="borrar-cuenta">
 <?php if(!$autenticador->esAdmin()){?>
 	<button id="btn-borrar">Eliminar cuenta</button>
-
+</div>
 
 <?php }?>
 

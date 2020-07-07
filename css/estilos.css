@@ -263,7 +263,7 @@ a {
 .boton_seguir:focus,
 .buscar:focus,
 .input input:focus,
-.input2 input:focus,
+.editar-perfil input:focus,
 .boton_me_gusta:focus,
 .eliminar button:focus,
 .boton_seguir_perfil:focus,
@@ -432,7 +432,9 @@ a {
 	margin-bottom: 10px;
 }
 
-.input2 input, select {
+
+
+.editar-perfil input, select {
 	border:0;
 	color:#a2a2a2;
 	border-radius: 3px;
@@ -518,17 +520,19 @@ select:focus {
 
 
 
-.input2 input[type="submit"]{
-	background: #E51F1F;
+
+
+.editar-perfil input[type="submit"]{
+	background: #0f7fdf;
 	width: 100px;
-	margin-left: 43%;
+	margin-left: 45%;
 	color:white;
 }
 
 
-.input2 input[type="submit"]:hover {
+.editar-perfil input[type="submit"]:hover {
 	cursor: pointer;
-	background: var(--main-red);
+	background: var(--secondary-blue);
 }
 
 
@@ -966,6 +970,10 @@ textarea:focus {
 #btn-borrar-com i{
 	color: var(--main-red);
 	font-size: 1rem;
+}
+
+.borrar-cuenta{
+	text-align: center;
 }
 
 .parte-inferior{
