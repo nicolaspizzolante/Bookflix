@@ -255,11 +255,15 @@
                           $hayComentarios = true;
                     }
                  }
-                if($hayComentarios==true){?>
+                if($hayComentarios){?>
                 <h2 class="titulo-comentarios">Comentarios</h2>
-            <?php }else{?>
+            <?php }else{
+                if(!$autenticador->esAdmin()){?>
                 <h2 class="reseña">Se el primero en dejar su opinión !</h2>  
-            <?php }?>      
+            <?php }else{?>
+                <h2 class="reseña">Aún no se han realizado comentarios</h2> 
+            <?php }?>
+        <?php }?>      
 	<?php while ($comentario = $comentarios1->fetch_assoc()){ //array asociativo con los comentarios?>
 			<?php 
 				$id_libro_comentario = $comentario['libro_id'];
@@ -337,6 +341,17 @@
                         <?php
                             if($comentario['usuario_id']==$user_id || $autenticador->esAdmin()){?>  
                             <div class="eliminar-com"><button id="btn-borrar-com"><i class="fas fa-trash"></i></button></div>
+                            
+                                <?php if($comentario['es_spoiler'] == 1){?>
+                                    <div class="checkSpoiler">
+                                        <a href="marcarSpoiler.php?idComment=<?php echo $comentario['id']?>&idLibro=<?php echo $libro_id?>&identificador=0" id="checkSpoiler">No es spoiler</a>
+                                    </div>
+                                <?php }else{?>
+                                    <div class="checkSpoiler">
+                                        <a href="marcarSpoiler.php?idComment=<?php echo $comentario['id']?>&idLibro=<?php echo $libro_id?>&identificador=1" id="checkSpoiler">Es spoiler</a>
+                                    </div>
+                                <?php }?>
+                            
                         <?php } ?>
                         </div>
                         

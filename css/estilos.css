@@ -1020,6 +1020,11 @@ textarea:focus {
 	margin-top: -24px;
 	transition: all .5s ease-in-out;
 }
+
+.checkSpoiler{
+	float:right;
+}
+
 .eliminar-com:hover{
 	-webkit-transform: scale(1.2);
 	cursor: pointer;
