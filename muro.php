@@ -45,9 +45,9 @@
 <div class="borrar-cuenta">
 <?php if(!$autenticador->esAdmin()){?>
 	<button id="btn-borrar">Eliminar cuenta</button>
+<?php }?>
 </div>
 
-<?php }?>
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

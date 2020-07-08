@@ -38,11 +38,10 @@ h2{
 	<?php while ($cap = $libro_pdf->fetch_assoc()){?>
 
 		<article class="capitulo">
-				<div class="info">
 					<div class="titulo">
 						<h4>
+						<div class="lista-capitulo">
 						<?php 
-						
 						if(((substr($cap['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and ((substr($cap['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or (($cap['fecha_vencimiento'] == '0000-00-00 00:00:00')or($cap['fecha_vencimiento'] == ''))))){?>
 							<a href="leerLibro.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a>
 						<?php }else if(!$autenticador->esAdmin()){?>
@@ -50,17 +49,16 @@ h2{
 						<?php }else{?>
 							<a style="text-decoration:line-through" href="leerLibro.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a>  No disponible
 						<?php }?>
+						</div>
 						</h4>
 						<?php if($autenticador->esAdmin()){?>
-						<div class="input">
-						<div class="boton_eliminar">
-						    <button onClick="confirmation('<?php echo $cap['id']?>','<?php echo $libro['id']?>')">Eliminar</button>
+						
+						<div class="boton-eliminar-capitulo">
+						    <button id="btn-borrar" onClick="confirmation('<?php echo $cap['id']?>','<?php echo $libro['id']?>')">Eliminar</button>
 						</div>
-        				</div>
+        			
 						<?php }?>
 					</div>
-				    </div>
-				</div>
 		</article>
 		<?php } }else{?>
 			<h2>Capitulos del libro: <?php echo $libro['titulo']?> </h2>
