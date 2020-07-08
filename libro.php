@@ -340,7 +340,7 @@
                         <div class="der">
                         <?php
                             if($comentario['usuario_id']==$user_id || $autenticador->esAdmin()){?>  
-                            <div class="eliminar-com"><button id="btn-borrar-com"><i class="fas fa-trash"></i></button></div>
+                            <div class="eliminar-com"><button id="btn-borrar-com" onClick="borrarCom('<?php echo $id_libro_comentario?>', '<?php echo $comentario['id']?>')"><i class="fas fa-trash"></i></button></div>
                             
                                 <?php if($comentario['es_spoiler'] == 1){?>
                                     <div class="checkSpoiler">
@@ -377,16 +377,40 @@
 	</div>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    /*function myFunction(e) {
-        console.log('ahora???');
-        let parrafo = document.querySelector('.no-mostrar');
-        parrafo.style.opacity = "100%";
-        console.log(parrafo);
-    } */
+    function borrarCom($id_libro_comentario, $comentario_id){
+	Swal.fire({
+		title: '¿Seguro?',
+		text: "¡Esta acción no se puede revertir!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: '¡Sí, borrar!',
+		cancelButtonText: 'Cancelar'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: "eliminarComentario.php?id=" + $comentario_id ,
+				context: document.body
+			}).done(() => {
+				Swal.fire(
+					'¡Borrado!',
+					'El comentario fue borrado con exito',
+					'success'
+				).then(() =>{
+					window.location.href = "libro.php?id=" + $id_libro_comentario;
+				});
+			});
+		}
+	})
+}
 </script>
 
 <script>
+
+
 function confirmation($identPDF, $identLibro){
 	Swal.fire({
 		title: '¿Seguro?',

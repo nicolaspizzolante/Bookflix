@@ -2,7 +2,7 @@
 
 include 'db.php';
 $db = conectar();
-$id_comentario = (isset($_POST['id'])) ?(int) $_POST['id'] : '';
+$id_comentario = (isset($_GET['id'])) ?(int) $_GET['id'] : '';
 
     $sql = "SELECT libro_id FROM comentarios WHERE id = $id_comentario";
     $db->query($sql);
@@ -13,10 +13,12 @@ $id_comentario = (isset($_POST['id'])) ?(int) $_POST['id'] : '';
     $sql = "DELETE FROM comentarios WHERE id = $id_comentario";
     $db->query($sql);
 
-
+    header("Location: libro.php?id=$idLibro");
+    ?>
+/*
         $respuesta=array(
             'respuesta'=>'correcto',
             'idLibro' => $id_libro
         );    
 
-    echo json_encode($respuesta);
+    echo json_encode($respuesta); */
