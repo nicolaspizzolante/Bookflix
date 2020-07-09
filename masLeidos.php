@@ -58,13 +58,12 @@ ORDER BY COUNT(*) DESC*/
 
 	while($h = $result->fetch_assoc()){
 		$id = $h['libro_id'];
-		$sql = "SELECT DISTINCT * FROM libros WHERE id = '$id'";
-		$r = $conexion->query($sql);
-		var_dump($r->fetch_assoc()['id']);
-		//$row = $r->fetch_assoc();
+		//$sql = "SELECT DISTINCT * FROM libros WHERE id = '$id'";
+		//var_dump($r->fetch_assoc()['id']);
 		?>
 		<tr>
 			<td><a href="libro.php?id=<?php echo $id?>"><?php echo $autenticador->retornarTitulo($id); ?></a></td>
+			<td style="text-align:center;"><?php echo $h['COUNT(*)']?></td>
 		</tr>
 		<?php 
 	}
