@@ -70,12 +70,26 @@
         </div>
 
         <div class="info-libro">
-            <div class="titulo-libro"> <h1><?php echo $libro['titulo'] ?></h1> </div>
+            <div class="titulo-libro"> <h1><?php echo $libro['titulo'] ?></h1></div>
             <div class="genero"><?php echo $libro['autor']; ?></div>
             <div class="autor"> <?php echo $libro['genero']; ?> </div>
             <div class="editorial"> <?php echo $libro['editorial']; ?> </div>
             <div class="sinopsis-libro"><?php echo $libro['sinopsis'] ?></div>
+            <?php 
+                if(!$autenticador->esAdmin()){
+                $usuario_id = $_SESSION['usuario']['id'];
+                $consulta = "SELECT * FROM favoritos WHERE libro_id = '$libro_id' and usuario_id = '$usuario_id'";             
+                $resultado = $db->query($consulta);
+                $r = $resultado->fetch_assoc();
+                if($r != null){
+            ?>
+                    <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=0">Quitar de favoritos</a></p>
+                    <?php }else{?>
+                        <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=1">Añadir a favoritos</a></p>
+                    <?php }?>
+                    <?php }?>
         </div>
+        
 	</div>
 
     <!-- Botones -->
