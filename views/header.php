@@ -50,6 +50,7 @@
 							<li><a href="historial.php">Historial</a></li>
 							<li><a href="administrarPerfiles.php">Administrar perfiles</a></li>
 							<li><a href="verListadoLibros.php">Ver listado de libros</a></li>
+							<li><a href="favoritos.php">Ver favoritos</a></li>
 						</ul>	
 					</li>
 				<?php } ?>
