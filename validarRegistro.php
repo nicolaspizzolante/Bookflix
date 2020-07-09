@@ -71,7 +71,8 @@ if(($usuario != null) or ($tarjeta != null)) {
 		header("Location: registrarse.php?nombre=$nombre&email=$email&apellido=$apellido&contrasenia=$contrasenia&confirmar=$confirmar&numero_tarjeta=$numero_tarjeta&codigo_tarjeta=$codigo_tarjeta&mes_vencimiento=$mes_vencimiento&anio_vencimiento=$anio_vencimiento&nombre_tarjeta=$nombre_tarjeta"); 
 	}
 } else {
-	$sql = "INSERT INTO usuarios (apellido, nombre, email, contrasenia, es_admin) VALUES('$apellido', '$nombre', '$email', '$contrasenia','0')";
+	$ahora = Date('Y-m-d');
+	$sql = "INSERT INTO usuarios (apellido, nombre, email, contrasenia, es_admin, fecha) VALUES('$apellido', '$nombre', '$email', '$contrasenia','0', '$ahora')";
 	try {
 		// guardamos usuario
 		$resultado = $conexion->query($sql);
