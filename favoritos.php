@@ -21,13 +21,13 @@
     <div style="text-align:center"><h1> Listado de favoritos </h1></div>
     <table class = "table table-striped table-dark">
         <tr>
-            <td style="text-align: center">Libro</td>
+            <td style="text-align: center;">Libro</td>
         </tr>
     <tbody>
         <?php while ($row = $rows->fetch_assoc()){ ?>
 
         <tr>
-            <td ><a href="libro.php?id=<?php echo $row['libro_id']; ?>"><?php echo $autenticador->retornarTitulo($row['libro_id']); ?></a></td>
+            <td style="text-align: center;"><a href="libro.php?id=<?php echo $row['libro_id']; ?>"><?php echo $autenticador->retornarTitulo($row['libro_id']); ?></a></td>
         </tr>
         <?php } ?>
     </tbody>
