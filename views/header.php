@@ -41,6 +41,7 @@
 							<li><a href="verlistadolibros.php">Ver Listado de Libros</a></li>
 							<li><a href="verlistadonovedades.php">Ver Listado de Novedades</a></li>
 							<li><a href="verListadoTrailers.php">Ver Listado de Trailers</a></li>
+							<li><a href="verReportes.php">Ver reportes</a></li>
 						</ul>
 					</li>
 				<?php } else { ?>
