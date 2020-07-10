@@ -1068,3 +1068,23 @@ textarea:focus {
 .ml-2 {
 	margin-left: 5px;
 }
+
+.btn-editar {
+	border: none;
+	padding: 10px 15px;
+	color: white;
+	background: var(--main-blue);
+	border-radius: 3px;
+}
+
+.btn-eliminar {
+	border: none;
+	padding: 10px 15px;
+	color: white;
+	background: var(--main-red);
+	border-radius: 3px;
+}
+
+.btn-editar:hover, .btn-eliminar:hover {
+	cursor: pointer;
+}
