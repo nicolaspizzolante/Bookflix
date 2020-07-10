@@ -57,6 +57,9 @@ if(($fechaHasta == '') || ($fechaDesde == '')){
 		?>
 		</table>
 	</div>
+	<div class="editar-perfil">
+	<a href="suscriptosEntreFechas.php"><input type="button" value="Volver"></a>
+</div>
 	</div>
 	<?php
 	}
