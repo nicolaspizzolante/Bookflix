@@ -38,6 +38,7 @@ if(($fechaHasta == '') || ($fechaDesde == '')){
 	<div class="publicaciones">
 
 	<table class = "table table-striped table-dark">
+	<div style="text-align:center"><h1> Usuarios suscriptos entre el <?php echo $fechaDesde?> y el <?php echo $fechaHasta?></h1></div>
             <tr>
                 <td style="text-align: center">Nombre del usuario</td>
                 <td style="text-align: center">Fecha de suscripcion</td>
