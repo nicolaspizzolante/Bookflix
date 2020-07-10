@@ -19,13 +19,9 @@ if($cant == 1) {
     $sql = "DELETE FROM perfiles WHERE id = $id";
     $db->query($sql);
     
-	$_SESSION['exito'] = '<li>Perfil borrado, volve a logearte.</li>';
-
-    session_destroy();
+	$_SESSION['exito'] = '<li>Perfil borrado exitosamente.</li>';
     
-    header("Location: login.php");
+    header("Location: perfiles.php");
 }
-
-
 
 ?>

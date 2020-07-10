@@ -16,6 +16,7 @@
 	$sql = "SELECT * FROM perfiles WHERE usuario_id = '$usuario_id'";
     $resultado = $db->query($sql);
 
+	$cant_perfiles = 0;
 ?>
 
 <style>
@@ -53,14 +54,15 @@ a {
 				<h3> <?= $perfil['nombre'] ?></h3>
 
 				<div class="botones">
-					<button class="btn-eliminar"><a href="bajaperfil.php?id=<?= $perfil['id'] ?>&usuario_id=<?= $perfil['usuario_id'] ?>">Eliminar</a></button>
+					<a href="bajaperfil.php?id=<?= $perfil['id'] ?>&usuario_id=<?= $perfil['usuario_id'] ?>"><button class="btn-eliminar">Eliminar</button></a>
 				</div>
 			</div>
-		<?php } ?>
+		<?php $cant_perfiles++; } ?>
 	</div>
 
-	<button class="btn-success"><a href="altaperfil.php">Crear nuevo perfil</a></button>
-
+	<?php if(($_SESSION['usuario']['es_premium'] && $cant_perfiles < 4) || (!$_SESSION['usuario']['es_premium'] && $cant_perfiles < 2)) { ?>
+		<a href="altaperfil.php"><button class="btn-success">Crear nuevo perfil</button></a>
+	<?php } ?>
 
 	<?php if (isset($_SESSION['errores'])): ?>
 		<ul id="errores" class="errores_mensaje" style="display:block;">
