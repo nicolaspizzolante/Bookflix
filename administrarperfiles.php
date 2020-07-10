@@ -59,6 +59,9 @@ a {
 		<?php } ?>
 	</div>
 
+	<button class="btn-success"><a href="altaperfil.php">Crear nuevo perfil</a></button>
+
+
 	<?php if (isset($_SESSION['errores'])): ?>
 		<ul id="errores" class="errores_mensaje" style="display:block;">
 			<?php 

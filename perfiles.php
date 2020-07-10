@@ -12,6 +12,9 @@
 	$db = conectar();
 	$sql = "SELECT * FROM perfiles WHERE usuario_id = '$usuario_id'";
     $resultado = $db->query($sql);
+
+    $cant_perfiles = $resultado->num_rows;
+
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +85,6 @@ h1 {
 
 <body>
 
-
 <div class="main">
     <h1>¿Quien está leyendo?</h1>
     
@@ -94,13 +96,32 @@ h1 {
                 <?= $perfil['nombre'] ?> 
             </a>
         <?php } ?>
-
-        <a href="altaperfil.php" class="perfil">
-            <i class="fas fa-plus"></i>
-            Agregar perfil
-        </a>
         
+        <?php if (($_SESSION['usuario']['es_premium'] && $cant_perfiles < 4) || (!$_SESSION['usuario']['es_premium'] && $cant_perfiles < 2)){ ?>
+            <a href="altaperfil.php" class="perfil">
+                <i class="fas fa-plus"></i>
+                Agregar perfil
+            </a>
+        <?php } ?>
     </div>
+    
+    <?php if (isset($_SESSION['errores'])): ?>
+		<ul id="errores" class="asd" style="display:block;">
+			<?php 
+				echo $_SESSION['errores']; 
+				unset($_SESSION['errores']);
+			?>
+		</ul>
+	<?php endif ?>
+
+	<?php if (isset($_SESSION['exito'])){ ?>
+        <ul id="exito" style="display:block;">
+            <?php 
+                echo $_SESSION['exito']; 
+                unset($_SESSION['exito']);
+            ?>
+        </ul>
+    <?php } ?>
 
 </div>
 

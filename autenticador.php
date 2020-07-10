@@ -20,7 +20,7 @@ class Autenticador {
 	function loginUser ($email, $contrasenia){
 		$conexion = conectar();
 
-		$sql = "SELECT id, email, apellido, nombre, es_admin
+		$sql = "SELECT id, email, apellido, nombre, es_admin, es_premium
 				FROM usuarios
 				WHERE email = '$email' AND contrasenia = '$contrasenia'";
 		

@@ -23,10 +23,10 @@ if($resultado){
         $resultado = $conexion->query($sql);
         $_SESSION['exito'] = '<li>Perfil creado exitosamente.</li>';
         
-		header('Location: altaperfil.php');
+		header('Location: perfiles.php');
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
-		header('Location: registrarse.php');
+		header('Location: login.php');
 	}
 
 }

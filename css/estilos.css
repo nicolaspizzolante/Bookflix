@@ -9,6 +9,7 @@
 	--secondary-red: #db202c;
 	--main-blue: #0275d8;
 	--secondary-blue: #0f7fdf;
+	--main-green: #007e33;
 }
 
 * {
@@ -1069,22 +1070,22 @@ textarea:focus {
 	margin-left: 5px;
 }
 
-.btn-editar {
+.btn-eliminar, .btn-success {
 	border: none;
 	padding: 10px 15px;
 	color: white;
-	background: var(--main-blue);
 	border-radius: 3px;
 }
 
 .btn-eliminar {
-	border: none;
-	padding: 10px 15px;
-	color: white;
 	background: var(--main-red);
-	border-radius: 3px;
 }
 
-.btn-editar:hover, .btn-eliminar:hover {
+.btn-success {
+	background: var(--main-green);
+}
+
+
+.btn-eliminar:hover, .btn-success:hover {
 	cursor: pointer;
 }

@@ -13,4 +13,8 @@ try {
 	header('Location: login.php');
 }
 
-header('Location: perfiles.php');
+if ($_SESSION['usuario']['es_admin']){
+	header('Location: index.php');
+} else {
+	header('Location: perfiles.php');
+}
