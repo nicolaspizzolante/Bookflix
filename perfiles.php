@@ -55,7 +55,7 @@ h1 {
 
 .perfiles {
     display:flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .perfil {
@@ -68,6 +68,7 @@ h1 {
     transition: border .2s;
     color: white;
     border-radius: 3px;
+    margin: 0 5px;
 }
 
 .perfil:hover {
