@@ -23,10 +23,18 @@
 					<form action="buscar.php" id="formulario-buscar" onsubmit="return validarBusqueda(this);">
 						<input id="buscar" placeholder="Buscar... " type="text" class="buscar" name="busqueda" value="<?php if(isset($_GET['busqueda'])){ echo $_GET['busqueda'];} ?>">
 					</form>
-				</li> 
-				<li>
-					<a href="muro.php">Perfil</a>
 				</li>
+				<?php if(!$_SESSION['usuario']['es_premium'] && !$autenticador->esAdmin()){ ?>
+					<li id="alta-premium">
+						<a href="#">¡Pasate a Premium!</a>
+					</li>
+				<?php } ?>
+				
+				<?php if($autenticador->esAdmin()){ ?>
+					<li>
+						<a href="muro.php">Perfil</a>
+					</li>
+				<?php } ?>
 				
 				<?php if($autenticador->esAdmin()){ ?>
 					<li><a href="">Opciones de Admin</a>
@@ -57,8 +65,9 @@
 				<?php } ?>
 				<li>
 					<?php if(isset($_SESSION['usuario']['perfil_nombre'])){ ?>
-					<a href="#"><i class="fas fa-user mr-2"></i> <?= $_SESSION['usuario']['perfil_nombre'] ?></a>
+					<a href="muro.php"><i class="fas fa-user mr-2"></i> <?= $_SESSION['usuario']['perfil_nombre'] ?></a>
 					<ul class="dropdown-1">
+						<li><a href="perfiles.php">Cambiar perfil <i class="fas fa-sign-out-alt ml-2"></i></a></li>
 						<li><a href="cerrarsesion.php">Cerrar Sesion <i class="fas fa-sign-out-alt ml-2"></i></a></li>
 					</ul>
 					<?php } else { ?>
@@ -68,4 +77,40 @@
 			</ul>
 		</div>
 	</div>
-<?php } //var_dump($_SESSION); ?>
+<?php } var_dump($_SESSION); ?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<script>
+
+	$('#alta-premium').on('click', function(){
+		Swal.fire({
+			title: 'Estas por pasarte a Bookflix Premium',
+			text: "¿Estás seguro?",
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '¡Sí!',
+			cancelButtonText: 'Cancelar'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					url: "altapremium.php",
+					context: document.body
+				}).done(() => {
+					Swal.fire(
+						'¡Ya sos Premium!',
+						'Ahora podes tener hasta 4 perfiles de Bookflix',
+						'success'
+					).then(() =>{
+						window.location.href = "perfiles.php";
+					});
+				});
+			}
+		})
+	});
+
+	
+</script>

@@ -55,13 +55,13 @@ h1 {
 
 .perfiles {
     display:flex;
+    justify-content: space-around;
 }
 
 .perfil {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin-right: 20px;
     background: #212121;
     padding: 25px;
     border: 5px solid transparent;
@@ -86,7 +86,7 @@ h1 {
 <body>
 
 <div class="main">
-    <h1>¿Quien está leyendo?</h1>
+    <h1>¿Quién está leyendo?</h1>
     
     <div class="perfiles" style="display:none;">
 
