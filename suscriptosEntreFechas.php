@@ -19,16 +19,16 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 <div class="container">
         <h1>Buscar usuarios suscriptos </h1>
-        <form action="" onsubmit="" method="post" enctype="multipart/form-data">
+        <form action="buscarSuscriptos.php" onsubmit="" method="post" enctype="multipart/form-data">
                 
             <div>
                 <p>Desde:</p>
-                    <input type="datetime-local" name="fechaDesde" step="1" min="" max="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?>" value="">
+                    <input type="date" name="fechaDesde" step="1" min="" max="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior;?>" value="">
             </div>
 
             <div>
                 <p>Hasta</p>
-                <input type="datetime-local" name="nuevaFechaVencimiento" step="1" min="" max="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?>" value="">
+                <input type="date" name="fechaHasta" step="1" min="" max="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior;?>" value="">
             </div>
 
            
