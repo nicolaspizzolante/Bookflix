@@ -264,6 +264,7 @@ a {
 .buscar:focus,
 .input input:focus,
 .editar-perfil input:focus,
+.boton-volver-reportes input:focus,
 .boton_me_gusta:focus,
 .eliminar button:focus,
 .boton_seguir_perfil:focus,
@@ -525,9 +526,6 @@ select:focus {
 
 
 
-
-
-
 .editar-perfil input[type="submit"]{
 	background: #0f7fdf;
 	width: 100px;
@@ -537,6 +535,19 @@ select:focus {
 
 
 .editar-perfil input[type="submit"]:hover {
+	cursor: pointer;
+	background: var(--secondary-blue);
+}
+
+.editar-perfil input[type="button"]{
+	background: #0f7fdf;
+	width: 100px;
+	margin-left: 45%;
+	color:white;
+}
+
+
+.editar-perfil input[type="button"]:hover {
 	cursor: pointer;
 	background: var(--secondary-blue);
 }

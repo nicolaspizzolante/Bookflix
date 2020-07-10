@@ -46,7 +46,7 @@ ORDER BY COUNT(*) DESC*/
 <div class="container">
 	<!-- Libros publicados -->
 	<div class="publicaciones">
-
+	<div style="text-align:center"><h1> Listado de libros ordenados por lecturas </h1></div>
 	<table class = "table table-striped table-dark">
             <tr>
                 <td style="text-align: center">Libro</td>
@@ -71,6 +71,9 @@ ORDER BY COUNT(*) DESC*/
 </tbody>
 </table>
 	</div>
+	<div class="editar-perfil">
+	<a href="verReportes.php"><input type="button" value="Volver"></a>
+</div>
 </div>
 
 <?php }?>

@@ -36,7 +36,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
                 <div class="input">
                     <input type="submit" value="Ok">
                 </div>
-                <a href="verListadoLibros.php" id="btn-cancelar">Cancelar</a>
+                <a href="verReportes.php" id="btn-cancelar">Cancelar</a>
             </div>
         </form>
     </div>
