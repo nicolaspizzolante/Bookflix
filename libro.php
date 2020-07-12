@@ -362,7 +362,7 @@
                             </div> 
                         </div><!--.izq-->
                         <div class="der">
-                        <?php if($comentario['perfil_id'] == $perfil_id || $autenticador->esAdmin()){?>  
+                        <?php if(($comentario['perfil_id'] == $_SESSION['usuario']['perfil_id']) || ($autenticador->esAdmin())){?>  
                             <div class="eliminar-com"><button id="btn-borrar-com" onClick="borrarCom('<?php echo $id_libro_comentario?>', '<?php echo $comentario['id']?>')"><i class="fas fa-trash"></i></button></div> 
                         <?php } ?>
                             <?php if($autenticador->esAdmin()){?>
