@@ -28,7 +28,16 @@ class Autenticador {
 
 		//Si el usuario existe, asignarlo a la variable "usuario" de la variable $_SESSION
 		if($usuario = $resultado->fetch_assoc()){
+			$admin_id = $usuario['id'];
 			$_SESSION['usuario'] = $usuario;
+
+			// si es admin agrego su perfil id a la session
+			if($usuario['es_admin']){
+				$sql = "SELECT id FROM perfiles WHERE usuario_id = '$admin_id'";
+				$resultado = $conexion->query($sql);
+				$_SESSION['usuario']['perfil_id'] = $resultado->fetch_assoc()['id'];
+			}
+
 		} else {
 			throw new Exception("Credenciales inválidas", 1);
 		}
