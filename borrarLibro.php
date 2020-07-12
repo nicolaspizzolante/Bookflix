@@ -14,7 +14,7 @@ if(!$idpdf){
 }else{
     $sql = "DELETE FROM libros_pdf WHERE id = $idpdf";
     $db->query($sql);
-    $sql = "UPDATE libros SET subidos = subidos - 1";
+    $sql = "UPDATE libros SET subidos = subidos - 1 WHERE id=$idLibro";
     $db->query($sql);
 
     //Si borra todos los capitulos reinicio contador de capitulos 
@@ -22,7 +22,7 @@ if(!$idpdf){
     $r = $db->query($sql);
     $cantSubidos = $r->fetch_assoc()['subidos'];
     if($cantSubidos == 0){
-        $sql = "UPDATE libros SET capitulos = 0";
+        $sql = "UPDATE libros SET capitulos = 0 WHERE id=$idLibro";
         $db->query($sql);
     }
 
