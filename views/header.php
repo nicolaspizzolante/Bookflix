@@ -67,7 +67,7 @@
 					<?php if(isset($_SESSION['usuario']['perfil_nombre'])){ ?>
 					<a href="muro.php"><i class="fas fa-user mr-2"></i> <?= $_SESSION['usuario']['perfil_nombre'] ?></a>
 					<ul class="dropdown-1">
-						<li><a href="perfiles.php">Cambiar perfil <i class="fas fa-sign-out-alt ml-2"></i></a></li>
+						<li><a href="perfiles.php">Cambiar perfil <i class="fas fa-redo ml-2"></i></a></li>
 						<li><a href="cerrarsesion.php">Cerrar Sesion <i class="fas fa-sign-out-alt ml-2"></i></a></li>
 					</ul>
 					<?php } else { ?>

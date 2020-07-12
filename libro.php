@@ -77,15 +77,15 @@
             <div class="sinopsis-libro"><?php echo $libro['sinopsis'] ?></div>
             <?php 
                 if(!$autenticador->esAdmin()){
-                $usuario_id = $_SESSION['usuario']['id'];
-                $consulta = "SELECT * FROM favoritos WHERE libro_id = '$libro_id' and usuario_id = '$usuario_id'";             
+                $perfil_id = $_SESSION['usuario']['perfil_id'];
+                $consulta = "SELECT * FROM favoritos WHERE libro_id = '$libro_id' and perfil_id = '$perfil_id'";             
                 $resultado = $db->query($consulta);
                 $r = $resultado->fetch_assoc();
                 if($r != null){
             ?>
-                    <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=0">Quitar de favoritos</a></p>
+                    <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=0">Quitar de favoritos</a></p>
                     <?php }else{?>
-                        <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=1">Añadir a favoritos</a></p>
+                        <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=1">Añadir a favoritos</a></p>
                     <?php }?>
                     <?php }?>
         </div>

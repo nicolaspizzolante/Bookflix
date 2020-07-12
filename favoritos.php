@@ -9,14 +9,13 @@
     include 'views/header.php';
 
     $db = conectar();
-    $id_usuario = $_SESSION['usuario']['id'];
+    $perfil_id = $_SESSION['usuario']['perfil_id'];
 
-    $sql = "SELECT libro_id FROM favoritos WHERE usuario_id = $id_usuario";
+    $sql = "SELECT libro_id FROM favoritos WHERE perfil_id = $perfil_id";
     $rows = $db->query($sql);
 
     if($rows->num_rows == 0){
-    $_SESSION['usuario']['errores'] = 'Aun no has marcado favoritos';
-
+        $_SESSION['usuario']['errores'] = 'Aun no has marcado favoritos';
     }else{?>
     <div style="text-align:center"><h1> Listado de favoritos </h1></div>
     <table class = "table table-striped table-dark">
