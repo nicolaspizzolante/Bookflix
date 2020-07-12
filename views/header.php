@@ -30,7 +30,7 @@
 					<li id="alta-premium">
 						<a href="#">¡Pasate a Premium!</a>
 					</li>
-				<?php } else { ?>
+				<?php } else if ($_SESSION['usuario']['es_premium']){ ?>
 					<li id="baja-premium">
 						<a href="#">Salir de Premium</a>
 					</li>
@@ -83,17 +83,10 @@
 			</ul>
 		</div>
 	</div>
-<?php }  var_dump($_SESSION); ?>
+<?php }  //var_dump($_SESSION); ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
-<?php 
-
-
-
-
-?>
 
 <script>
 
@@ -135,7 +128,7 @@
 		} else {
 			Swal.fire({
 			title: 'Estas por salir de Bookflix Premium',
-			text: "¿Estás seguro?",
+			text: "¿Estás seguro? Solo podras tener hasta dos perfiles",
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
