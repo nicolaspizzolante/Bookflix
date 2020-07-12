@@ -89,7 +89,7 @@
 	$('#alta-premium').on('click', function(){
 		Swal.fire({
 			title: 'Estas por pasarte a Bookflix Premium',
-			text: "¿Estás seguro?",
+			text: "¿Estás seguro? El coste mensual se incrementará en $600",
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
