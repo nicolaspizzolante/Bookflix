@@ -135,6 +135,7 @@
                 <div class="input">
                     <a href="leerLibro.php?id=<?php echo $idPrimero ?>"><input type="button" value="Leer completo"></a>
                 </div>
+
             <?php } ?>
         <?php } ?>
 
@@ -173,6 +174,7 @@
             
             <?php } ?> <!-- fin if de botones de carga -->
 
+
             <!-- Boton editar fechas -->
             <?php
             if($libro['subidos'] >= 1){
@@ -190,6 +192,10 @@
                 <?php }else{?>
                     <div class="input">
                         <a href="perfilLibro.php?id=<?php echo $libro_id?>&selector=<?php echo 0?>"><input type="button" value="Editar fechas"></a>
+                    </div>
+
+                    <div class="input">
+				        <button id="btn-borrar" onClick="confirmationBorradoCapitulos('<?php echo $libro_id?>')">Eliminar capitulos</button>
                     </div>
                 <?php }?>
             <?php } ?> <!-- fin boton editar fechas -->
@@ -451,6 +457,35 @@ function confirmation($identPDF, $identLibro){
 					'success'
 				).then(() =>{
 					window.location.href = "verListadoLibros.php";
+				});
+			});
+		}
+	})
+}
+</script>
+<script>
+function confirmationBorradoCapitulos($identLibro){
+    Swal.fire({
+		title: '¿Seguro?',
+		text: "¡Esta acción no se puede revertir!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: '¡Sí, borrar!',
+		cancelButtonText: 'Cancelar'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: "borrarCapitulos.php?idLibro=" + $identLibro,
+				context: document.body
+			}).done(() => {
+				Swal.fire(
+					'¡Borrado!',
+					'Los capitulos han sido borrados',
+					'success'
+				).then(() =>{
+					window.location.href = "libro.php?id="+$identLibro;
 				});
 			});
 		}
