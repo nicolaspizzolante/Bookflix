@@ -15,9 +15,11 @@
 				<li>
 					<?php if($autenticador->esAdmin()){ ?>
 						<a href="index.php" id="nav-logo"><img src="./img/logoadmin.png" alt=""></a>
-					<?php }else{?>
+					<?php } else if ($_SESSION['usuario']['es_premium']){?>
+						<a href="index.php" id="nav-logo"><img src="./img/logopremium.png" alt=""></a>
+					<?php } else { ?>
 						<a href="index.php" id="nav-logo"><img src="./img/logo.png" alt=""></a>
-					<?php }?>
+					<?php } ?>
 				</li>
 				<li id="form-buscar">
 					<form action="buscar.php" id="formulario-buscar" onsubmit="return validarBusqueda(this);">
