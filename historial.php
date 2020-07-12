@@ -9,9 +9,9 @@
     include 'views/header.php';
 
     $db = conectar();
-    $id = $_SESSION['usuario']['id'];
+    $id = $_SESSION['usuario']['perfil_id'];
 
-    $sql = "SELECT libro_id, fecha FROM historial WHERE usuario_id = $id ORDER BY fecha DESC";
+    $sql = "SELECT libro_id, fecha FROM historial WHERE perfil_id = $id ORDER BY fecha DESC";
     $rows = $db->query($sql);
 
     if($rows->num_rows == 0){
