@@ -211,20 +211,24 @@
     
         <?php }?>        
     </div>
+    
+    <!-- Traemos todos los comentarios del libro -->
+
     <?php 
-            $sql = "SELECT texto, fecha, libro_id, usuario_id, calificacion FROM comentarios ORDER BY fecha DESC";
+            $sql = "SELECT texto, fecha, libro_id, perfil_id, calificacion FROM comentarios ORDER BY fecha DESC";
             $coms = $db->query($sql);
-            $Comentaste =false;
-            $user_id = $_SESSION['usuario']['id'];
+            $comentaste = false;
+            $perfil_id = $_SESSION['usuario']['perfil_id'];
     ?>
-    <?php foreach ($coms as $com) {
-        if($com['usuario_id'] == $user_id && $com['libro_id'] == $libro_id) {
-           
-            $Comentaste = true;
-        }
-     } 
+
+    <?php 
+        foreach ($coms as $com) {
+            if($com['perfil_id'] == $perfil_id && $com['libro_id'] == $libro_id) {
+                $comentaste = true;
+            }
+        } 
     ?> 
-    <?php if($Comentaste == false && !($autenticador->esAdmin())){ ?>
+    <?php if(!$comentaste && !$autenticador->esAdmin()){ ?>
         <form action="comentar.php" method="get" class="form-comentario" id="formulario-comentar">
                 <textarea class="comentar" placeholder="Deja un comentario" name="comentario"></textarea>
                 <input type="hidden" name="id_libro" value="<?php echo $libro_id; ?>">
@@ -264,28 +268,29 @@
 		<div class="lista-comentarios">
             <?php $hayComentarios=false;
                   foreach ($comentarios as $comentario) {
-                      if($libro_id== $comentario['libro_id']){
+                      if($libro_id == $comentario['libro_id']){
                           $hayComentarios = true;
                     }
                  }
                 if($hayComentarios){?>
                 <h2 class="titulo-comentarios">Comentarios</h2>
-            <?php }else{
+            <?php } else {
                 if(!$autenticador->esAdmin()){?>
                 <h2 class="reseña">Se el primero en dejar su opinión !</h2>  
-            <?php }else{?>
+            <?php } else {?>
                 <h2 class="reseña">Aún no se han realizado comentarios</h2> 
             <?php }?>
+
         <?php }?>      
-	<?php while ($comentario = $comentarios1->fetch_assoc()){ //array asociativo con los comentarios?>
+	<?php while ($comentario = $comentarios1->fetch_assoc()){ //array asociativo con los comentarios ?>
 			<?php 
 				$id_libro_comentario = $comentario['libro_id'];
 				
 				if ($libro_id === $id_libro_comentario) {
                    
-					$usuario_id = $comentario['usuario_id'];
-					$sql = "SELECT id, nombre, apellido FROM usuarios WHERE id = $usuario_id";
-                    $nombres = $db->query($sql);//traigo nom y ape de la tabla de usuarios usando el usuario id del comentario 
+					$perfil_id = $comentario['perfil_id'];
+					$sql = "SELECT nombre FROM perfiles WHERE id = $perfil_id";
+                    $nombres = $db->query($sql); //traigo nom de la tabla de perfiles usando el perfil id del comentario 
                     
 			?>
 			  <?php $nombre = $nombres->fetch_assoc(); ?>
@@ -343,18 +348,17 @@
                                 
                             </div>
                             <div>
-                                <span class="nombre-usuario"><?php echo $nombre['nombre'];?> <?php echo $nombre['apellido'] ?></span>
+                                <span class="nombre-usuario"><?php echo $nombre['nombre'];?></span>
                             </div>
                             <div>
                                 <i class="far fa-clock"></i>
-                                <span class="fecha-comentario"><?php echo $comentario['fecha'] ?></span>
+                                <span class="fecha-comentario"><?php echo $comentario['fecha']; ?></span>
                             </div> 
                         </div><!--.izq-->
                         <div class="der">
-                        <?php
-                            if($comentario['usuario_id']==$user_id || $autenticador->esAdmin()){?>  
+                        <?php if($comentario['perfil_id'] == $perfil_id || $autenticador->esAdmin()){?>  
                             <div class="eliminar-com"><button id="btn-borrar-com" onClick="borrarCom('<?php echo $id_libro_comentario?>', '<?php echo $comentario['id']?>')"><i class="fas fa-trash"></i></button></div> 
-                            <?php } ?>
+                        <?php } ?>
                             <?php if($autenticador->esAdmin()){?>
                                 <?php if($comentario['es_spoiler'] == 1){?>
                                     <div class="checkSpoiler">
@@ -394,32 +398,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     function borrarCom($id_libro_comentario, $comentario_id){
-	Swal.fire({
-		title: '¿Seguro?',
-		text: "¡Esta acción no se puede revertir!",
-		icon: 'warning',
-		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
-		confirmButtonText: '¡Sí, borrar!',
-		cancelButtonText: 'Cancelar'
-	}).then((result) => {
-		if (result.value) {
-			$.ajax({
-				url: "eliminarComentario.php?id=" + $comentario_id ,
-				context: document.body
-			}).done(() => {
-				Swal.fire(
-					'¡Borrado!',
-					'El comentario fue borrado con exito',
-					'success'
-				).then(() =>{
-					window.location.href = "libro.php?id=" + $id_libro_comentario;
-				});
-			});
-		}
-	})
-}
+        Swal.fire({
+            title: '¿Seguro?',
+            text: "¡Esta acción no se puede revertir!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Sí, borrar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "eliminarComentario.php?id=" + $comentario_id ,
+                    context: document.body
+                }).done(() => {
+                    Swal.fire(
+                        '¡Borrado!',
+                        'El comentario fue borrado con exito',
+                        'success'
+                    ).then(() =>{
+                        window.location.href = "libro.php?id=" + $id_libro_comentario;
+                    });
+                });
+            }
+        });
+    }
 </script>
 
 <script>

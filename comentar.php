@@ -3,15 +3,15 @@
     session_start();
     include 'db.php';
     $conexion = conectar();
-    $id_usuario = $_SESSION['usuario']['id'];
+    $perfil_id = $_SESSION['usuario']['perfil_id'];
     $id_libro = $_GET['id_libro'];
     $comentario = $_GET['comentario'];
     $calificacion = $_GET['puntuacion'];
     $contiene_spoiler = $_GET['spoiler'];
 
 
-        $sql = "INSERT INTO comentarios (texto, fecha, libro_id, usuario_id, calificacion, es_spoiler) 
-            VALUES ('$comentario', now(), '$id_libro', '$id_usuario', '$calificacion', '$contiene_spoiler')";
+        $sql = "INSERT INTO comentarios (texto, fecha, libro_id, perfil_id, calificacion, es_spoiler) 
+            VALUES ('$comentario', now(), '$id_libro', '$perfil_id', '$calificacion', '$contiene_spoiler')";
         
         try{
             $resultado = $conexion->query($sql);
