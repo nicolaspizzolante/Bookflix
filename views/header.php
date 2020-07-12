@@ -30,8 +30,12 @@
 					<li id="alta-premium">
 						<a href="#">¡Pasate a Premium!</a>
 					</li>
-				<?php } ?>
-				
+				<?php } else { ?>
+					<li id="baja-premium">
+						<a href="#">Salir de Premium</a>
+					</li>
+				<?php }?>
+
 				<?php if($autenticador->esAdmin()){ ?>
 					<li>
 						<a href="muro.php">Perfil</a>
@@ -84,6 +88,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
+<?php 
+
+
+
+
+?>
+
 <script>
 
 	$('#alta-premium').on('click', function(){
@@ -113,5 +124,39 @@
 		})
 	});
 
+	$('#baja-premium').on('click', function(){
+		let cantPerfiles = <?= $autenticador->cantPerfiles() ?>;
+		if(cantPerfiles > 2){
+			Swal.fire (
+				'No podes dar de baja Bookflix Premium',
+				"Tenes que tener como mucho 2 perfiles para poder hacerlo.",
+				'error'
+			);
+		} else {
+			Swal.fire({
+			title: 'Estas por salir de Bookflix Premium',
+			text: "¿Estás seguro?",
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '¡Sí!',
+			cancelButtonText: 'Cancelar'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					url: "bajapremium.php",
+					context: document.body
+				}).done(() => {
+					Swal.fire(
+						'Saliste de Bookflix premium'
+					).then(() =>{
+						window.location.href = "perfiles.php";
+					});
+				});
+			}
+		})
+		}
+
+	});
 	
 </script>

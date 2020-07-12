@@ -73,4 +73,13 @@ class Autenticador {
 
 		return $conexion->query($sql)->fetch_assoc()['titulo'];
 	}
+
+	function cantPerfiles(){
+		$conexion = conectar();
+
+		$id = $_SESSION['usuario']['id'];
+		$sql = "SELECT count(*) as cant FROM perfiles WHERE usuario_id = '$id'";
+
+		return $conexion->query($sql)->fetch_assoc()['cant'];
+	}
 }
