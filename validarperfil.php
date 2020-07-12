@@ -8,11 +8,11 @@ $usuario_id = $_SESSION['usuario']['id'];
 $nombre = trim($_POST["nombre"]);
 
 // consulta para saber si el libro ya existe en la db
-$sql = "SELECT nombre FROM perfiles WHERE usuario_id = $usuario_id AND nombre = $nombre";
+$sql = "SELECT nombre FROM perfiles WHERE usuario_id = '$usuario_id' AND nombre = '$nombre'";
 $resultado = $conexion->query($sql);
 
 // si ya existe un perfil con ese nombre devuelvo error
-if($resultado){
+if($resultado->num_rows){
     $_SESSION['errores'] .= '<li>Nombre de perfil existente.</li>';
 	header("Location: altaperfil.php");
 } else {

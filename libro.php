@@ -45,6 +45,20 @@
     $trailer =  $db->query($sql);
     $tieneTrailer = $trailer->num_rows;
 
+    // calculo de calificacion
+    $sql = "SELECT calificacion FROM comentarios WHERE libro_id = $libro_id";
+    $resultado = $db->query($sql);
+    $total = 0;
+    $cant = 0;
+    while ($puntaje = $resultado->fetch_assoc()['calificacion']){
+        $total = $total + $puntaje;
+        $cant +=1;
+    }
+    if($cant == 0){
+        $prom = 0;
+    }else{
+        $prom = round($total/$cant);
+    }
 ?>
 
 <div class="container">
@@ -71,6 +85,11 @@
 
         <div class="info-libro">
             <div class="titulo-libro"> <h1><?php echo $libro['titulo'] ?></h1></div>
+            <?php if ($prom != 0) {?>
+                <div class="calificacion my-2"> <?= $prom ?> <i class="fas fa-star"></i></div>
+            <?php } else { ?>
+                <div class="calificacion my-2"> Sin calificar</div>
+            <?php } ?>
             <div class="genero"><?php echo $libro['autor']; ?></div>
             <div class="autor"> <?php echo $libro['genero']; ?> </div>
             <div class="editorial"> <?php echo $libro['editorial']; ?> </div>
