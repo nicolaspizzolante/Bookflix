@@ -57,7 +57,7 @@
     if($cant == 0){
         $prom = 0;
     }else{
-        $prom = round($total/$cant);
+        $prom = ($total/$cant);
     }
 ?>
 
@@ -86,7 +86,7 @@
         <div class="info-libro">
             <div class="titulo-libro"> <h1><?php echo $libro['titulo'] ?></h1></div>
             <?php if ($prom != 0) {?>
-                <div class="calificacion my-2"> <?= $prom ?> <i class="fas fa-star"></i></div>
+                <div class="calificacion my-2"> <?= $prom ?>/5 <i class="fas fa-star"></i></div>
             <?php } else { ?>
                 <div class="calificacion my-2"> Sin calificar</div>
             <?php } ?>
