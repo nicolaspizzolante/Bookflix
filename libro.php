@@ -86,7 +86,53 @@
         <div class="info-libro">
             <div class="titulo-libro"> <h1><?php echo $libro['titulo'] ?></h1></div>
             <?php if ($prom != 0) {?>
-                <div class="calificacion my-2"> <?= $prom ?>/5 <i class="fas fa-star"></i></div>
+                <div class="calificacion my-2"><?php switch ($prom) {
+                                    case 5:
+                                        ?>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <?php
+                                        break;
+                                    case 4:
+                                        ?>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <?php
+                                        break;
+                                    case 3:
+                                        ?>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <?php
+                                        break;        
+                                    case 2:
+                                        ?>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <?php
+                                        break;     
+                                        case 1:
+                                            ?>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <?php
+                                            break;        
+                                }?></div>
             <?php } else { ?>
                 <div class="calificacion my-2"> Sin calificar</div>
             <?php } ?>
