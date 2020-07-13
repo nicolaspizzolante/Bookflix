@@ -44,20 +44,25 @@ h2{
 						<?php 
 						if(((substr($cap['fecha_publicacion'],0,16)<=date('Y-m-d H:i')) and ((substr($cap['fecha_vencimiento'],0,16) > date('Y-m-d H:i'))or (($cap['fecha_vencimiento'] == '0000-00-00 00:00:00')or($cap['fecha_vencimiento'] == ''))))){?>
 							<a href="leerLibro.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a>
-						<?php }else if(!$autenticador->esAdmin()){?>
-							<a style="text-decoration:line-through" href="#">Capitulo <?php echo $indice+=1?></a>  No disponible
-						<?php }else{?>
-							<a style="text-decoration:line-through" href="leerLibro.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a>  No disponible
-						<?php }?>
-						</div>
-						</h4>
-						<?php if($autenticador->esAdmin()){?>
+							<?php if($autenticador->esAdmin()){?>
 						
-						<div class="boton-eliminar-capitulo">
+								<div class="boton-eliminar-capitulo">
 						    <button id="btn-borrar" onClick="confirmation('<?php echo $cap['id']?>','<?php echo $libro['id']?>')">Eliminar</button>
 						</div>
         			
 						<?php }?>
+							
+						<?php }else if(!$autenticador->esAdmin()){?>
+							<a style="text-decoration:line-through" href="#">Capitulo <?php echo $indice+=1?></a> No disponible
+						<?php }else{?>
+							<a style="text-decoration:line-through" href="leerLibro.php?id=<?php echo $cap['id']?>">Capitulo <?php echo $indice+=1?></a> <p> No disponible</p>
+							<div class="boton-eliminar-capitulo-nodisp">
+						    <button id="btn-borrar" onClick="confirmation('<?php echo $cap['id']?>','<?php echo $libro['id']?>')">Eliminar</button>
+						</div>
+						<?php }?>
+						</div>
+						</h4>
+						
 					</div>
 		</article>
 		<?php } }else{?>

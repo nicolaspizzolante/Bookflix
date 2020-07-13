@@ -490,7 +490,12 @@ select:focus {
 }
 
 .boton-eliminar-capitulo{
-	margin-left: 500%;
+	margin-left: 544%;
+	margin-top: -28%;
+	
+}
+.boton-eliminar-capitulo-nodisp{
+	margin-left: 420%;
 	margin-top: -28%;
 	
 }
