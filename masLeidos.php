@@ -14,26 +14,8 @@
 	date_default_timezone_set('America/Argentina/Buenos_Aires');
 	$conexion = conectar();
 
-	$user_id = $_SESSION['usuario']['id'];
+	$user_profile_id = $_SESSION['usuario']['perfil_id'];
 
-	$pagina = isset($_GET['p']) ? (int)$_GET['p'] : 1; 
-	$trailersPorPagina = 5;
-
-	$inicio = ($pagina > 1) ? ($pagina * $trailersPorPagina - $trailersPorPagina) : 0;
-
-	$id = $_SESSION['usuario']['id'];
-	$sql = "SELECT * FROM trailers";
-	$total_trailers = $conexion->query($sql);
-	$total_trailers = $total_trailers->num_rows;
-	
-	$numero_paginas = ceil($total_trailers / $trailersPorPagina);
-
-	$paginacion = !($total_trailers < $trailersPorPagina);
-
-	/*SELECT Group, COUNT(*)
-FROM table
-GROUP BY Group
-ORDER BY COUNT(*) DESC*/
 	
 	$sql = "SELECT *, COUNT(*) FROM historial GROUP BY libro_id ORDER BY COUNT(*) DESC";
 	$result = $conexion->query($sql);

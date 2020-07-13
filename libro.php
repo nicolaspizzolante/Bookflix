@@ -303,7 +303,7 @@
             $leido = $result->fetch_assoc();
     ?> 
     <?php 
-    if((!$comentaste) && (!$autenticador->esAdmin()) && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0) && ($leido!=null)){ ?>
+    if((!$comentaste) && (!$autenticador->esAdmin()) && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0) && ($leido!=null) && $todosDisponibles){ ?>
         <form action="comentar.php" method="get" class="form-comentario" id="formulario-comentar">
                 <textarea class="comentar" placeholder="Deja un comentario" name="comentario"></textarea>
                 <input type="hidden" name="id_libro" value="<?php echo $libro_id; ?>">
@@ -350,14 +350,14 @@
                     }
                  }
                 if($hayComentarios){
-                    if(($libro['capitulos'] != $libro['subidos'] || $libro['subidos']== 0) && !$autenticador->esAdmin() && !$comentaste){?>
+                    if(($libro['capitulos'] != $libro['subidos'] || $libro['subidos']== 0 || !$todosDisponibles) && !$autenticador->esAdmin() && !$comentaste){?>
                     <h2 class="reseña">El libro no se puede comentar porque no esta disponible</h2> 
                     <?php }?>
                 <h2 class="titulo-comentarios">Comentarios</h2>
             <?php } else {
-                if(!$autenticador->esAdmin() && !$comentaste && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0) && ($leido != null)){?>
+                if(!$autenticador->esAdmin() && !$comentaste && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0 && $todosDisponibles) && ($leido != null)){?>
                 <h2 class="reseña">Se el primero en dejar su opinión !</h2>  
-            <?php } elseif(($libro['subidos'] == 0 || ($libro['subidos'] != $libro['capitulos'])) && !$autenticador->esAdmin()) {?>
+            <?php } elseif(($libro['subidos'] == 0 || ($libro['subidos'] != $libro['capitulos']) || !$todosDisponibles) && !$autenticador->esAdmin()) {?>
                 <h2 class="reseña">El libro no se puede comentar porque no esta disponible</h2> 
             <?php }elseif($autenticador->esAdmin()){?>
                 <h2 class="reseña">Aun no se han realizado comentarios</h2> 
