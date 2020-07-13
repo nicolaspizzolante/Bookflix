@@ -53,9 +53,8 @@ a {
 			<div class="perfil">
 				<h3> <?= $perfil['nombre'] ?></h3>
 
-				<div class="botones">
-					<a href="bajaperfil.php?id=<?= $perfil['id'] ?>&usuario_id=<?= $perfil['usuario_id'] ?>"><button class="btn-eliminar">Eliminar</button></a>
-				</div>
+				<button id="<?= $perfil['id'] ?>" class="btn-eliminar">Eliminar</button>
+
 			</div>
 		<?php $cant_perfiles++; } ?>
 	</div>
@@ -73,5 +72,43 @@ a {
 		</ul>
 	<?php endif ?>
 </div>
+
+<script>
+
+	let cantPerfiles = <?= $cant_perfiles ?>;
+	
+	if(cantPerfiles == 1){
+		$('.btn-eliminar').hide();
+	}
+
+	$('.btn-eliminar').on('click', function(){
+		Swal.fire({
+			title: '¿Seguro?',
+			text: "¡Esta acción no se puede revertir!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '¡Sí, borrar!',
+			cancelButtonText: 'Cancelar'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					url: "bajaperfil.php?id=" + $(this)[0].id + "&usuario_id=<?=$_SESSION['usuario']['id'] ?>"
+				}).done(() => {
+					$(this).parent().fadeOut();
+					Swal.fire(
+						'¡Borrado!',
+						'El perfil fue borrado con exito',
+						'success'
+					).then(() =>{
+						window.location.href = "perfiles.php";
+					});
+				});
+			}
+		})
+	});
+
+</script>
 
 <?php include 'views/footer.php'; ?>

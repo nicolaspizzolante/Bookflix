@@ -12,7 +12,7 @@ $cant = $resultado->fetch_assoc()['cant'];
 
 // si solo le queda uno no dejarlo borrar, devolverlo a administrarperfiles.php
 if($cant == 1) {
-	$_SESSION['errores'] = '<li>Solo te queda un perfil, no lo podes borrar.</li>';
+	echo 'Solo te queda un perfil, no lo podes borrar';
 
     header("Location: administrarperfiles.php");
 } else {
