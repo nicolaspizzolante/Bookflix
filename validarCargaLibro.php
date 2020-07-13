@@ -4,6 +4,8 @@ session_start();
 
 $conexion = conectar();
 
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
 $id = $_GET["id"];
 $fecha_publicacion = $_POST["fechaPublicacion"];
 $fecha_vencimiento = $_POST["fechaVencimiento"];

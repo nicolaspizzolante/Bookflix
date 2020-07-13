@@ -298,8 +298,12 @@
                 $comentaste = true;
             }
         } 
+        $sql = "SELECT * FROM historial WHERE libro_id = $libro_id and perfil_id = $perfil_id";
+            $result = $db->query($sql);
+            $leido = $result->fetch_assoc();
     ?> 
-    <?php if(!$comentaste && !$autenticador->esAdmin()){ ?>
+    <?php 
+    if((!$comentaste) && (!$autenticador->esAdmin()) && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0) && ($leido!=null)){ ?>
         <form action="comentar.php" method="get" class="form-comentario" id="formulario-comentar">
                 <textarea class="comentar" placeholder="Deja un comentario" name="comentario"></textarea>
                 <input type="hidden" name="id_libro" value="<?php echo $libro_id; ?>">
@@ -327,13 +331,15 @@
                 </div>
                 <input type="submit" class="boton-comentar">
         </form>
-    <?php }elseif(!$autenticador->esAdmin()){ ?>
+    <?php }elseif(!$autenticador->esAdmin() && $comentaste){ ?>
         <h1 class="ya-comentado">Ya dejaste tu opinión del libro !</h1>	
     <?php } ?>
 		<?php // consulta a la tabla de comentarios
 			$sql = "SELECT * FROM comentarios ORDER BY fecha DESC";
             $comentarios = $db->query($sql);
             $comentarios1 = $db->query($sql);
+
+            
 			?> 
 	
 		<div class="lista-comentarios">
@@ -343,15 +349,21 @@
                           $hayComentarios = true;
                     }
                  }
-                if($hayComentarios){?>
+                if($hayComentarios){
+                    if(($libro['capitulos'] != $libro['subidos'] || $libro['subidos']== 0) && !$autenticador->esAdmin() && !$comentaste){?>
+                    <h2 class="reseña">El libro no se puede comentar porque no esta disponible</h2> 
+                    <?php }?>
                 <h2 class="titulo-comentarios">Comentarios</h2>
             <?php } else {
-                if(!$autenticador->esAdmin()){?>
+                if(!$autenticador->esAdmin() && !$comentaste && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0) && ($leido != null)){?>
                 <h2 class="reseña">Se el primero en dejar su opinión !</h2>  
-            <?php } else {?>
-                <h2 class="reseña">Aún no se han realizado comentarios</h2> 
+            <?php } elseif(($libro['subidos'] == 0 || ($libro['subidos'] != $libro['capitulos'])) && !$autenticador->esAdmin()) {?>
+                <h2 class="reseña">El libro no se puede comentar porque no esta disponible</h2> 
+            <?php }elseif($autenticador->esAdmin()){?>
+                <h2 class="reseña">Aun no se han realizado comentarios</h2> 
+            <?php }elseif($leido == null){?>
+                <h2 class="reseña">Para comentar debes haber leido el libro</h2> 
             <?php }?>
-
         <?php }?>      
 	<?php while ($comentario = $comentarios1->fetch_assoc()){ //array asociativo con los comentarios ?>
 			<?php 
