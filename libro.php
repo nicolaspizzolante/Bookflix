@@ -57,7 +57,7 @@
     if($cant == 0){
         $prom = 0;
     }else{
-        $prom = ($total/$cant);
+        $prom = round($total/$cant);
     }
 ?>
 
