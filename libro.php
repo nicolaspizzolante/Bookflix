@@ -447,7 +447,7 @@
                     </div>
                     <div class="parte-inferior container">
                         <?php 
-                            if($comentario['es_spoiler']==1){ ?>
+                            if($comentario['es_spoiler']==1 && $comentario['texto']!= ''){ ?>
                                 <div class="cont-spoiler">
                                     <p class="warning" onClick="myFunction()">Warning: spoiler</p>
                                     <i class="fa fa-arrow-down" aria-hidden="true"></i>
