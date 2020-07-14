@@ -383,7 +383,7 @@
             <?php }elseif($autenticador->esAdmin()){?>
                 <h2 class="reseña">Aun no se han realizado comentarios</h2> 
             <?php }elseif($leido == null || !$leido['terminado']){?>
-                <h2 class="reseña">Para comentar debes haber leido el libro</h2> 
+                <h2 class="reseña">Para comentar debes haber terminado el libro</h2> 
             <?php }?>
         <?php }?>      
 	<?php while ($comentario = $comentarios1->fetch_assoc()){ //array asociativo con los comentarios ?>
