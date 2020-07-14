@@ -140,19 +140,53 @@
             <div class="autor"> <?php echo $libro['genero']; ?> </div>
             <div class="editorial"> <?php echo $libro['editorial']; ?> </div>
             <div class="sinopsis-libro"><?php echo $libro['sinopsis'] ?></div>
+
+            <?php if(($libro['capitulos'] == $libro['subidos']) || $libro['capitulos']!=0){?>
+                <?php
+                    $sql = "SELECT * FROM libros_pdf WHERE libro_id = '$libro_id'";
+                    $resultado = $db->query($sql);
+                    $todosDisponibles =TRUE;
+                    $int = 1;
+                    while ($cap = $resultado->fetch_assoc()){
+                        if($int == 1){
+                            $idPrimero = $cap['id'];
+                            $int = $int +1;
+                        }
+                        if((substr($cap['fecha_publicacion'],0,16)>date('Y-m-d H:i')) or ((substr($cap['fecha_vencimiento'],0,16) <= date('Y-m-d H:i'))and($cap['fecha_vencimiento'] != '0000-00-00 00:00:00')and($cap['fecha_vencimiento'] != ''))){
+                            $todosDisponibles = FALSE;
+                        }
+                    }
+                ?>
+        <?php } ?>
+
+
             <?php 
                 if(!$autenticador->esAdmin()){
-                $perfil_id = $_SESSION['usuario']['perfil_id'];
-                $consulta = "SELECT * FROM favoritos WHERE libro_id = '$libro_id' and perfil_id = '$perfil_id'";             
-                $resultado = $db->query($consulta);
-                $r = $resultado->fetch_assoc();
-                if($r != null){
-            ?>
-                    <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=0">Quitar de favoritos</a></p>
-                    <?php }else{?>
-                        <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=1">Añadir a favoritos</a></p>
+                    $perfil_id = $_SESSION['usuario']['perfil_id'];
+                    $consulta = "SELECT * FROM favoritos WHERE libro_id = '$libro_id' and perfil_id = '$perfil_id'";             
+                    $resultado = $db->query($consulta);
+                    $r = $resultado->fetch_assoc();
+                    if($r != null){
+                ?>
+                        <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=0">Quitar de favoritos</a></p>
+                        <?php }else{?>
+                            <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=1">Añadir a favoritos</a></p>
+                        <?php }?>
+
+                    <?php 
+                    if($todosDisponibles){//Averiguar si el usuario termino el libro para saber que boton mostrar
+                        $consulta = "SELECT terminado FROM historial WHERE libro_id = '$libro_id' and perfil_id = '$perfil_id'";             
+                        $resultado = $db->query($consulta);
+                        $r = $resultado->fetch_assoc();
+                        if($r!= null){ 
+                            if($r['terminado']){?>
+                                <p style="margin-top: 22px"><a href="marcarLecturaCompleta.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=0">Desmarcar como terminado</a></p>
+                            <?php }else{?>
+                                <p style="margin-top: 22px"><a href="marcarLecturaCompleta.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=1">Marcar como terminado</a></p>
+                            <?php }?>
+                        <?php }?>
                     <?php }?>
-                    <?php }?>
+                <?php }?>
         </div>
         
 	</div>
@@ -182,19 +216,6 @@
             
             <?php if($libro['capitulos'] == $libro['subidos']){?>
                 <?php
-                    $sql = "SELECT * FROM libros_pdf WHERE libro_id = '$libro_id'";
-                    $resultado = $db->query($sql);
-                    $todosDisponibles =TRUE;
-                    $int = 1;
-                    while ($cap = $resultado->fetch_assoc()){
-                        if($int == 1){
-                            $idPrimero = $cap['id'];
-                            $int = $int +1;
-                        }
-                        if((substr($cap['fecha_publicacion'],0,16)>date('Y-m-d H:i')) or ((substr($cap['fecha_vencimiento'],0,16) <= date('Y-m-d H:i'))and($cap['fecha_vencimiento'] != '0000-00-00 00:00:00')and($cap['fecha_vencimiento'] != ''))){
-                            $todosDisponibles = FALSE;
-                        }
-                    }
                     if($todosDisponibles){
                 ?>
                 <div class="input">
@@ -303,7 +324,7 @@
             $leido = $result->fetch_assoc();
     ?> 
     <?php 
-    if((!$comentaste) && (!$autenticador->esAdmin()) && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0) && ($leido!=null) && $todosDisponibles){ ?>
+    if((!$comentaste) && (!$autenticador->esAdmin()) && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0) && ($leido!=null) && $todosDisponibles && ($leido['terminado'])){ ?>
         <form action="comentar.php" method="get" class="form-comentario" id="formulario-comentar">
                 <textarea class="comentar" placeholder="Deja un comentario" name="comentario"></textarea>
                 <input type="hidden" name="id_libro" value="<?php echo $libro_id; ?>">
@@ -355,13 +376,13 @@
                     <?php }?>
                 <h2 class="titulo-comentarios">Comentarios</h2>
             <?php } else {
-                if(!$autenticador->esAdmin() && !$comentaste && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0 && $todosDisponibles) && ($leido != null)){?>
+                if(!$autenticador->esAdmin() && !$comentaste && ($libro['capitulos'] == $libro['subidos']) && ($libro['subidos']!= 0 && $todosDisponibles) && ($leido != null) && ($leido['terminado'])){?>
                 <h2 class="reseña">Se el primero en dejar su opinión !</h2>  
             <?php } elseif(($libro['subidos'] == 0 || ($libro['subidos'] != $libro['capitulos']) || !$todosDisponibles) && !$autenticador->esAdmin()) {?>
                 <h2 class="reseña">El libro no se puede comentar porque no esta disponible</h2> 
             <?php }elseif($autenticador->esAdmin()){?>
                 <h2 class="reseña">Aun no se han realizado comentarios</h2> 
-            <?php }elseif($leido == null){?>
+            <?php }elseif($leido == null || !$leido['terminado']){?>
                 <h2 class="reseña">Para comentar debes haber leido el libro</h2> 
             <?php }?>
         <?php }?>      
