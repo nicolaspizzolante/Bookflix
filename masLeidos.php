@@ -16,6 +16,16 @@
 
 	$user_profile_id = $_SESSION['usuario']['perfil_id'];
 
+	$sql = "SELECT * FROM historial";
+	$res = $conexion->query($sql);
+	$terminados = 0;
+	while($h = $res->fetch_assoc()){
+		if($h['terminado']){
+			$terminados = $terminados + 1;
+		}
+	}
+	$result = $conexion->query($sql);
+	
 	
 	$sql = "SELECT *, COUNT(*) FROM historial GROUP BY libro_id ORDER BY COUNT(*) DESC";
 	$result = $conexion->query($sql);
@@ -31,8 +41,9 @@
 	<div style="text-align:center"><h1> Listado de libros ordenados por lecturas </h1></div>
 	<table class = "table table-striped table-dark">
             <tr>
-                <td style="text-align: center">Libro</td>
-                <td style="text-align: center">Lecturas</td>
+                <td style="text-align: center">Titulo del Libro</td>
+                <td style="text-align: center">Lecturas sin finalizar</td>
+				<td style="text-align: center">Lecturas finalizadas</td>
             </tr>
         <tbody>
 
@@ -40,12 +51,11 @@
 
 	while($h = $result->fetch_assoc()){
 		$id = $h['libro_id'];
-		//$sql = "SELECT DISTINCT * FROM libros WHERE id = '$id'";
-		//var_dump($r->fetch_assoc()['id']);
 		?>
 		<tr>
 			<td><a href="libro.php?id=<?php echo $id?>"><?php echo $autenticador->retornarTitulo($id); ?></a></td>
-			<td style="text-align:center;"><?php echo $h['COUNT(*)']?></td>
+			<td style="text-align:center;"><?php echo $h['COUNT(*)'] - $terminados?></td>
+			<td style="text-align:center;"><?php echo $terminados?></td>
 		</tr>
 		<?php 
 	}
