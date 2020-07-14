@@ -16,16 +16,7 @@
 
 	$user_profile_id = $_SESSION['usuario']['perfil_id'];
 
-	$sql = "SELECT * FROM historial";
-	$res = $conexion->query($sql);
-	$terminados = 0;
-	while($h = $res->fetch_assoc()){
-		if($h['terminado']){
-			$terminados = $terminados + 1;
-		}
-	}
-	$result = $conexion->query($sql);
-	
+
 	
 	$sql = "SELECT *, COUNT(*) FROM historial GROUP BY libro_id ORDER BY COUNT(*) DESC";
 	$result = $conexion->query($sql);
@@ -48,9 +39,19 @@
         <tbody>
 
 	<?php
+	
 
 	while($h = $result->fetch_assoc()){
 		$id = $h['libro_id'];
+		$sql = "SELECT * FROM historial WHERE libro_id = '$id'";
+		$res = $conexion->query($sql);
+		//cuenta terminados para cada libro
+		$terminados = 0;
+		while($l = $res->fetch_assoc()){
+			if($l['terminado']){
+				$terminados = $terminados + 1;
+			}
+		}
 		?>
 		<tr>
 			<td><a href="libro.php?id=<?php echo $id?>"><?php echo $autenticador->retornarTitulo($id); ?></a></td>
