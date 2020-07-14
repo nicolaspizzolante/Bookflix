@@ -11,7 +11,7 @@
     $db = conectar();
     $id = $_SESSION['usuario']['perfil_id'];
 
-    $sql = "SELECT libro_id, fecha FROM historial WHERE perfil_id = $id ORDER BY fecha DESC";
+    $sql = "SELECT libro_id, fecha, terminado FROM historial WHERE perfil_id = $id ORDER BY fecha DESC";
     $rows = $db->query($sql);
 
     if($rows->num_rows == 0){
@@ -28,7 +28,11 @@
         <?php while ($row = $rows->fetch_assoc()){ ?>
 
         <tr>
-            <td ><a href="libro.php?id=<?php echo $row['libro_id']; ?>"><?php echo $autenticador->retornarTitulo($row['libro_id']); ?></a></td>
+            <?php if($row['terminado']){?>
+                <td ><a href="libro.php?id=<?php echo $row['libro_id']; ?>"><?php echo $autenticador->retornarTitulo($row['libro_id']); ?></a> -- Terminado</td>
+            <?php }else{?>
+                <td ><a href="libro.php?id=<?php echo $row['libro_id']; ?>"><?php echo $autenticador->retornarTitulo($row['libro_id']); ?></a></td>
+            <?php }?>
             <td style="text-align: center"><?php echo date("d/m/Y H:i", strtotime($row['fecha'])); ?></td>
         </tr>
         <?php } ?>
