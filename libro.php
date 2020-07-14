@@ -168,9 +168,9 @@
                     $r = $resultado->fetch_assoc();
                     if($r != null){
                 ?>
-                        <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=0">Quitar de favoritos</a></p>
+                        <p style="margin-top:22px"><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=0">Quitar de favoritos</a></p>
                         <?php }else{?>
-                            <p><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=1">Añadir a favoritos</a></p>
+                            <p style="margin-top:22px"><a href="marcarFavorito.php?id_user=<?php echo $_SESSION['usuario']['perfil_id'];?>&id_libro=<?php echo $libro['id'];?>&marcar=1">Añadir a favoritos</a></p>
                         <?php }?>
 
                     <?php 
