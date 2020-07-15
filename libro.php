@@ -141,11 +141,13 @@
             <div class="editorial"> <?php echo $libro['editorial']; ?> </div>
             <div class="sinopsis-libro"><?php echo $libro['sinopsis'] ?></div>
 
-            <?php if(($libro['capitulos'] == $libro['subidos']) || $libro['capitulos']!=0){?>
+            <?php $todosDisponibles = FALSE;?>
+
+            <?php if(($libro['capitulos'] == $libro['subidos']) && $libro['capitulos']!=0){?>
                 <?php
                     $sql = "SELECT * FROM libros_pdf WHERE libro_id = '$libro_id'";
                     $resultado = $db->query($sql);
-                    $todosDisponibles =TRUE;
+                    
                     $int = 1;
                     while ($cap = $resultado->fetch_assoc()){
                         if($int == 1){
@@ -154,6 +156,8 @@
                         }
                         if((substr($cap['fecha_publicacion'],0,16)>date('Y-m-d H:i')) or ((substr($cap['fecha_vencimiento'],0,16) <= date('Y-m-d H:i'))and($cap['fecha_vencimiento'] != '0000-00-00 00:00:00')and($cap['fecha_vencimiento'] != ''))){
                             $todosDisponibles = FALSE;
+                        }else{
+                            $todosDisponibles =TRUE;
                         }
                     }
                 ?>
