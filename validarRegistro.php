@@ -88,6 +88,15 @@ if(($usuario != null) or ($tarjeta != null)) {
 		// creamos perfil
 		$sql = "INSERT INTO perfiles (nombre, usuario_id) VALUES('$nombre', '$id')";
 		$resultado = $conexion->query($sql);
+
+		// agregamos informacion de usuario a reportes
+
+		$sql = "SELECT id FROM usuarios WHERE email = '$email'";
+		$resultado = $conexion->query($sql);
+        $id_usuario = $resultado->fetch_assoc()['id'];
+
+		$sql = "INSERT INTO reportes_usuarios (usuario_id, nombre_usuario, fecha) VALUES ('$id_usuario','$nombre', '$ahora')";
+		$resultado = $conexion->query($sql);
 		
 		header('Location: index.php');
 	} catch(Exception $e) {

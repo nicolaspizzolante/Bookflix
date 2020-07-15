@@ -32,6 +32,9 @@ if (($nombre == '') or (!preg_match('/^[A-Za-z\s]+$/',$nombre))) {
 	$sql = "UPDATE usuarios SET nombre = '$nombre' WHERE id = '$id'";
 	$resultado = $conexion->query($sql);
 	$_SESSION['usuario']['nombre'] = $nombre;
+
+	$sql = "UPDATE reportes_usuarios SET nombre_usuario = '$nombre' WHERE usuario_id = $id ";
+	$resultado = $conexion->query($sql);
 }
 
 if (($apellido == '') or (!preg_match('/^[A-Za-z\s]+$/',$apellido))) {

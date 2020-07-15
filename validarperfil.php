@@ -21,6 +21,10 @@ if($resultado->num_rows){
     try {
         // guardamos usuario
         $resultado = $conexion->query($sql);
+
+        $sql = "UPDATE reportes_usuarios SET cant_perfiles_activos = cant_perfiles_activos +1 WHERE usuario_id = '$usuario_id'";
+        $resultado = $conexion->query($sql);
+
         $_SESSION['exito'] = '<li>Perfil creado exitosamente.</li>';
         
 		header('Location: perfiles.php');

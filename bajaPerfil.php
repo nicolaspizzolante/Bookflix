@@ -18,6 +18,9 @@ if($cant == 1) {
 } else {
     $sql = "DELETE FROM perfiles WHERE id = $id";
     $db->query($sql);
+
+    $sql = "UPDATE reportes_usuarios SET cant_perfiles_activos = cant_perfiles_activos -1 WHERE usuario_id = '$usuario_id'";
+    $db->query($sql);
     
 	$_SESSION['exito'] = '<li>Perfil borrado exitosamente.</li>';
     
