@@ -42,12 +42,36 @@
 			?>
 		</ul>
 	<?php endif ?>
-    
+    <?php 
+        //consulta para los capitulos cargados que ya estan cargados
+           $sql2= "SELECT numero_capitulo FROM libros_pdf WHERE '$idlibro'= libro_id";
+           $result_caps_cargados= $db->query($sql2)->fetch_all();
+           //print_r($result_caps_cargados);
+        //consulta para la cantidad total de capitulos para ese libro   
+           $sql= "SELECT capitulos FROM libros WHERE '$idlibro'=id";
+           $result_cant_caps = $db->query($sql)->fetch_assoc()['capitulos'];
+          
+
+        //array con total de capitulos del libro
+        $arr1 = array();
+        for ($i = 1; $i <= $result_cant_caps; $i++) {
+            array_push($arr1, $i);
+        }   
+        //array con los valores para luego aplicar array_diff
+        $arr2 =array();
+        foreach ($result_caps_cargados as $val) {
+            array_push($arr2,$val[0]);
+        }
+        
+        //los capitulos que faltan o sea los que se pueden cargar
+        $resultado_array = array_diff($arr1, $arr2);
+        
+    ?>
         
         <?php if($capitulos == 0){ ?>
             <h1>Cargar capitulo </h1>
         <?php }else{?>
-            <h1>Cargar capitulo <?= $subidos + 1 ?> de <?= $capitulos ?> </h1>
+            <h1>Cargar capitulo: </h1>
         <?php }?>
         <p id="descripcion-novedad">Seleccione archivo pdf y fechas para el libro"<?php echo $libro['titulo'] ?>"</p>
         <form action="validarCargaCapitulo.php?id=<?php echo $idlibro ?>" onsubmit="return validarLibro(this)" method="post" enctype="multipart/form-data">
@@ -56,8 +80,14 @@
             <div class="input">
                 <input type="number" id="cantidadCapitulos" name="cantidadCapitulos" placeholder="Cantidad de capitulos">
             </div>
-           <?php }?>
-       
+           <?php }else{?>
+            <select name="num_cap" id="num_cap">
+                    <option disabled="disabled" selected value=""> Seleccione el capitulo a cargar</option>
+                    <?php foreach($resultado_array as $val) { ?>
+                        <option value="<?php echo $val?>"> <?php echo $val ?> </option>
+                    <?php }?>
+                </select>
+            <?php } ?> 
             <div>
                 <p>Fecha de publicacion (*)</p>
                 <input type="datetime-local" name="fechaPublicacion" step="1" min=<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); echo $diaAnterior.'T00:00:00';?> max="2100-12-31" value="<?php $diaAnterior= date('Y-m-d',strtotime(date('Y-m-d')."- 0 days")); $hora= date('H:i:s'); echo $diaAnterior."T".$hora;?>">

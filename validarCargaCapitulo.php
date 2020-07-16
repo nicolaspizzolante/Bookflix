@@ -7,6 +7,7 @@ $conexion = conectar();
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 $id = $_GET["id"];
+$num_capitulo = isset($_POST['num_cap']) ? $_POST['num_cap'] : 1;
 $fecha_publicacion = $_POST["fechaPublicacion"];
 $fecha_vencimiento = $_POST["fechaVencimiento"];
 $cantidad = isset($_POST['cantidadCapitulos']) ? $_POST['cantidadCapitulos'] : NULL;
@@ -28,10 +29,10 @@ if ($_SESSION['errores']){
 	$l = $r->fetch_assoc();
 
 	if($fecha_vencimiento == ''){
-		$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion) VALUES('$id','$pdf','$fecha_publicacion')";
+		$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion,numero_capitulo) VALUES('$id','$pdf','$fecha_publicacion','$num_capitulo')";
 	} else {
-		$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion,fecha_vencimiento) 
-		VALUES('$id','$pdf','$fecha_publicacion','$fecha_vencimiento')";
+		$sql = "INSERT INTO libros_pdf (libro_id,pdf,fecha_publicacion,fecha_vencimiento,numero_capitulo) 
+		VALUES('$id','$pdf','$fecha_publicacion','$fecha_vencimiento','$num_capitulo')";
 	}
 
 	try {

@@ -296,6 +296,9 @@ function validarLibro(form){
 	if((form.fechaVencimiento.value != '') && ((form.fechaVencimiento.value < formatDate(new Date())) || (form.fechaVencimiento.value <= form.fechaPublicacion.value))){
 		errores += "<li>La fecha de vencimiento debe ser posterior a fecha de publicacion y a la fecha actual</li>"
 	}
+	if(form.num_cap.value === ''){
+		errores +=  "<li>Debe seleccionar el numero del capitulo a cargar</li>"
+	}
 
 	if (errores) {
 		document.getElementById('errores').innerHTML = errores;
