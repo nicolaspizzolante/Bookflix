@@ -45,7 +45,7 @@ if ($_SESSION['errores']){
 		$r = $conexion->query($sql);
 		
 		if($inc == $l['capitulos']){
-			header('Location: verListadoLibros.php');
+			header("Location: libro.php?id=$id");
 		}else{
 			header("Location: cargarCapitulo.php?id=$id");
 		}

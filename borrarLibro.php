@@ -10,7 +10,7 @@ if(!$idpdf){
     $db->query($sql);
     
     
-    header("Location: verListadoLibros.php");
+    header("Location: perfilLibro.php?id=$idLibro");
 }else{
     $sql = "DELETE FROM libros_pdf WHERE id = $idpdf";
     $db->query($sql);

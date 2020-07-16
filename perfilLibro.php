@@ -33,6 +33,10 @@ h2{
 
 	<?php if($selector == 1){?>
 
+	<?php if($libro_pdf->num_rows == 0){
+		header("Location: libro.php?id=$idlibro");
+	}
+?>
 	<h2><?php echo $libro['titulo']?> - Listado de capitulos</h2>
 		<?php $indice = 0;?>
 	<?php while ($cap = $libro_pdf->fetch_assoc()){?>
@@ -107,7 +111,7 @@ function confirmation($identPDF, $identLibro){
 					'El libro fue borrado con exito',
 					'success'
 				).then(() =>{
-					window.location.href = "verListadoLibros.php";
+					window.location.href = "perfilLibro.php?id=" + $identLibro+"&selector=1";
 				});
 			});
 		}

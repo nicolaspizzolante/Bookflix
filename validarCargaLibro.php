@@ -31,7 +31,7 @@ if ($_SESSION['errores']){
 		$sql = "UPDATE libros SET subidos = 1, capitulos = 1 WHERE id = '$id'";
 		$r = $conexion->query($sql);
 
-		header('Location: verListadoLibros.php');
+		header("Location: libro.php?id=$id");
 	} catch(Exception $e) {
 		$_SESSION['errores'] = '<li>Error de la base de datos.</li>';
 		header('Location: verListadoLibros.php');

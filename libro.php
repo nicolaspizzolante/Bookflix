@@ -558,7 +558,7 @@ function confirmation($identPDF, $identLibro){
 					'El libro fue borrado con exito',
 					'success'
 				).then(() =>{
-					window.location.href = "verListadoLibros.php";
+					window.location.href = "libro.php?id=" + $identLibro;
 				});
 			});
 		}
