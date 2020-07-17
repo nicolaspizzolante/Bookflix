@@ -20,15 +20,33 @@ $resultado = $db->query($sql)->fetch_assoc()['id'];
 // si está actualizo, sino inserto nueva fila en tabla historial
 if($resultado != null){
     $sql = "UPDATE historial SET fecha = '$fecha' WHERE id = '$resultado'";
+    try {
+        $db->query($sql);
+    } catch(Exception $e) {
+        echo $e->getMessage();
+    }
 } else {
     $sql = "INSERT INTO historial (libro_id, perfil_id, fecha) VALUES ('$libro_id', '$perfil_id', '$fecha')";
+
+    try {
+        $db->query($sql);
+    } catch(Exception $e) {
+        echo $e->getMessage();
+    }
+
+    $sql = "SELECT titulo FROM libros WHERE id = $libro_id";
+    $r = $db->query($sql);
+    $nombre = $r->fetch_assoc()['titulo'];
+
+    $sql = "INSERT INTO reportes_lecturas (libro_id,usuario_id,nombre_libro) VALUES ('$libro_id','$perfil_id','$nombre')";
+    try {
+        $db->query($sql);
+    } catch(Exception $e) {
+        echo $e->getMessage();
+    }
 }
 
 // ejecuto la consulta
-try {
-    $db->query($sql);
-} catch(Exception $e) {
-    echo $e->getMessage();
-}
+
 
 ?>

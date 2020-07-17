@@ -18,7 +18,7 @@
 
 
 	
-	$sql = "SELECT *, COUNT(*) FROM historial GROUP BY libro_id ORDER BY COUNT(*) DESC";
+	$sql = "SELECT *, COUNT(*) FROM reportes_lecturas GROUP BY libro_id ORDER BY COUNT(*) DESC";
 	$result = $conexion->query($sql);
 	$msg = $result->num_rows;
 	if($msg == 0){
@@ -43,7 +43,7 @@
 
 	while($h = $result->fetch_assoc()){
 		$id = $h['libro_id'];
-		$sql = "SELECT * FROM historial WHERE libro_id = '$id'";
+		$sql = "SELECT * FROM reportes_lecturas WHERE libro_id = '$id'";
 		$res = $conexion->query($sql);
 		//cuenta terminados para cada libro
 		$terminados = 0;
@@ -53,11 +53,19 @@
 			}
 		}
 		?>
-		<tr>
-			<td><a href="libro.php?id=<?php echo $id?>"><?php echo $autenticador->retornarTitulo($id); ?></a></td>
+		<?php /*$sql = "SELECT * FROM libros WHERE id = $id";
+		$resultado = $conexion->query($sql);
+		$lib = $resultado->fetch_assoc(); */
+		?>
+		
+			<tr>
+			<td><p><?php echo $h['nombre_libro']; ?></p></td>
 			<td style="text-align:center;"><?php echo $h['COUNT(*)'] - $terminados?></td>
 			<td style="text-align:center;"><?php echo $terminados?></td>
-		</tr>
+			</tr>
+				
+			
+		
 		<?php 
 	}
 ?>	
